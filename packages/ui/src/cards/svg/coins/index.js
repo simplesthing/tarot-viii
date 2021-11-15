@@ -1,0 +1,14 @@
+export { default as Coin1 } from './Coin1';
+export { default as Coin10 } from './Coin10';
+export { default as Coin2 } from './Coin2';
+export { default as Coin3 } from './Coin3';
+export { default as Coin4 } from './Coin4';
+export { default as Coin5 } from './Coin5';
+export { default as Coin6 } from './Coin6';
+export { default as Coin7 } from './Coin7';
+export { default as Coin8 } from './Coin8';
+export { default as Coin9 } from './Coin9';
+export { default as CoinKing } from './CoinKing';
+export { default as CoinKnight } from './CoinKnight';
+export { default as CoinPage } from './CoinPage';
+export { default as CoinQueen } from './CoinQueen';

@@ -1,0 +1,33 @@
+.DS_Store
+.vscode
+.idea/
+node_modules/
+yarn-error.log
+*.hprof
+.vercel
+**/*.env
+.expo
+
+dist/
+# @generated: @expo/next-adapter@3.1.6
+/.expo/*
+# Expo Web
+/web-build/*
+# Expo Native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+# Next.js
+/.next/*
+/out/
+# Next.js production
+/build/
+# Next.js dependencies
+/.pnp
+.pnp.js
+# @end @expo/next-adapter
+
+tsconfig.tsbuildinfo

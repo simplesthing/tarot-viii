@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Tarot 8",
+    "slug": "tarot-viii",
+    "version": "0.0.1",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "versionCode": 430000001
+    },
+    "ios": {
+      "buildNumber": "0.0.1"
+    }
+  },
+  "name": "tarot8"
+}

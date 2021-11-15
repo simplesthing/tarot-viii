@@ -1,0 +1,24 @@
+{
+  "name": "@tarot-viii/next",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "cd ../.. && yarn patch-package"
+  },
+  "dependencies": {
+    "app": "*",
+    "firebase": "^9.4.0",
+    "next": "^11.0.0",
+    "next-images": "^1.8.2",
+    "nextjs-fonts": "^0.22.0",
+    "setimmediate": "^1.0.5",
+    "ui": "*"
+  },
+  "devDependencies": {
+    "next-compose-plugins": "^2.2.1",
+    "next-transpile-modules": "^9.0.0"
+  }
+}

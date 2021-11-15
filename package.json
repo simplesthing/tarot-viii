@@ -1,0 +1,40 @@
+{
+  "name": "tarot-viii",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "eslint": "^8.1.0",
+    "husky": "^7.0.4",
+    "patch-package": "^6.4.7",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
+  },
+  "workspaces": [
+    "packages/app",
+    "packages/expo",
+    "packages/next",
+    "packages/ui"
+  ],
+  "scripts": {
+    "android": "yarn workspace @tarot-viii/expo android",
+    "build:types": "tsc -b",
+    "bump:major": "git fetch --all && npx standard-version@next --release-as major",
+    "bump:minor": "git fetch --all && npx standard-version@next --release-as minor",
+    "bump:pre": "git fetch --all && npx standard-version@next --prerelease ",
+    "bump": "git fetch --all && npx standard-version@next",
+    "ios": "yarn workspace @tarot-viii/expo ios",
+    "lint": "tsc --noEmit && eslint . --ext tsx,json --quiet --fix",
+    "next": "yarn workspace @tarot-viii/next dev",
+    "postinstall": "patch-package",
+    "refresh": "sh refresh.sh",
+    "start": "yarn workspace @tarot-viii/expo start",
+    "storybook": "yarn workspace @tarot-viii/ui storybook"
+  },
+  "resolutions": {
+    "babel-preset-expo": "^8.5.1"
+  }
+}

@@ -1,0 +1,1 @@
+export const CARDS = Array.from(Array(78).keys())
