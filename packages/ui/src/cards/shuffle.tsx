@@ -1,20 +1,19 @@
-import Card from '../cards/card';
-import React from 'react';
+import React, { useState } from 'react';
+import ShuffleCard from './shuffle-card';
 import { CARDS } from './constants';
 import {
     Dimensions,
-    Platform,
     StyleSheet,
+    TouchableOpacity,
     View
     } from 'react-native';
-import { vmin } from 'react-native-expo-viewport-units';
 
 
 const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;
 
 export type ShuffleProps = {
-    onPress: () => void;
+    actWithIntent: () => void;
 };
 
 const styles = StyleSheet.create({
@@ -32,58 +31,26 @@ const styles = StyleSheet.create({
     }
 });
 
-const randomPosition = (factor: number) => {
-    return Math.floor(Math.random() * factor);
-};
+export default function Shuffle({ actWithIntent }) {
+    const [isShuffling, setIsShuffling] = useState(true);
 
-const rotation = () => {
-    return Math.floor(Math.random() * 360);
-};
+    const toggleShuffle = () => {
+        setIsShuffling(!isShuffling);
+        actWithIntent();
+    };
 
-function randomBetween(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-}
-
-export default function Shuffle({ onPress }: ShuffleProps) {
-    // shuffle cards UI
-    // shuffle card data
-    // stop shuffle, then line up cards
-    // cut at clicked upon index, then start shuffle
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={toggleShuffle}>
             <View style={styles.deck}>
-                {CARDS.map(index => {
-                    const left =
-                        Platform.OS === 'web'
-                            ? randomPosition(viewWidth - vmin(9)) + 'px'
-                            : randomPosition(viewWidth - vmin(9));
-
-                    const top =
-                        Platform.OS === 'web'
-                            ? randomPosition(viewHeight - vmin(18) - 220) + 'px'
-                            : randomPosition(viewHeight - vmin(18) - 220);
-
-                    const rot = rotation();
-
-                    const styleProps = {
-                        left: left,
-                        top: top,
-                        transform: [{ rotate: `${rot}deg` }],
-                        zIndex: randomBetween(10, 87)
-                    };
-
-                    return (
-                        <Card
-                            cardIndex={index}
-                            key={index}
-                            styleProps={styleProps}
-                            face={false}
-                        />
-                    );
-                })}
+                {CARDS.map(index => (
+                    <ShuffleCard
+                        cardIndex={index}
+                        key={index}
+                        isShuffling={isShuffling}
+                        onPress={toggleShuffle}
+                    />
+                ))}
             </View>
-        </View>
+        </TouchableOpacity>
     );
 }

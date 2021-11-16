@@ -39,7 +39,7 @@ const Shuffle = () => {
     return (
         <Background>
             <Text style={styles.instructions}>{instruction}</Text>
-            <ShuffleAnimation onPress={actWithIntent} />
+            <ShuffleAnimation actWithIntent={actWithIntent} />
         </Background>
     );
 };
