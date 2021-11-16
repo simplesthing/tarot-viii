@@ -6,8 +6,9 @@ import { vmin } from 'react-native-expo-viewport-units';
 
 export type CardProps = {
     cardIndex: number;
-    styleProps: any;
-    face: boolean;
+    face?: boolean;
+    styleProps?: any;
+    onPress?: () => void;
 };
 
 const width = vmin(9);
@@ -24,7 +25,12 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Card({ cardIndex, styleProps, face = false }: CardProps) {
+export default function Card({
+    cardIndex,
+    styleProps,
+    face = false,
+    onPress
+}: CardProps) {
     const svgImage = useSvgCards(cardIndex, {
         ...{ width, height }
     });
@@ -40,7 +46,11 @@ export default function Card({ cardIndex, styleProps, face = false }: CardProps)
         />
     );
 
+    const cb = onPress ? onPress : () => ({});
+
     return (
-        <TouchableOpacity style={[styles.card, styleProps]}>{cardImage}</TouchableOpacity>
+        <TouchableOpacity style={[styles.card, styleProps]} onPress={cb}>
+            {cardImage}
+        </TouchableOpacity>
     );
 }

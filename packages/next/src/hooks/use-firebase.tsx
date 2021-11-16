@@ -1,4 +1,4 @@
-import { firebaseConfig } from '../../firebase.config';
+import firebaseConfig from '../../firebase.config';
 import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 import { useState } from 'react';
