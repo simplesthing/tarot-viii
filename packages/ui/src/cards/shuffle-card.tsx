@@ -7,7 +7,7 @@ import Animated, {
 import Card from '../cards/card';
 import React, { useEffect } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import { vmin } from 'react-native-expo-viewport-units';
+import { vh, vmin } from 'react-native-expo-viewport-units';
 
 
 const viewWidth = Dimensions.get('window').width;
@@ -16,7 +16,9 @@ const viewHeight = Dimensions.get('window').height;
 export type ShuffleCardProps = {
     cardIndex: number;
     isShuffling: boolean;
-    onPress?: () => void;
+    cutCards: (index: number) => void;
+    cutCardIndex: number;
+    onPress: () => void;
 };
 
 const styles = StyleSheet.create({
@@ -37,10 +39,13 @@ const rotation = () => {
 
 export default function ShuffleCard({
     cardIndex,
+    onPress,
     isShuffling,
-    onPress
+    cutCards,
+    cutCardIndex
 }: ShuffleCardProps) {
     const offset = useSharedValue({ x: 0, y: 0, r: 0 });
+
     // @ts-ignore
     const animatedStyles = useAnimatedStyle(() => {
         return {
@@ -67,7 +72,7 @@ export default function ShuffleCard({
         };
     });
 
-    const update = () => {
+    const updateShuffle = () => {
         offset.value = {
             x: randomPosition(viewWidth - vmin(20)),
             y: randomPosition(viewHeight / 2),
@@ -75,21 +80,66 @@ export default function ShuffleCard({
         };
     };
 
+    const lineUpCards = () => {
+        const left = (viewWidth - vmin(10)) / 78;
+        const rotation = offset.value.r > 180 ? 180 : 0;
+        offset.value = {
+            x: cardIndex * left + vmin(1),
+            y: vh(15),
+            r: rotation
+        };
+    };
+
+    const doCut = () => {
+        const xPos =
+            cardIndex < cutCardIndex
+                ? vmin(1)
+                : (cutCardIndex * (viewWidth - vmin(10))) / 78 + vmin(1);
+        const rotation = offset.value.r;
+        offset.value = {
+            x: xPos,
+            y: vh(15),
+            r: rotation
+        };
+        setTimeout(() => {
+            offset.value = {
+                x: vmin(1),
+                y: vh(15),
+                r: rotation
+            };
+        }, 500);
+    };
+
+    const castEnergyToDeck = () => {
+        if (isShuffling) {
+            onPress();
+        } else {
+            cutCards(cardIndex);
+        }
+    };
+
     useEffect(() => {
         const shuffleAnim = setInterval(() => {
-            update();
+            updateShuffle();
         }, 500);
 
         if (!isShuffling) {
+            lineUpCards();
             clearInterval(shuffleAnim);
         }
 
         return () => clearInterval(shuffleAnim);
     }, [isShuffling]);
 
+    useEffect(() => {
+        if (!isShuffling) {
+            doCut();
+        }
+    }, [cutCardIndex]);
+
     return (
         <Animated.View style={[styles.card, animatedStyles]}>
-            <Card cardIndex={cardIndex} face={false} onPress={onPress} />
+            <Card cardIndex={cardIndex} onPress={castEnergyToDeck} />
         </Animated.View>
     );
 }

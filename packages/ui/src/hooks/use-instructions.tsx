@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
 const DEFAULT = [
-    'Think of a question ... \n tap cards once you have a question in your mind.',
-    'You must cut the deck 3 times. \n Tap the cards where you want the cards to be cut.',
-    'Allow your mind to explore your question a little deeper while the cards shuffle, \n tap the cards to stop the shuffle at any time',
-    'Tap the cards where you want the cards to be cut.',
-    'Finally allow your mind to open to possible answers, \n tap cards to stop shuffling when you are ready',
-    'Tap the cards where would like to make the final cut.'
+    'Think of a question ...tap cards once you have a question in your mind.',
+    'You must cut the deck 3 times. Tap the cards to be cut.',
+    'Allow your mind to explore your question a while the cards shuffle, tap any card to stop the shuffle, at any time',
+    'Still focused on the question, tap a card to cut the deck',
+    'Allow yourself to accept all possibilities as answers to your question, tap any card to stop shuffling.',
+    'When you are ready, tap the card where a final cut is to be made.',
+    'Tap the deck to reveal the first card in the reading, the situation card'
 ];
 
 const useInstructions = (instructions: string[] = DEFAULT) => {

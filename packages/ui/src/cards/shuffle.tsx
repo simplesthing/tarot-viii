@@ -13,7 +13,8 @@ const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;
 
 export type ShuffleProps = {
-    actWithIntent: () => void;
+    nextInstruction: () => void;
+    instructionCount: number;
 };
 
 const styles = StyleSheet.create({
@@ -31,23 +32,41 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Shuffle({ actWithIntent }) {
+export default function Shuffle({ nextInstruction, instructionCount }) {
     const [isShuffling, setIsShuffling] = useState(true);
+    const [cutCount, setCutCount] = useState(0);
+    const [cutCardIndex, setCutCardIndex] = useState(0);
 
-    const toggleShuffle = () => {
-        setIsShuffling(!isShuffling);
-        actWithIntent();
+    const castEnergyToDeck = () => {
+        setIsShuffling(false);
+        nextInstruction();
+    };
+
+    const cutCards = (cutCardIndex: number) => {
+        setCutCardIndex(cutCardIndex);
+        setCutCount(cutCount + 1);
+        if (cutCount < 2) {
+            setTimeout(() => {
+                nextInstruction();
+                setIsShuffling(true);
+            }, 800);
+        } else {
+            // deal
+            nextInstruction();
+        }
     };
 
     return (
-        <TouchableOpacity style={styles.container} onPress={toggleShuffle}>
+        <TouchableOpacity style={styles.container} onPress={castEnergyToDeck}>
             <View style={styles.deck}>
                 {CARDS.map(index => (
                     <ShuffleCard
                         cardIndex={index}
                         key={index}
                         isShuffling={isShuffling}
-                        onPress={toggleShuffle}
+                        cutCards={cutCards}
+                        cutCardIndex={cutCardIndex}
+                        onPress={castEnergyToDeck}
                     />
                 ))}
             </View>

@@ -6,17 +6,26 @@ import {
     useInstructions,
     Value
     } from '@tarot-viii/ui';
-import { Platform, StyleSheet, Text } from 'react-native';
+import {
+    Platform,
+    StyleSheet,
+    Text,
+    View
+    } from 'react-native';
 
 
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
 
 const Shuffle = () => {
     const styles = StyleSheet.create({
+        instructionWrapper: {
+            flexBasis: 120,
+            paddingHorizontal: 10
+        },
         instructions: {
             fontSize: instructionTextSize,
             textAlign: 'center',
-            marginTop: 40
+            marginTop: 20
         },
         deck: {
             alignSelf: 'center',
@@ -29,17 +38,12 @@ const Shuffle = () => {
 
     const { count, instruction, next } = useInstructions();
 
-    const actWithIntent = () => {
-        if (count === 5) {
-            console.log('open new page');
-        }
-        next();
-    };
-
     return (
         <Background>
-            <Text style={styles.instructions}>{instruction}</Text>
-            <ShuffleAnimation actWithIntent={actWithIntent} />
+            <View style={styles.instructionWrapper}>
+                <Text style={styles.instructions}>{instruction}</Text>
+            </View>
+            <ShuffleAnimation nextInstruction={next} instructionCount={count} />
         </Background>
     );
 };
