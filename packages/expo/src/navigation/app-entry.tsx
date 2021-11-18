@@ -1,5 +1,5 @@
 import React from 'react';
-import Shuffle from '../screens/shuffle';
+import ReadingScreen from '../screens/reading';
 import Start from '../screens/start';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +15,7 @@ const AppEntry = () => {
                     name="start"
                     options={{ headerShown: false }}
                 />
-                <Stack.Screen component={Shuffle} name="shuffle" />
+                <Stack.Screen component={ReadingScreen} name="reading" />
             </Stack.Navigator>
         </NavigationContainer>
     );

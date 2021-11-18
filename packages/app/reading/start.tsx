@@ -58,7 +58,7 @@ const Start = ({ onStart }: StartProps) => {
 
     const onPress = () => {
         onStart();
-        navigate({ routeName: 'shuffle' });
+        navigate({ routeName: 'reading' });
     };
 
     return (

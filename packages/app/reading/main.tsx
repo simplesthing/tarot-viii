@@ -16,7 +16,7 @@ import {
 
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
 
-const Shuffle = () => {
+const Reading = () => {
     const styles = StyleSheet.create({
         instructionWrapper: {
             flexBasis: 120,
@@ -48,4 +48,4 @@ const Shuffle = () => {
     );
 };
 
-export default Shuffle;
+export default Reading;
