@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Shuffle({ nextInstruction, instructionCount }) {
+export default function Shuffle({ nextInstruction }) {
     const [isShuffling, setIsShuffling] = useState(true);
     const [cutCount, setCutCount] = useState(0);
     const [cutCardIndex, setCutCardIndex] = useState(0);

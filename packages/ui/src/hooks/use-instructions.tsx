@@ -14,14 +14,20 @@ const useInstructions = (instructions: string[] = DEFAULT) => {
     const [count, setCount] = useState(0);
     const [instruction, setInstruction] = useState(instructions[count]);
 
-    const next = () => {
-        setCount(count + 1);
-        setInstruction(instructions[count + 1]);
+    const next = (from?: number) => {
+        const _count = from ? from : count + 1;
+        setCount(_count);
+        setInstruction(instructions[_count]);
+    };
+
+    const instructionAt = (index: number) => {
+        return instructions[index];
     };
 
     return {
         count,
         instruction,
+        instructionAt,
         next
     };
 };

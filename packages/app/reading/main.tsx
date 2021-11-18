@@ -36,14 +36,14 @@ const Reading = () => {
         }
     });
 
-    const { count, instruction, next } = useInstructions();
+    const { instruction, next } = useInstructions();
 
     return (
         <Background>
             <View style={styles.instructionWrapper}>
                 <Text style={styles.instructions}>{instruction}</Text>
             </View>
-            <ShuffleAnimation nextInstruction={next} instructionCount={count} />
+            <ShuffleAnimation nextInstruction={next} />
         </Background>
     );
 };
