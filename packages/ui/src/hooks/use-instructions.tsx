@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 const DEFAULT = [
-    'Think of a question ...tap cards once you have a question in your mind.',
-    'You must cut the deck 3 times. Tap the cards to be cut.',
-    'Allow your mind to explore your question a while the cards shuffle, tap any card to stop the shuffle, at any time',
-    'Still focused on the question, tap a card to cut the deck',
-    'Allow yourself to accept all possibilities as answers to your question, tap any card to stop shuffling.',
-    'When you are ready, tap the card where a final cut is to be made.',
-    'Tap the deck to reveal the first card in the reading, the situation card'
+    'Think to yourself what you would like to learn from this reading, tap a card once you have that in your mind',
+    'Meditate on how the cards can reveal universal energies at play, tap a card to cut the deck',
+    'Allow thoughts to freely unveil in your mind, tap a card to stop the shuffle at any time',
+    'Returning focus again to you and your query, tap a card to cut the deck again',
+    'Accept all possibilities in this moment, tap any card to stop shuffling',
+    'When you are ready, tap a card where the final cut is to be made',
+    'Tap the deck to begin your reading'
 ];
 
 const useInstructions = (instructions: string[] = DEFAULT) => {
