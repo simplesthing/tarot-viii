@@ -31,8 +31,10 @@ export default function Card({
     face = false,
     onPress
 }: CardProps) {
+    const _width = styleProps ? styleProps.width : width;
+    const _height = styleProps ? styleProps.height : height;
     const svgImage = useSvgCards(cardIndex, {
-        ...{ width, height }
+        ...{ width: _width, height: _height }
     });
 
     const cardImage = face ? (
@@ -41,8 +43,8 @@ export default function Card({
         <Image
             style={styles.card}
             source={require('../../assets/images/cards/smith-waite/deck.jpg')}
-            width={width}
-            height={height}
+            width={_width}
+            height={_height}
         />
     );
 

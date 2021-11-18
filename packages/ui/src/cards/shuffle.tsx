@@ -16,10 +16,17 @@ import { Percentage, Value } from '../theme/fonts';
 const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;
 
-export type ShuffleProps = {};
+export type ShuffleProps = {
+    done: () => void;
+};
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignContent: 'stretch'
+    },
     instructionWrapper: {
         flexBasis: 120,
         paddingHorizontal: 10
@@ -29,11 +36,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 20
     },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignContent: 'stretch'
-    },
+
     deck: {
         alignSelf: 'center',
         padding: 40,
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Shuffle() {
+export default function Shuffle({ done }) {
     const [isShuffling, setIsShuffling] = useState(true);
     const [cutCount, setCutCount] = useState(0);
     const [cutCardIndex, setCutCardIndex] = useState(0);
@@ -63,8 +66,8 @@ export default function Shuffle() {
                 setIsShuffling(true);
             }, 800);
         } else {
-            // deal
             next();
+            done();
         }
     };
 
