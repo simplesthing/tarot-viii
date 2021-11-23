@@ -2,6 +2,7 @@
   "name": "@tarot-viii/next",
   "version": "0.0.1",
   "private": true,
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

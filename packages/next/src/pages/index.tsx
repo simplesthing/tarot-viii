@@ -1,4 +1,4 @@
-import Start from '@tarot-vii/app/reading/start';
+import Start from 'app';
 import useFirebase from '../hooks/use-firebase';
 import { logEvent } from 'firebase/analytics';
 

@@ -1,17 +1,17 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "composite": true,
-      "declaration": true,
-      "declarationMap": true,
-      "outDir": "./dist",
-      "rootDir": "../../"
-    },
-    "include": [
-      "src/**/*"
-    ],
-    "exclude": [
-      "node_modules"
-    ]
-  }
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "../../"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

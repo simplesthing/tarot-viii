@@ -1,5 +1,5 @@
 import React from 'react';
-import Reading from '@tarot-vii/app/reading/main';
+import { Reading } from '@tarot-viii/app';
 
 const ReadingScreen = () => <Reading />;
 

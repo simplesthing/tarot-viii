@@ -18,25 +18,11 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "paths": {
-      "@tarot-vii/*": [
+      "@tarot-viii/*": [
         "packages/*"
       ]
     }
   },
-  "references": [
-    {
-      "path": "packages/app"
-    },
-    {
-      "path": "packages/expo"
-    },
-    {
-      "path": "packages/next"
-    },
-    {
-      "path": "packages/ui"
-    }
-  ],
   "exclude": [
     "node_modules",
     "dist",
