@@ -4,7 +4,7 @@ import {
     Background,
     Colors,
     Deck
-    } from '@tarot-viii/ui/src';
+    } from '@tarot-viii/ui';
 import {
     Dimensions,
     Platform,

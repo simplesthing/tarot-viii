@@ -24,7 +24,6 @@ export function Value(fontSize: number, standardScreenHeight: number = 680) {
         Platform.OS === 'android' ? standardLength - offset : standardLength;
 
     const heightPercent = (fontSize * deviceHeight) / standardScreenHeight;
-    console.log(Math.round(heightPercent), 'ho');
 
     return Math.round(heightPercent);
 }

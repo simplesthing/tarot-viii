@@ -1,8 +1,9 @@
 {
   "name": "@tarot-viii/ui",
-  "main": "src/index.tsx",
+  "main": "index.tsx",
   "version": "0.0.1",
   "private": true,
+  "types": "dist/index.d.ts",
   "scripts": {
     "storybook": "start-storybook"
   },
