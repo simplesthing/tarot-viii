@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'react-native-elements';
-import { StyleSheet } from 'react-native';
 
 type LoginButtonProps = {
     onPress: () => void;

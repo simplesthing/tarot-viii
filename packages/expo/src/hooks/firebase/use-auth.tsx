@@ -1,5 +1,8 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import useFirestore from './use-firestore';
+import uuid from 'react-native-uuid';
 import { useEffect, useState } from 'react';
+
 
 export type LoginWithEmailAndPasswordProps = {
     email: string;
@@ -25,10 +28,12 @@ type UseAuth = {
         password
     }: LoginWithEmailAndPasswordProps) => void;
     logout: () => Promise<void>;
-    user: FirebaseAuthTypes.User | undefined;
+    user?: FirebaseAuthTypes.User;
 };
 
 const useAuth = (): UseAuth => {
+    const { generateUserDocument } = useFirestore();
+
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState<FirebaseAuthTypes.User>();
     const [error, setError] = useState<ErrorProps>({
@@ -37,6 +42,7 @@ const useAuth = (): UseAuth => {
 
     function onAuthStateChanged(user) {
         setUser(user);
+        generateUserDocument(user);
         if (initializing) setInitializing(false);
     }
 
@@ -80,10 +86,17 @@ const useAuth = (): UseAuth => {
     };
 
     const loginAnonymously = () => {
+        setError({ message: '' });
+
+        const userId = uuid.v4();
+        const regex = /-/g;
+        const displayName = userId.toString().replace(regex, '').substring(0, 8);
+        const email = `${displayName}@anon.com`;
+        const password = 'anonymous';
         auth()
-            .signInAnonymously()
-            .then(() => {
-                console.log('User signed in anonymously');
+            .createUserWithEmailAndPassword(email, password)
+            .then(user => {
+                console.log('User account created & signed in!', user);
             })
             .catch(error => {
                 setError({
@@ -99,7 +112,6 @@ const useAuth = (): UseAuth => {
     const forgotPassword = (emailAddress: string) => {
         return auth().sendPasswordResetEmail(emailAddress);
     };
-
     return {
         createLoginWithEmailAndPassword,
         error,
