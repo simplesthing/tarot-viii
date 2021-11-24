@@ -11,9 +11,10 @@ import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 type ReadingProps = {
     cards?: Record<string, string>[];
     spread?: FirebaseFirestoreTypes.DocumentData;
+    web?: boolean;
 };
 
-const Reading = ({ cards, spread }: ReadingProps) => {
+const Reading = ({ cards, spread, web }: ReadingProps) => {
     const [shuffleDone, setShuffleDone] = useState(false);
     // @ts-ignore
     const [dealDone, setDealDone] = useState(false);
@@ -39,6 +40,7 @@ const Reading = ({ cards, spread }: ReadingProps) => {
                     done={() => setShuffleDone(true)}
                     shuffleDeck={shuffleDeck}
                     cutDeck={cutDeck}
+                    web={web}
                 />
             )}
             {shuffleDone && <Deal done={() => setDealDone(true)} reading={dealt} />}

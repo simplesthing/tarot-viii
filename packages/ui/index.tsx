@@ -6,6 +6,7 @@ export { default as Colors } from './src/theme/colors';
 export { default as Deck } from './src/cards/deck';
 export { default as ShuffleAnimation } from './src/cards/shuffle';
 export { default as Deal } from './src/cards/deal';
+export { default as LogOutButton } from './src/login/logout-button';
 // hooks
 export { default as useInstructions } from './src/hooks/use-instructions';
 export { default as useReading } from './src/hooks/use-reading';

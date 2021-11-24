@@ -3,10 +3,11 @@ import PasswordReset from '../screens/password-reset';
 import React from 'react';
 import ReadingScreen from '../screens/reading';
 import StartScreen from '../screens/start';
+import { Colors, LogOutButton } from '@tarot-viii/ui';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { Text } from 'react-native';
 import { useAuth } from '../hooks';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -26,14 +27,14 @@ const AppEntry = () => {
                     component={ReadingScreen}
                     name="reading"
                     options={({ navigation }) => ({
+                        headerTintColor: Colors.smoky_black.base,
                         headerRight: () => (
-                            <Text
+                            <LogOutButton
                                 onPress={() => {
                                     logout();
                                     navigation.navigate('login');
-                                }}>
-                                Log out
-                            </Text>
+                                }}
+                            />
                         )
                     })}
                 />
