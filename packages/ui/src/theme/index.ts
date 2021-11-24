@@ -3,8 +3,8 @@ import { default as colors } from './colors';
 
  const theme: any = {
     colors: {
-        primary: colors.cambridge_blue.muted,
-        secondary: colors.tuscany.base,
+        primary: colors.medium_aquamarine.base,
+        secondary: colors.lemon.base,
         white: colors.spanish_white.base,
         black: colors.smoky_black.base,
         grey0: colors.silver_sand.light,
@@ -20,8 +20,13 @@ import { default as colors } from './colors';
         error: colors.electric_orange.base
     },
     Button: {
+        buttonStyle: {
+            height: 40,
+            paddingLeft: 20,
+            paddingRight: 20
+        },
         titleStyle: {
-            color: colors.cambridge_blue.accent1
+            color: colors.smoky_black.base
         }
     }
 };
