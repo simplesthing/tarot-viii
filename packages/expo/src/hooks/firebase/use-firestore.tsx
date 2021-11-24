@@ -1,4 +1,5 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import uuid from 'react-native-uuid';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 
@@ -8,6 +9,7 @@ type UseFirestore = {
     fetchUser: (
         uid: string
     ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
+    generateReadingDocument: (userId: string, reading: Record<string, string>) => void;
     generateUserDocument: (
         user: FirebaseAuthTypes.User,
         additionalData?: FirebaseAuthTypes.AdditionalUserInfo
@@ -39,6 +41,20 @@ const useFirestore = (): UseFirestore => {
                         });
                 }
             });
+    };
+
+    const generateReadingDocument = async (userId, reading) => {
+        if (!userId || !reading) return;
+
+        const documentId = uuid.v4().toString();
+        const now = new Date();
+        const document = {
+            user: userId,
+            reading,
+            creationTime: now
+        };
+
+        firestore().collection('readings').doc(documentId).set(document);
     };
 
     const fetchUser = async (uid: string) => {
@@ -94,6 +110,7 @@ const useFirestore = (): UseFirestore => {
         fetchDeck,
         fetchSpread,
         fetchUser,
+        generateReadingDocument,
         generateUserDocument
     };
 };

@@ -10,11 +10,17 @@ import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 type ReadingProps = {
     cards?: Record<string, string>[];
+    generateReadingDoc: (reading: Record<string, string>) => void;
     spread?: FirebaseFirestoreTypes.DocumentData;
     web?: boolean;
 };
 
-const Reading = ({ cards, spread, web }: ReadingProps) => {
+const Reading = ({
+    cards,
+    spread,
+    web,
+    generateReadingDoc = () => ({})
+}: ReadingProps) => {
     const [shuffleDone, setShuffleDone] = useState(false);
     // @ts-ignore
     const [dealDone, setDealDone] = useState(false);
@@ -29,6 +35,7 @@ const Reading = ({ cards, spread, web }: ReadingProps) => {
     useEffect(() => {
         if (!!shuffleDone) {
             const d = deal({ cards, spread });
+            generateReadingDoc(d);
             setDealt(d);
         }
     }, [shuffleDone]);

@@ -28,7 +28,7 @@ type UseAuth = {
         password
     }: LoginWithEmailAndPasswordProps) => void;
     logout: () => Promise<void>;
-    user: FirebaseAuthTypes.User | undefined;
+    user?: FirebaseAuthTypes.User;
 };
 
 const useAuth = (): UseAuth => {
@@ -93,7 +93,6 @@ const useAuth = (): UseAuth => {
         const displayName = userId.toString().replace(regex, '').substring(0, 8);
         const email = `${displayName}@anon.com`;
         const password = 'anonymous';
-        console.log(email);
         auth()
             .createUserWithEmailAndPassword(email, password)
             .then(user => {

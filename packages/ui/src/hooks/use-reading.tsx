@@ -45,6 +45,7 @@ const useReading = () => {
             positionDescription: pos.description,
             cardName: cards[deck[index]].name,
             cardNumber: cards[deck[index]].number,
+            cardDescription: cards[deck[index]][pos.name],
             hex: cards[deck[index]].hex,
             image: cards[deck[index]].image,
             index: cards[deck[index]].index,
