@@ -21,20 +21,17 @@ const styles = StyleSheet.create({
         fontWeight: '800'
     },
     userEmail: {
-        fontStyle: 'italic',
-        fontWeight: '600'
+        fontStyle: 'italic'
     }
 });
 
 const PasswordReset = ({ navigation, route }) => {
-    console.log(route);
     const address = route?.params?.emailAddress;
     return (
         <View style={styles.container}>
             <Text h4>
-                An email has been sent to
+                A password reset link wiil be sent if account is found for
                 <Text style={styles.userEmail}> {address} </Text>
-                with a link to reset password.
             </Text>
             <Button
                 buttonStyle={styles.goBackButton}
