@@ -1,6 +1,5 @@
+import Deal, { DealProps } from './deal';
 import React from 'react';
-import Shuffle, { ShuffleProps } from './shuffle';
-import useReading from '../hooks/use-reading';
 import { default as colors } from '../theme/colors';
 import { StyleSheet, View } from 'react-native';
 
@@ -15,8 +14,8 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: 'cards/shuffle',
-    component: Shuffle,
+    title: 'cards/deal',
+    component: Deal,
     argTypes: { done: { action: 'done!' } },
     parameters: {
         backgrounds: {
@@ -31,12 +30,8 @@ export default {
     }
 };
 
-export const Default = (args: ShuffleProps) => {
-    const { cutDeck, shuffleDeck } = useReading();
-
-    return (
-        <View style={styles.container}>
-            <Shuffle {...args} cutDeck={cutDeck} shuffleDeck={shuffleDeck} web={true} />
-        </View>
-    );
-};
+export const Default = (args: DealProps) => (
+    <View style={styles.container}>
+        <Deal {...args} />
+    </View>
+);

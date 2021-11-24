@@ -1,14 +1,13 @@
 import DealCard from './deal-card';
 import React, { useState } from 'react';
 import TheSpread from './the-spread';
-import { CARDS } from './constants';
+import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
 import { StyleSheet, View } from 'react-native';
 
 
-const DEALER = CARDS.slice(0, 10);
-
 export type DealProps = {
     done: () => void;
+    reading?: ReadingProp[];
 };
 
 const POSITIONS = Array.from(Array(10).keys());
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Deal({ done }: DealProps) {
+export default function Deal({ done, reading }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
     const [dealDone, setDealDone] = useState(false);
 
@@ -43,14 +42,15 @@ export default function Deal({ done }: DealProps) {
         <View style={styles.container}>
             <View style={styles.header}></View>
             <TheSpread>
-                {DEALER.map((card, index) => (
-                    <DealCard
-                        key={index}
-                        cardIndex={card}
-                        spreadIndex={index}
-                        onPress={castEnergyToDeck}
-                    />
-                ))}
+                {reading &&
+                    reading.map((card, index) => (
+                        <DealCard
+                            key={index}
+                            cardIndex={card?.index}
+                            spreadIndex={index}
+                            onPress={castEnergyToDeck}
+                        />
+                    ))}
             </TheSpread>
         </View>
     );

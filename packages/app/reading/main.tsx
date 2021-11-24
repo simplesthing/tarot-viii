@@ -1,16 +1,47 @@
-import React, { useState } from 'react';
-import { Background, Deal, ShuffleAnimation } from '@tarot-viii/ui';
+import React, { useEffect, useState } from 'react';
+import {
+    Background,
+    Deal,
+    ShuffleAnimation,
+    useReading
+    } from '@tarot-viii/ui';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-const Reading = () => {
+
+type ReadingProps = {
+    cards?: Record<string, string>[];
+    spread?: FirebaseFirestoreTypes.DocumentData;
+};
+
+const Reading = ({ cards, spread }: ReadingProps) => {
     const [shuffleDone, setShuffleDone] = useState(false);
-
     // @ts-ignore
     const [dealDone, setDealDone] = useState(false);
+    const [dealt, setDealt] = useState();
+
+    const { cutDeck, shuffleDeck, deal } = useReading();
+
+    useEffect(() => {
+        shuffleDeck();
+    }, []);
+
+    useEffect(() => {
+        if (!!shuffleDone) {
+            const d = deal({ cards, spread });
+            setDealt(d);
+        }
+    }, [shuffleDone]);
 
     return (
         <Background>
-            {!shuffleDone && <ShuffleAnimation done={() => setShuffleDone(true)} />}
-            {shuffleDone && <Deal done={() => setDealDone(true)} />}
+            {!shuffleDone && (
+                <ShuffleAnimation
+                    done={() => setShuffleDone(true)}
+                    shuffleDeck={shuffleDeck}
+                    cutDeck={cutDeck}
+                />
+            )}
+            {shuffleDone && <Deal done={() => setDealDone(true)} reading={dealt} />}
         </Background>
     );
 };
