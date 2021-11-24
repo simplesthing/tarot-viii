@@ -26,6 +26,7 @@ const SPREAD = [
 export type DealCardProps = {
     cardIndex: number;
     spreadIndex: number;
+    reversed: boolean;
     onPress: (index: number) => void;
 };
 
@@ -41,7 +42,12 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function DealCard({ cardIndex, spreadIndex, onPress }: DealCardProps) {
+export default function DealCard({
+    cardIndex,
+    spreadIndex,
+    reversed,
+    onPress
+}: DealCardProps) {
     const offset = useSharedValue({ x: vmin(1), y: 0, r: 0 });
     const [hasBeenDealt, setHasBeenDealt] = useState(false);
     // @ts-ignore
@@ -77,7 +83,7 @@ export default function DealCard({ cardIndex, spreadIndex, onPress }: DealCardPr
             offset.value = {
                 x: vw(SPREAD[spreadIndex].coords.x) - 40,
                 y: vh(SPREAD[spreadIndex].coords.y),
-                r: spreadIndex === 1 ? 90 : 0
+                r: spreadIndex === 1 && !!hasBeenDealt ? 90 : reversed ? 180 : 0
             };
             setHasBeenDealt(true);
         }

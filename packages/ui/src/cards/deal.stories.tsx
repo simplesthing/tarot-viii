@@ -1,5 +1,6 @@
 import Deal, { DealProps } from './deal';
 import React from 'react';
+import readingJson from '../../assets/data/reading.json';
 import { default as colors } from '../theme/colors';
 import { StyleSheet, View } from 'react-native';
 
@@ -32,6 +33,6 @@ export default {
 
 export const Default = (args: DealProps) => (
     <View style={styles.container}>
-        <Deal {...args} />
+        <Deal {...args} web={true} reading={readingJson} />
     </View>
 );

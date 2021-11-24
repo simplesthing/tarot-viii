@@ -1,4 +1,5 @@
 import DealCard from './deal-card';
+import DealCardWeb from './deal-card-web';
 import React, { useState } from 'react';
 import TheSpread from './the-spread';
 import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
@@ -8,6 +9,7 @@ import { StyleSheet, View } from 'react-native';
 export type DealProps = {
     done: () => void;
     reading?: ReadingProp[];
+    web?: boolean;
 };
 
 const POSITIONS = Array.from(Array(10).keys());
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Deal({ done, reading }: DealProps) {
+export default function Deal({ done, reading, web }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
     const [dealDone, setDealDone] = useState(false);
 
@@ -43,14 +45,25 @@ export default function Deal({ done, reading }: DealProps) {
             <View style={styles.header}></View>
             <TheSpread>
                 {reading &&
-                    reading.map((card, index) => (
-                        <DealCard
-                            key={index}
-                            cardIndex={card?.index}
-                            spreadIndex={index}
-                            onPress={castEnergyToDeck}
-                        />
-                    ))}
+                    reading.map((card, index) => {
+                        return web ? (
+                            <DealCardWeb
+                                key={index}
+                                cardIndex={card?.index}
+                                spreadIndex={index}
+                                onPress={castEnergyToDeck}
+                                reversed={card.reversed}
+                            />
+                        ) : (
+                            <DealCard
+                                key={index}
+                                cardIndex={card?.index}
+                                spreadIndex={index}
+                                reversed={card.reversed}
+                                onPress={castEnergyToDeck}
+                            />
+                        );
+                    })}
             </TheSpread>
         </View>
     );

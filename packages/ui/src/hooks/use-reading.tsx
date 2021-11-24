@@ -5,7 +5,7 @@ export type ReadingProp = {
     displayName: string;
     positionDescription: string;
     cardName: string;
-    cardNumber: number;
+    cardNumber: string;
     hex: string;
     image: string;
     index: number;

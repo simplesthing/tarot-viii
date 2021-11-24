@@ -16,8 +16,6 @@ const height = vmin(18);
 
 const styles = StyleSheet.create({
     card: {
-        width: width,
-        height: height,
         position: 'absolute',
         borderWidth: 0.5,
         borderColor: 'black',
@@ -41,7 +39,7 @@ export default function Card({
         svgImage
     ) : (
         <Image
-            style={styles.card}
+            style={[styles.card, { width: _width, height: _height }]}
             source={require('../../assets/images/cards/smith-waite/deck.jpg')}
             width={_width}
             height={_height}
