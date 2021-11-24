@@ -6,17 +6,28 @@ import StartScreen from '../screens/start';
 import { Colors, LogOutButton } from '@tarot-viii/ui';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
 import { useAuth } from '../hooks';
 
 
 const Stack = createNativeStackNavigator();
+
+const styles = StyleSheet.create({
+    headerStyle: {
+        backgroundColor: Colors.silver_sand.base
+    }
+});
 
 const AppEntry = () => {
     const { logout } = useAuth();
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerStyle: styles.headerStyle,
+                    headerShadowVisible: false
+                }}>
                 <Stack.Screen component={LoginScreen} name="login" />
                 <Stack.Screen
                     component={StartScreen}
@@ -28,6 +39,7 @@ const AppEntry = () => {
                     name="reading"
                     options={({ navigation }) => ({
                         headerTintColor: Colors.smoky_black.base,
+
                         headerRight: () => (
                             <LogOutButton
                                 onPress={() => {

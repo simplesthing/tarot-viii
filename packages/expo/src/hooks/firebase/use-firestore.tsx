@@ -1,11 +1,61 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+
 
 type UseFirestore = {
     fetchDeck: () => Promise<FirebaseFirestoreTypes.DocumentData[]>;
     fetchSpread: () => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
+    fetchUser: (
+        uid: string
+    ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
+    generateUserDocument: (
+        user: FirebaseAuthTypes.User,
+        additionalData?: FirebaseAuthTypes.AdditionalUserInfo
+    ) => void;
 };
 
 const useFirestore = (): UseFirestore => {
+    const generateUserDocument = async (user, additionalData) => {
+        if (!user) return;
+
+        firestore()
+            .collection('users')
+            .doc(user.uid)
+            .get()
+            .then(documentSnapshot => {
+                if (!documentSnapshot.exists) {
+                    const { email, displayName, photoURL } = user;
+                    const avatar = photoURL
+                        ? photoURL
+                        : 'https://loremflickr.com/320/240/tarot';
+                    firestore()
+                        .collection('users')
+                        .doc(user.uid)
+                        .set({
+                            email,
+                            displayName,
+                            avatar,
+                            ...additionalData
+                        });
+                }
+            });
+    };
+
+    const fetchUser = async (uid: string) => {
+        if (!uid) return;
+
+        return firestore()
+            .collection('users')
+            .doc(uid)
+            .get()
+            .then(documentSnapshot => {
+                if (documentSnapshot.exists) {
+                    return documentSnapshot.data();
+                }
+                return;
+            });
+    };
+
     const fetchDeck = async () => {
         return (
             firestore()
@@ -42,7 +92,9 @@ const useFirestore = (): UseFirestore => {
 
     return {
         fetchDeck,
-        fetchSpread
+        fetchSpread,
+        fetchUser,
+        generateUserDocument
     };
 };
 
