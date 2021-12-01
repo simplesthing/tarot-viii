@@ -7,6 +7,7 @@ import Animated, {
 import Card from '../cards/card';
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { useRouting } from 'expo-next-react-navigation';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
 
@@ -24,6 +25,7 @@ const SPREAD = [
 ];
 
 export type DealCardProps = {
+    card: any;
     cardIndex: number;
     spreadIndex: number;
     reversed: boolean;
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
 });
 
 export default function DealCard({
+    card,
     cardIndex,
     spreadIndex,
     reversed,
@@ -50,6 +53,7 @@ export default function DealCard({
 }: DealCardProps) {
     const offset = useSharedValue({ x: vmin(1), y: 0, r: 0 });
     const [hasBeenDealt, setHasBeenDealt] = useState(false);
+    const { navigate } = useRouting();
     // @ts-ignore
     const animatedStyles = useAnimatedStyle(() => {
         return {
@@ -86,6 +90,8 @@ export default function DealCard({
                 r: spreadIndex === 1 && !!hasBeenDealt ? 90 : reversed ? 180 : 0
             };
             setHasBeenDealt(true);
+        } else {
+            navigate({ routeName: 'position', params: { card: card } });
         }
     };
 
