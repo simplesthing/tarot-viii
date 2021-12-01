@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import TheSpread from './the-spread';
 import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
 import { StyleSheet, View } from 'react-native';
+import { useRouting } from 'expo-next-react-navigation';
 
 
 export type DealProps = {
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
 export default function Deal({ done, reading, web }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
     const [dealDone, setDealDone] = useState(false);
+    const { navigate } = useRouting();
 
     const castEnergyToDeck = (index: number) => {
         if (!dealDone) {
@@ -57,6 +59,7 @@ export default function Deal({ done, reading, web }: DealProps) {
                         ) : (
                             <DealCard
                                 key={index}
+                                card={card}
                                 cardIndex={card?.index}
                                 spreadIndex={index}
                                 reversed={card.reversed}

@@ -1,5 +1,6 @@
 import LoginScreen from '../screens/login';
 import PasswordReset from '../screens/password-reset';
+import PositionScreen from '../screens/position';
 import React, { useEffect, useState } from 'react';
 import ReadingScreen from '../screens/reading';
 import StartScreen from '../screens/start';
@@ -40,10 +41,8 @@ const AppEntry = () => {
                             name="start"
                             options={{ headerShown: false }}
                         />
-                        <Stack.Screen
-                            component={ReadingScreen}
-                            name="reading"
-                            options={({ navigation }) => ({
+                        <Stack.Group
+                            screenOptions={({ navigation }) => ({
                                 headerTintColor: Colors.smoky_black.base,
                                 headerTitleStyle: { color: Colors.silver_sand.base },
                                 headerRight: () => (
@@ -53,8 +52,10 @@ const AppEntry = () => {
                                         }}
                                     />
                                 )
-                            })}
-                        />
+                            })}>
+                            <Stack.Screen component={ReadingScreen} name="reading" />
+                            <Stack.Screen component={PositionScreen} name="position" />
+                        </Stack.Group>
                     </>
                 ) : (
                     <>
