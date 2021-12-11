@@ -1,3 +1,4 @@
+import cards from '../../../../ui/assets/data/cards.json';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import uuid from 'react-native-uuid';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
@@ -16,10 +17,22 @@ type UseFirestore = {
     ) => void;
 };
 
+const updateCards = async () => {
+    // const cardsQuerySnapshot = await firestore().collection('cards2').get()
+
+    const batch = firestore().collection('cards2');
+
+    cards.forEach(card => {
+        batch.add(card).then(() => {
+            console.log('card added');
+        });
+    });
+};
+
 const useFirestore = (): UseFirestore => {
     const generateUserDocument = async (user, additionalData) => {
         if (!user) return;
-
+        //updateCards();
         firestore()
             .collection('users')
             .doc(user.uid)

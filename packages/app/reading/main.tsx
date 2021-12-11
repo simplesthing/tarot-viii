@@ -39,7 +39,7 @@ const Reading = ({
             setDealt(d);
         }
     }, [shuffleDone]);
-
+    console.log('cards ', cards);
     return (
         <Background>
             {!shuffleDone && (
