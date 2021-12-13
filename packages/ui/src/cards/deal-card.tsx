@@ -5,7 +5,7 @@ import Animated, {
     withTiming
     } from 'react-native-reanimated';
 import Card from '../cards/card';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useRouting } from 'expo-next-react-navigation';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
@@ -81,13 +81,23 @@ export default function DealCard({
         };
     });
 
+    useEffect(() => {
+        if (spreadIndex === 1 && !!hasBeenDealt) {
+            offset.value = {
+                x: vw(SPREAD[spreadIndex].coords.x) - 40,
+                y: vh(SPREAD[spreadIndex].coords.y),
+                r: 90
+            };
+        }
+    }, [hasBeenDealt]);
+
     const castEnergyToDeck = () => {
         if (!hasBeenDealt) {
             onPress(spreadIndex);
             offset.value = {
                 x: vw(SPREAD[spreadIndex].coords.x) - 40,
                 y: vh(SPREAD[spreadIndex].coords.y),
-                r: spreadIndex === 1 && !!hasBeenDealt ? 90 : reversed ? 180 : 0
+                r: !!reversed ? 180 : 0
             };
             setHasBeenDealt(true);
         } else {
@@ -99,7 +109,10 @@ export default function DealCard({
         <Animated.View style={[styles.card, animatedStyles]}>
             <Card
                 cardIndex={cardIndex}
-                styleProps={cardStyleProps}
+                styleProps={{
+                    ...cardStyleProps,
+                    ...{ zIndex: spreadIndex === 1 ? 10 : 1 }
+                }}
                 onPress={castEnergyToDeck}
                 face={hasBeenDealt}
             />

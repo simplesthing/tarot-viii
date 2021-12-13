@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 
 export default function ReadCard({ card, onPress }: ReadCardProps) {
     const [cardFace, setCardFace] = useState(true);
-
+    const rot = !!card.reversed ? '180deg' : '0deg';
     const cb = onPress
         ? onPress
         : () => {
@@ -87,7 +87,9 @@ export default function ReadCard({ card, onPress }: ReadCardProps) {
                             width: vw(89),
                             height: vh(70),
                             alignSelf: 'center',
-                            transform: [{ rotate: card.reversed ? '180deg' : '0deg' }]
+                            transform: [
+                                { rotate: card.cardName === 'challenge' ? '0deg' : rot }
+                            ]
                         }}
                     />
                 ) : (

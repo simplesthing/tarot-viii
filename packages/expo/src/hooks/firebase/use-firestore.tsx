@@ -1,4 +1,3 @@
-import cards from '../../../../ui/assets/data/cards.json';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import uuid from 'react-native-uuid';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
@@ -17,22 +16,19 @@ type UseFirestore = {
     ) => void;
 };
 
-const updateCards = async () => {
-    // const cardsQuerySnapshot = await firestore().collection('cards2').get()
+// upload cards.json
+// const updateCards = async () => {
+//     const collection = firestore().collection('newcards');
 
-    const batch = firestore().collection('cards2');
-
-    cards.forEach(card => {
-        batch.add(card).then(() => {
-            console.log('card added');
-        });
-    });
-};
+//     cards.forEach(card => {
+//         collection.doc(`${card.name}`).set(card);
+//     });
+// };
 
 const useFirestore = (): UseFirestore => {
     const generateUserDocument = async (user, additionalData) => {
         if (!user) return;
-        //updateCards();
+
         firestore()
             .collection('users')
             .doc(user.uid)
@@ -88,7 +84,8 @@ const useFirestore = (): UseFirestore => {
     const fetchDeck = async () => {
         return (
             firestore()
-                .collection('cards')
+                .collection('newcards')
+                // .orderBy('index', 'asc')
                 // .where('index', 'in', cardIndex)
                 // where in doesn't work with numbers on iOS
                 // waiting for issue to be merged https://github.com/invertase/react-native-firebase/pull/5840

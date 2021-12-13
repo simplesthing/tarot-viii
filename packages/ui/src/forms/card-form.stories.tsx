@@ -1,5 +1,6 @@
 import CardForm from './card-form';
-import React from 'react';
+import React, { useEffect } from 'react';
+import useFirebase from '../hooks/use-card-form';
 import { StyleSheet, View } from 'react-native';
 
 
@@ -14,11 +15,24 @@ const styles = StyleSheet.create({
 
 export default {
     title: 'forms/cardForm',
-    component: CardForm
+    component: CardForm,
+    args: { cardName: 'Two of Coins' }
 };
 
-export const Default = args => (
-    <View style={styles.container}>
-        <CardForm />
-    </View>
-);
+export const Default = ({ cardName }) => {
+    const { getCard, card, saveCard } = useFirebase();
+
+    useEffect(() => {
+        getCard(cardName);
+    }, [cardName]);
+
+    const onSave = async values => {
+        return await saveCard(cardName, values);
+    };
+
+    return (
+        <View style={styles.container}>
+            {card && <CardForm card={card} save={onSave} />}
+        </View>
+    );
+};
