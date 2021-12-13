@@ -27,6 +27,8 @@
     "expo-splash-screen": "~0.13.3",
     "expo-status-bar": "~1.1.0",
     "expo-updates": "~0.10.5",
+    "formik": "^2.2.9",
+    "lodash.has": "^4.5.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.2",

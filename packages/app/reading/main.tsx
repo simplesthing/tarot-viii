@@ -39,7 +39,6 @@ const Reading = ({
             setDealt(d);
         }
     }, [shuffleDone]);
-
     return (
         <Background>
             {!shuffleDone && (

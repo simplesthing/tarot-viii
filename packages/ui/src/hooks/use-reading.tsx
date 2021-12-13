@@ -38,19 +38,26 @@ const useReading = () => {
         setDeck(move.concat(shuffleDeck));
     };
 
-    const deal = ({ cards, spread }) =>
-        spread.positions.map((pos, index) => ({
-            positionName: pos.name,
-            displayName: pos.displayName,
-            positionDescription: pos.description,
-            cardName: cards[deck[index]].name,
-            cardNumber: cards[deck[index]].number,
-            cardDescription: cards[deck[index]][pos.name],
-            hex: cards[deck[index]].hex,
-            image: cards[deck[index]].image,
-            index: cards[deck[index]].index,
-            reversed: reversals[index]
-        }));
+    const deal = ({ cards, spread }) => {
+        const reading = spread.positions.map((pos, index) => {
+            const desc = !!reversals[index]
+                ? cards[deck[index]].celtic_cross.reversed[pos.name]
+                : cards[deck[index]].celtic_cross.upright[pos.name];
+            return {
+                positionName: pos.name,
+                displayName: pos.displayName,
+                positionDescription: pos.description,
+                cardName: cards[deck[index]].name,
+                cardNumber: cards[deck[index]].number,
+                cardDescription: desc,
+                hex: cards[deck[index]].hex,
+                image: cards[deck[index]].image,
+                index: cards[deck[index]].index,
+                reversed: !!reversals[index]
+            };
+        });
+        return reading;
+    };
 
     return {
         cutDeck,

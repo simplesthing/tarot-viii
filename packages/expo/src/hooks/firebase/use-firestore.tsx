@@ -16,6 +16,15 @@ type UseFirestore = {
     ) => void;
 };
 
+// upload cards.json
+// const updateCards = async () => {
+//     const collection = firestore().collection('newcards');
+
+//     cards.forEach(card => {
+//         collection.doc(`${card.name}`).set(card);
+//     });
+// };
+
 const useFirestore = (): UseFirestore => {
     const generateUserDocument = async (user, additionalData) => {
         if (!user) return;
@@ -75,7 +84,8 @@ const useFirestore = (): UseFirestore => {
     const fetchDeck = async () => {
         return (
             firestore()
-                .collection('cards')
+                .collection('newcards')
+                // .orderBy('index', 'asc')
                 // .where('index', 'in', cardIndex)
                 // where in doesn't work with numbers on iOS
                 // waiting for issue to be merged https://github.com/invertase/react-native-firebase/pull/5840
