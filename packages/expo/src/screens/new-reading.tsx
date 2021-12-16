@@ -1,8 +1,9 @@
-import analytics from '@react-native-firebase/analytics';
 import React from 'react';
 import { Start } from '@tarot-viii/app';
+import analytics from '@react-native-firebase/analytics';
 
-const StartScreen = () => {
+const NewReading = () => {
+    
     const onStart = () => {
         try {
             analytics().logLevelStart({ level: 0 });
@@ -11,7 +12,8 @@ const StartScreen = () => {
         }
         return;
     };
+    
     return <Start onStart={onStart} />;
 };
 
-export default StartScreen;
+export default NewReading;

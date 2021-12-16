@@ -1,8 +1,12 @@
-import Card from '../cards/card';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { vmin } from 'react-native-expo-viewport-units';
+import { vh, vmin } from 'react-native-expo-viewport-units';
 
+import { CARDS } from './constants';
+import Card from '../cards/card';
+
+const viewWidth = Dimensions.get('window').width;
+const viewHeight = Dimensions.get('window').height;
 
 export type ShuffleCardWebProps = {
     cardIndex: number;
@@ -12,6 +16,21 @@ export type ShuffleCardWebProps = {
     onPress: () => void;
 };
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignContent: 'stretch'
+    },
+    deck: {
+        alignSelf: 'center',
+        padding: 40,
+        width: viewWidth,
+        height: viewHeight,
+        position: 'relative'
+    }
+});
+
 const randomPosition = (factor: number) => {
     return Math.floor(Math.random() * factor);
 };
@@ -20,6 +39,12 @@ const rotation = () => {
     return Math.floor(Math.random() * 360);
 };
 
+function randomBetween(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
+
 export default function ShuffleCardWeb({
     cardIndex,
     onPress,
@@ -27,69 +52,42 @@ export default function ShuffleCardWeb({
     cutCards,
     cutCardIndex
 }: ShuffleCardWebProps) {
-    const [top, setTop] = useState(0);
-    const [left, setLeft] = useState(0);
+    const updateShuffle = () => ({
+        width: vmin(9),
+        height: vmin(18),
+        left: randomPosition(viewWidth) + 'px',
+        top: randomPosition(viewHeight) + 'px',
+        transform: [{ rotate: `${rotation()}deg` }],
+        transition: 'all 0.5s ease',
+        zIndex: randomBetween(10, 87)
+    });
+    const [style, setStyle] = useState(updateShuffle());
 
-    const updateShuffle = () => {
-        setTop(randomPosition(80));
-        setLeft(randomPosition(80) + 12);
-    };
-
-    const lineUpCards = () => {
-        setTop(15);
-        setLeft(cardIndex + 10);
-    };
-
-    const doCut = () => {
-        const left = cardIndex < cutCardIndex ? 10 : cutCardIndex + 10;
-        setLeft(left);
-
-        setTimeout(() => {
-            setLeft(10);
-        }, 500);
+    const castEnergyToDeck = () => {
+        console.log('pressed')
+        if (isShuffling) {
+            onPress();
+        } else {
+            // cutCards(cardIndex);
+        }
     };
 
     useEffect(() => {
         const shuffleAnim = setInterval(() => {
-            updateShuffle();
+            setStyle(updateShuffle());
         }, 500);
 
         if (!isShuffling) {
-            lineUpCards();
+            // lineUpCards();
             clearInterval(shuffleAnim);
         }
 
         return () => clearInterval(shuffleAnim);
     }, [isShuffling]);
 
-    useEffect(() => {
-        if (!isShuffling) {
-            doCut();
-        }
-    }, [cutCardIndex]);
-
-    const castEnergyToDeck = () => {
-        if (isShuffling) {
-            onPress();
-        } else {
-            cutCards(cardIndex);
-        }
-    };
-
-    const styles = StyleSheet.create({
-        card: {
-            position: 'absolute',
-            top: `${top}%`,
-            left: `${left}%`,
-            transform: [{ rotate: isShuffling ? rotation() + 'deg' : '0deg' }],
-            width: vmin(9),
-            height: vmin(18)
-        }
-    });
-
     return (
-        <View style={styles.card}>
-            <Card cardIndex={cardIndex} onPress={castEnergyToDeck} />
+        <View style={styles.container}>
+            <Card cardIndex={cardIndex} styleProps={style} onPress={castEnergyToDeck}/>
         </View>
     );
 }

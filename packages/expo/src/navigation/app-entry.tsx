@@ -1,15 +1,21 @@
-import LoginScreen from '../screens/login';
-import PasswordReset from '../screens/password-reset';
-import PositionScreen from '../screens/position';
-import React, { useEffect, useState } from 'react';
-import ReadingScreen from '../screens/reading';
-import StartScreen from '../screens/start';
-import { Colors, LogOutButton } from '@tarot-viii/ui';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
-import { useAuth } from '../hooks/';
+import * as Linking from 'expo-linking';
 
+import { PATHS, SCREENS } from './config'
+import React, { useEffect, useState } from 'react';
+
+import AccountScreen from '../screens/account';
+import { Colors } from '@tarot-viii/ui';
+import HistoryScreen from '../screens/history';
+import HomeScreen from '../screens/home';
+import LoginScreen from '../screens/login';
+import { NavigationContainer } from '@react-navigation/native';
+import NewReading from '../screens/new-reading';
+import PasswordReset from '../screens/password-reset';
+import ReadingScreen from '../screens/reading';
+import ShuffleDeal from '../screens/shuffle-deal';
+import { StyleSheet } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuth } from '../hooks/';
 
 const styles = StyleSheet.create({
     headerStyle: {
@@ -18,17 +24,22 @@ const styles = StyleSheet.create({
 });
 
 const AppEntry = () => {
-    const { user, logout } = useAuth();
+    const { user } = useAuth();
     const [signedIn, setSignedIn] = useState(!!user?.uid);
 
     useEffect(() => {
         setSignedIn(!!user?.uid);
     }, [user]);
 
+    const prefix = Linking.createURL('/');
+    const linking = {
+        prefixes: [prefix]
+    }
+
     const Stack = createNativeStackNavigator();
 
     return (
-        <NavigationContainer>
+        <NavigationContainer linking={linking}>
             <Stack.Navigator
                 screenOptions={{
                     headerStyle: styles.headerStyle,
@@ -37,25 +48,26 @@ const AppEntry = () => {
                 {signedIn ? (
                     <>
                         <Stack.Screen
-                            component={StartScreen}
-                            name="start"
+                            component={HomeScreen}
+                            name={SCREENS.screens.HOME.name}
+                        />
+                        <Stack.Screen
+                            component={NewReading}
+                            name={SCREENS.screens.NEW_READING.name}
                             options={{ headerShown: false }}
                         />
-                        <Stack.Group
-                            screenOptions={({ navigation }) => ({
-                                headerTintColor: Colors.smoky_black.base,
-                                headerTitleStyle: { color: Colors.silver_sand.base },
-                                headerRight: () => (
-                                    <LogOutButton
-                                        onPress={() => {
-                                            logout();
-                                        }}
-                                    />
-                                )
-                            })}>
-                            <Stack.Screen component={ReadingScreen} name="reading" />
-                            <Stack.Screen component={PositionScreen} name="position" />
-                        </Stack.Group>
+                        <Stack.Screen
+                            component={ShuffleDeal}
+                            name={SCREENS.screens.SHUFFLE_DEAL.name} />
+                        <Stack.Screen
+                            component={ReadingScreen}
+                            name={SCREENS.screens.READING.name} />
+                        <Stack.Screen
+                            component={HistoryScreen}
+                            name={SCREENS.screens.HISTORY.name} />
+                        <Stack.Screen
+                            component={AccountScreen}
+                            name={SCREENS.screens.ACCOUNT.name} />
                     </>
                 ) : (
                     <>

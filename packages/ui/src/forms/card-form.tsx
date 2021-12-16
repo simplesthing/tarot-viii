@@ -1,16 +1,16 @@
-import has from 'lodash.has';
-import React, { useState } from 'react';
 import { Button, Text } from 'react-native-elements';
-import { default as Colors } from '../theme/colors';
 import { Field, Form, Formik } from 'formik';
 import {
     GestureResponderEvent,
     Image,
     StyleSheet,
     View
-    } from 'react-native';
-import { Value } from '../theme/fonts';
+} from 'react-native';
+import React, { useState } from 'react';
 
+import { default as Colors } from '../theme/colors';
+import { Value } from '../theme/fonts';
+import has from 'lodash.has';
 
 const styles = StyleSheet.create({
     container: {
@@ -63,12 +63,14 @@ type CelticCross = {
 export interface CardFormValues {
     arcana: string;
     color: string;
+    decan: string;
     description: string;
     element: string;
     hex: string;
     image: string;
     index: number;
     keywords: string;
+    title: string;
     reversedKeywords: string;
     name: string;
     type: string;
@@ -174,10 +176,23 @@ const CardForm = ({ card, save }) => {
                                     style={fieldStyle(props, 'element')}
                                 />
                             </View>
+
+                            <View style={styles.formRow}>
+                                <Text style={styles.label}>Title</Text>
+                                <Field name="title" style={fieldStyle(props, 'title')} />
+                            </View>
+
+                         
+                            <View style={styles.formRow}>
+                                <Text style={styles.label}>Decan / Attribution</Text>
+                                <Field name="decan" style={fieldStyle(props, 'decan')} />
+                            </View>
+
                             <View style={styles.formRow}>
                                 <Text style={styles.label}>Type</Text>
                                 <Field name="type" style={fieldStyle(props, 'type')} />
                             </View>
+
                         </View>
 
                         <View style={styles.formRow}>
