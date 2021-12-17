@@ -1,16 +1,13 @@
-import React from 'react';
-import Shuffle, { ShuffleProps } from './shuffle';
-import useReading from '../hooks/use-reading';
-import { default as colors } from '../theme/colors';
+import Shuffle, { ShuffleProps } from '../cards/shuffle';
 import { StyleSheet, View } from 'react-native';
 
+import React from 'react';
+import { default as colors } from '../theme/colors';
+import useReading from '../hooks/use-reading';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 50
+       
     }
 });
 

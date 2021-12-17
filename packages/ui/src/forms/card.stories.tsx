@@ -1,7 +1,7 @@
-import Card, { CardProps } from './card';
+import Card, { CardProps } from '../cards/card';
+
 import React from 'react';
 import { vmin } from 'react-native-expo-viewport-units';
-
 
 const styleProps = {
     width: vmin(50),

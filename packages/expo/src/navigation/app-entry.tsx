@@ -1,61 +1,88 @@
-import LoginScreen from '../screens/login';
-import PasswordReset from '../screens/password-reset';
-import PositionScreen from '../screens/position';
+import * as Linking from 'expo-linking';
+
 import React, { useEffect, useState } from 'react';
-import ReadingScreen from '../screens/reading';
-import StartScreen from '../screens/start';
-import { Colors, LogOutButton } from '@tarot-viii/ui';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import AccountScreen from '../screens/account';
+import CloseScreen from '../navigation/close-screen'
+import { Colors } from '@tarot-viii/ui';
+import HistoryScreen from '../screens/history';
+import HomeScreen from '../screens/home';
+import LoginScreen from '../screens/login';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
+import NewReading from '../screens/new-reading';
+import PasswordReset from '../screens/password-reset';
+import { ROUTES } from '@tarot-viii/expo/src/navigation/config'
+import ReadingScreen from '../screens/reading';
+import ShuffleDeal from '../screens/shuffle-deal';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/';
 
-
-const styles = StyleSheet.create({
-    headerStyle: {
-        backgroundColor: Colors.silver_sand.base
-    }
-});
-
 const AppEntry = () => {
-    const { user, logout } = useAuth();
+    const { user } = useAuth();
     const [signedIn, setSignedIn] = useState(!!user?.uid);
 
     useEffect(() => {
         setSignedIn(!!user?.uid);
     }, [user]);
 
+    const prefix = Linking.createURL('/');
+    const linking = {
+        prefixes: [prefix]
+    }
+
     const Stack = createNativeStackNavigator();
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator
-                screenOptions={{
-                    headerStyle: styles.headerStyle,
-                    headerShadowVisible: false
-                }}>
+        <NavigationContainer linking={linking}>
+            <Stack.Navigator>
                 {signedIn ? (
                     <>
-                        <Stack.Screen
-                            component={StartScreen}
-                            name="start"
-                            options={{ headerShown: false }}
-                        />
-                        <Stack.Group
-                            screenOptions={({ navigation }) => ({
-                                headerTintColor: Colors.smoky_black.base,
-                                headerTitleStyle: { color: Colors.silver_sand.base },
-                                headerRight: () => (
-                                    <LogOutButton
-                                        onPress={() => {
-                                            logout();
-                                        }}
-                                    />
-                                )
-                            })}>
-                            <Stack.Screen component={ReadingScreen} name="reading" />
-                            <Stack.Screen component={PositionScreen} name="position" />
+                        <Stack.Group screenOptions={{ headerShown: false }}>
+                            <Stack.Screen
+                                component={HomeScreen}
+                                name={ROUTES.screens.HOME.name}
+                            />
                         </Stack.Group>
+
+                        <Stack.Group
+                            screenOptions={({ navigation, route }) => {
+                                return {
+                                    headerTransparent: true,
+                                    headerShadowVisible: false,
+                                    headerLeft: () => (<CloseScreen navigation={navigation} />),
+                                    headerTitle: ''
+                                }
+                            }}
+                        >
+                            <Stack.Screen
+                                component={NewReading}
+                                name={ROUTES.screens.NEW_READING.name}
+                            />
+                            <Stack.Screen
+                                component={HistoryScreen}
+                                name={ROUTES.screens.HISTORY.name} />
+                            <Stack.Screen
+                                component={AccountScreen}
+                                name={ROUTES.screens.ACCOUNT.name} />
+                        </Stack.Group>
+
+                        <Stack.Group screenOptions={{
+                            headerTitle: '',
+                            headerBackTitle: '',
+                            headerTintColor: Colors.smoky_black.base,
+                            headerStyle: { backgroundColor: Colors.silver_sand.base },
+                            headerShadowVisible: false,
+                        }}>
+
+                            <Stack.Screen
+                                component={ShuffleDeal}
+                                name={ROUTES.screens.SHUFFLE_DEAL.name} />
+
+                            <Stack.Screen
+                                component={ReadingScreen}
+                                name={ROUTES.screens.READING.name} />
+                        </Stack.Group>
+
                     </>
                 ) : (
                     <>
