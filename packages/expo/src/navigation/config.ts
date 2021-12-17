@@ -8,7 +8,7 @@ export const PATHS = {
     ACCOUNT: '/account'
 };
 
-export const SCREENS = {
+export const ROUTES = {
     screens: {
         HOME: {
             path: PATHS['HOME'],

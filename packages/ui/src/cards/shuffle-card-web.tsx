@@ -1,9 +1,8 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { vh, vmin } from 'react-native-expo-viewport-units';
 
-import { CARDS } from './constants';
 import Card from '../cards/card';
+import { vmin } from 'react-native-expo-viewport-units';
 
 const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;
@@ -87,7 +86,7 @@ export default function ShuffleCardWeb({
 
     return (
         <View style={styles.container}>
-            <Card cardIndex={cardIndex} styleProps={style} onPress={castEnergyToDeck}/>
+            <Card cardIndex={cardIndex} styleProps={style} onPress={castEnergyToDeck} />
         </View>
     );
 }

@@ -10,7 +10,7 @@
   },
   "include": [
     "src/**/*"
-  ],
+, "src/navigation/config.ts"  ],
   "exclude": [
     "node_modules"
   ]

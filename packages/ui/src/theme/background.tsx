@@ -1,8 +1,8 @@
-import React from 'react';
-import { default as Colors } from './colors';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 
+import { default as Colors } from './colors';
+import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
 
 const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;
@@ -15,15 +15,15 @@ const Background = ({ children }: any) => {
             width: viewWidth,
             minHeight: viewHeight,
             justifyContent: 'center',
-            alignItems: 'stretch'
+            alignItems: 'stretch',
+            backgroundColor: Colors.silver_sand.base
         },
         background: {
             position: 'absolute',
             left: 0,
             right: 0,
-            top: 0,
-            bottom: 0,
-            paddingTop: viewHeight,
+            top: 500,
+            paddingTop: viewHeight - 500,
             zIndex: 0
         },
         foreground: {
