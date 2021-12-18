@@ -7,7 +7,7 @@ import Animated, {
 import React, { useEffect, useState } from 'react';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
-import Card from '../cards/card';
+import Card from './card';
 import { StyleSheet } from 'react-native';
 import { useRouting } from 'expo-next-react-navigation';
 

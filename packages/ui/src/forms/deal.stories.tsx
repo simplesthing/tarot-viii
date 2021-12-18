@@ -1,9 +1,9 @@
-import Deal, { DealProps } from './deal';
-import React from 'react';
-import readingJson from '../../assets/data/reading.json';
-import { default as colors } from '../theme/colors';
 import { StyleSheet, View } from 'react-native';
 
+import Deal from '../cards/deal';
+import React from 'react';
+import { default as colors } from '../theme/colors';
+import readingJson from '../../assets/data/reading.json';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
 export default {
     title: 'cards/deal',
     component: Deal,
-    argTypes: { done: { action: 'done!' } },
     parameters: {
         backgrounds: {
             default: 'default',
@@ -31,8 +30,8 @@ export default {
     }
 };
 
-export const Default = (args: DealProps) => (
+export const Default = args => (
     <View style={styles.container}>
-        <Deal {...args} web={true} reading={readingJson} />
+        <Deal reading={readingJson} />
     </View>
 );

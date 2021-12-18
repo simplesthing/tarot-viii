@@ -6,9 +6,7 @@ import { default as colors } from '../theme/colors';
 import useReading from '../hooks/use-reading';
 
 const styles = StyleSheet.create({
-    container: {
-       
-    }
+    container: {}
 });
 
 export default {
@@ -33,7 +31,7 @@ export const Default = (args: ShuffleProps) => {
 
     return (
         <View style={styles.container}>
-            <Shuffle {...args} cutDeck={cutDeck} shuffleDeck={shuffleDeck} web={true} />
+            <Shuffle {...args} cutDeck={cutDeck} shuffleDeck={shuffleDeck} />
         </View>
     );
 };

@@ -11,11 +11,6 @@ import React from 'react';
 import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
 import { useFirestore } from '../hooks';
 
-type ReadingScreenProps = {
-    navigation: any;
-    route: any;
-};
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

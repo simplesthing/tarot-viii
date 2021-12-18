@@ -14,18 +14,16 @@ type DealProps = {
 const web = Platform.OS === 'web';
 const POSITIONS = Array.from(Array(10).keys());
 
-export default function Deal({ reading, done }: DealProps) {
+export default function Deal({ reading }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
     const [dealDone] = useState(false);
 
     const castEnergyToDeck = (index: number) => {
-        if (!!done && !dealDone) {
+        if (!dealDone) {
             const updated = dealtCards.filter(item => item !== index);
             setDealtCards(updated);
-            if (updated.length === 0) {
-                done();
-            }
         }
+        // add navigation to reading spread screens
     };
 
     return (
@@ -39,6 +37,7 @@ export default function Deal({ reading, done }: DealProps) {
                             spreadIndex={index}
                             onPress={castEnergyToDeck}
                             reversed={card.reversed}
+                            dealt={false}
                         />
                     ) : (
                         <DealCard
@@ -48,6 +47,7 @@ export default function Deal({ reading, done }: DealProps) {
                             spreadIndex={index}
                             reversed={card.reversed}
                             onPress={castEnergyToDeck}
+                            dealt={false}
                         />
                     );
                 })}
