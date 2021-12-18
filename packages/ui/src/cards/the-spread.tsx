@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     deck: {
         alignSelf: 'center',
-        padding: 40,
+        paddingHorizontal: 40,
         width: viewWidth,
         height: viewHeight,
         position: 'relative'

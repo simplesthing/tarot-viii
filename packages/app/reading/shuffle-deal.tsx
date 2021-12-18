@@ -1,29 +1,20 @@
+import { Background, Deal, ShuffleAnimation, useReading } from '@tarot-viii/ui';
 import React, { useEffect, useState } from 'react';
-import {
-    Background,
-    Deal,
-    ShuffleAnimation,
-    useReading
-    } from '@tarot-viii/ui';
+
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-
-type ReadingProps = {
+type ShuffleDealProps = {
     cards?: Record<string, string>[];
-    generateReadingDoc: (reading: Record<string, string>) => void;
     spread?: FirebaseFirestoreTypes.DocumentData;
-    web?: boolean;
+    generateReadingDoc: (reading: Record<string, string>) => void;
 };
 
-const Reading = ({
+const ShuffleDeal = ({
     cards,
     spread,
-    web,
     generateReadingDoc = () => ({})
-}: ReadingProps) => {
+}: ShuffleDealProps) => {
     const [shuffleDone, setShuffleDone] = useState(false);
-    // @ts-ignore
-    const [dealDone, setDealDone] = useState(false);
     const [dealt, setDealt] = useState();
 
     const { cutDeck, shuffleDeck, deal } = useReading();
@@ -39,6 +30,7 @@ const Reading = ({
             setDealt(d);
         }
     }, [shuffleDone]);
+
     return (
         <Background>
             {!shuffleDone && (
@@ -46,12 +38,11 @@ const Reading = ({
                     done={() => setShuffleDone(true)}
                     shuffleDeck={shuffleDeck}
                     cutDeck={cutDeck}
-                    web={web}
                 />
             )}
-            {shuffleDone && <Deal done={() => setDealDone(true)} reading={dealt} />}
+            {shuffleDone && <Deal reading={dealt} />}
         </Background>
     );
 };
 
-export default Reading;
+export default ShuffleDeal;

@@ -3,7 +3,7 @@ import * as Linking from 'expo-linking';
 import React, { useEffect, useState } from 'react';
 
 import AccountScreen from '../screens/account';
-import CloseScreen from '../navigation/close-screen'
+import CloseScreen from '../navigation/close-screen';
 import { Colors } from '@tarot-viii/ui';
 import HistoryScreen from '../screens/history';
 import HomeScreen from '../screens/home';
@@ -11,9 +11,9 @@ import LoginScreen from '../screens/login';
 import { NavigationContainer } from '@react-navigation/native';
 import NewReading from '../screens/new-reading';
 import PasswordReset from '../screens/password-reset';
-import { ROUTES } from '@tarot-viii/expo/src/navigation/config'
+import { ROUTES } from '@tarot-viii/expo/src/navigation/config';
 import ReadingScreen from '../screens/reading';
-import ShuffleDeal from '../screens/shuffle-deal';
+import ShuffleDealScreen from '../screens/shuffle-deal';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/';
 
@@ -28,7 +28,7 @@ const AppEntry = () => {
     const prefix = Linking.createURL('/');
     const linking = {
         prefixes: [prefix]
-    }
+    };
 
     const Stack = createNativeStackNavigator();
 
@@ -49,40 +49,44 @@ const AppEntry = () => {
                                 return {
                                     headerTransparent: true,
                                     headerShadowVisible: false,
-                                    headerLeft: () => (<CloseScreen navigation={navigation} />),
+                                    headerLeft: () => (
+                                        <CloseScreen navigation={navigation} />
+                                    ),
                                     headerTitle: ''
-                                }
-                            }}
-                        >
+                                };
+                            }}>
                             <Stack.Screen
                                 component={NewReading}
                                 name={ROUTES.screens.NEW_READING.name}
                             />
                             <Stack.Screen
                                 component={HistoryScreen}
-                                name={ROUTES.screens.HISTORY.name} />
+                                name={ROUTES.screens.HISTORY.name}
+                            />
                             <Stack.Screen
                                 component={AccountScreen}
-                                name={ROUTES.screens.ACCOUNT.name} />
+                                name={ROUTES.screens.ACCOUNT.name}
+                            />
                         </Stack.Group>
 
-                        <Stack.Group screenOptions={{
-                            headerTitle: '',
-                            headerBackTitle: '',
-                            headerTintColor: Colors.smoky_black.base,
-                            headerStyle: { backgroundColor: Colors.silver_sand.base },
-                            headerShadowVisible: false,
-                        }}>
-
+                        <Stack.Group
+                            screenOptions={{
+                                headerTitle: '',
+                                headerBackTitle: '',
+                                headerTintColor: Colors.smoky_black.base,
+                                headerStyle: { backgroundColor: Colors.silver_sand.base },
+                                headerShadowVisible: false
+                            }}>
                             <Stack.Screen
-                                component={ShuffleDeal}
-                                name={ROUTES.screens.SHUFFLE_DEAL.name} />
+                                component={ShuffleDealScreen}
+                                name={ROUTES.screens.SHUFFLE_DEAL.name}
+                            />
 
                             <Stack.Screen
                                 component={ReadingScreen}
-                                name={ROUTES.screens.READING.name} />
+                                name={ROUTES.screens.READING.name}
+                            />
                         </Stack.Group>
-
                     </>
                 ) : (
                     <>

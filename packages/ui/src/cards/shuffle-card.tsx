@@ -3,12 +3,12 @@ import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withTiming
-    } from 'react-native-reanimated';
-import Card from '../cards/card';
-import React, { useEffect } from 'react';
+} from 'react-native-reanimated';
 import { Dimensions, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
 import { vh, vmin } from 'react-native-expo-viewport-units';
 
+import Card from '../cards/card';
 
 const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;
@@ -74,8 +74,8 @@ export default function ShuffleCard({
 
     const updateShuffle = () => {
         offset.value = {
-            x: randomPosition(viewWidth - vmin(20)),
-            y: randomPosition(viewHeight / 2),
+            x: randomPosition(viewWidth - vmin(10)),
+            y: randomPosition(viewHeight / 2) - 60,
             r: rotation()
         };
     };
