@@ -1,8 +1,8 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import useFirestore from './use-firestore';
-import uuid from 'react-native-uuid';
 import { useEffect, useState } from 'react';
 
+import useFirestore from './use-firestore';
+import uuid from 'react-native-uuid';
 
 export type LoginWithEmailAndPasswordProps = {
     email: string;
