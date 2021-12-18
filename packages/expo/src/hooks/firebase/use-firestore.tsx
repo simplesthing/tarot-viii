@@ -1,7 +1,7 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import uuid from 'react-native-uuid';
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import uuid from 'react-native-uuid';
 
 type UseFirestore = {
     fetchDeck: () => Promise<FirebaseFirestoreTypes.DocumentData[]>;
@@ -9,26 +9,30 @@ type UseFirestore = {
     fetchUser: (
         uid: string
     ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
-    generateReadingDocument: (userId: string, reading: Record<string, string>) => void;
+    generateReadingDocument: (
+        userId: string,
+        reading: Record<string, string>,
+        notes: string,
+        title: string
+    ) => Promise<string | undefined>;
     generateUserDocument: (
         user: FirebaseAuthTypes.User,
         additionalData?: FirebaseAuthTypes.AdditionalUserInfo
     ) => void;
+    updateReadingNotes: (documentId: string, notes: string) => Promise<boolean>;
+    updateReadingTitle: (documentId: string, title: string) => Promise<boolean>;
+    fetchReadingsForUser: (
+        userId: string
+    ) => Promise<FirebaseFirestoreTypes.DocumentData[]>;
+    fetchReadingById: (
+        id: string
+    ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
 };
 
-// upload cards.json
-// const updateCards = async () => {
-//     const collection = firestore().collection('newcards');
-
-//     cards.forEach(card => {
-//         collection.doc(`${card.name}`).set(card);
-//     });
-// };
-
 const useFirestore = (): UseFirestore => {
+    // USER
     const generateUserDocument = async (user, additionalData) => {
         if (!user) return;
-
         firestore()
             .collection('users')
             .doc(user.uid)
@@ -52,20 +56,6 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
-    const generateReadingDocument = async (userId, reading) => {
-        if (!userId || !reading) return;
-
-        const documentId = uuid.v4().toString();
-        const now = new Date();
-        const document = {
-            user: userId,
-            reading,
-            creationTime: now
-        };
-
-        firestore().collection('readings').doc(documentId).set(document);
-    };
-
     const fetchUser = async (uid: string) => {
         if (!uid) return;
 
@@ -81,11 +71,99 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
+    //READINGS
+    const generateReadingDocument = async (userId, reading, notes, title) => {
+        if (!userId || !reading) return;
+
+        const documentId = uuid.v4().toString();
+        const now = new Date();
+
+        const document = {
+            id: documentId,
+            userId: userId,
+            reading,
+            notes,
+            title,
+            creationTime: now.toString()
+        };
+
+        return firestore()
+            .collection('readings')
+            .doc(documentId)
+            .set(document)
+            .then(() => {
+                return documentId;
+            });
+    };
+
+    const fetchReadingById = async (id: string) => {
+        return firestore()
+            .collection('readings')
+            .doc(id)
+            .get()
+            .then(documentSnapshot => {
+                return documentSnapshot.data();
+            })
+            .catch(e => {
+                console.log('Error fetching reading ' + id, e);
+                return;
+            });
+    };
+
+    const fetchReadingsForUser = async userId => {
+        if (!userId) return;
+
+        return firestore()
+            .collection('readdings')
+            .where('user', '==', userId)
+            .get()
+            .then(querySnapshot => {
+                let readings: any = [];
+                querySnapshot.forEach(doc => {
+                    readings.push(doc.data());
+                });
+                return readings;
+            })
+            .catch(e => {
+                console.log('Error getting cards collection');
+            });
+    };
+
+    const updateReadingTitle = async (documentId, title) => {
+        return firestore()
+            .collection('readings')
+            .doc(documentId)
+            .update({ title: title })
+            .then(() => {
+                console.log('title updated');
+                return true;
+            })
+            .catch(e => {
+                console.log('error updating ', e);
+                return false;
+            });
+    };
+
+    const updateReadingNotes = async (documentId, notes) => {
+        return firestore()
+            .collection('readings')
+            .doc(documentId)
+            .update({ notes: notes })
+            .then(() => {
+                console.log('notes updated');
+                return true;
+            })
+            .catch(e => {
+                console.log('error updating ', e);
+                return false;
+            });
+    };
+
+    //APP
     const fetchDeck = async () => {
         return (
             firestore()
                 .collection('newcards')
-                // .orderBy('index', 'asc')
                 // .where('index', 'in', cardIndex)
                 // where in doesn't work with numbers on iOS
                 // waiting for issue to be merged https://github.com/invertase/react-native-firebase/pull/5840
@@ -117,11 +195,15 @@ const useFirestore = (): UseFirestore => {
     };
 
     return {
-        fetchDeck,
-        fetchSpread,
+        generateUserDocument,
         fetchUser,
         generateReadingDocument,
-        generateUserDocument
+        fetchReadingById,
+        fetchReadingsForUser,
+        updateReadingNotes,
+        updateReadingTitle,
+        fetchDeck,
+        fetchSpread
     };
 };
 

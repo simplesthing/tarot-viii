@@ -1,8 +1,8 @@
-import Deck, { DeckProps } from './deck';
-import React from 'react';
-import { default as colors } from '../theme/colors';
+import Deck, { DeckProps } from '../cards/deck';
 import { StyleSheet, View } from 'react-native';
 
+import React from 'react';
+import { default as colors } from '../theme/colors';
 
 const styles = StyleSheet.create({
     container: {

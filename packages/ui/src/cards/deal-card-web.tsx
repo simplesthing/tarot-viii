@@ -1,8 +1,9 @@
-import Card from '../cards/card';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { vmin } from 'react-native-expo-viewport-units';
 
+import Card from '../cards/card';
+import { useEffect } from 'react';
+import { vmin } from 'react-native-expo-viewport-units';
 
 const SPREAD = [
     { displayName: 'Situation', coords: { left: 21, top: 45 } },
@@ -19,6 +20,7 @@ const SPREAD = [
 
 export type DealCardProps = {
     cardIndex: number;
+    dealt: boolean;
     spreadIndex: number;
     reversed: boolean;
     onPress: (index: number) => void;
@@ -33,12 +35,20 @@ export default function DealCardWeb({
     cardIndex,
     spreadIndex,
     reversed,
-    onPress
+    onPress,
+    dealt = false
 }: DealCardProps) {
     const [top, setTop] = useState(0);
     const [left, setLeft] = useState(0);
 
-    const [hasBeenDealt, setHasBeenDealt] = useState(false);
+    const [hasBeenDealt, setHasBeenDealt] = useState(dealt);
+
+    useEffect(() => {
+        if (hasBeenDealt) {
+            setTop(SPREAD[spreadIndex].coords.top);
+            setLeft(SPREAD[spreadIndex].coords.left);
+        }
+    }, []);
 
     const castEnergyToDeck = () => {
         if (!hasBeenDealt) {

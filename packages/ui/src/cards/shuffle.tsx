@@ -1,28 +1,19 @@
+import { Percentage, Value } from '../theme/fonts';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
+
+import { CARDS } from './constants';
 import ShuffleCard from './shuffle-card';
 import ShuffleCardWeb from './shuffle-card-web';
 import TheSpread from './the-spread';
 import useInstructions from '../hooks/use-instructions';
-import { CARDS } from './constants';
-import {
-    Dimensions,
-    Platform,
-    StyleSheet,
-    Text,
-    View
-    } from 'react-native';
-import { Percentage, Value } from '../theme/fonts';
-
-
-const viewWidth = Dimensions.get('window').width;
-const viewHeight = Dimensions.get('window').height;
 
 export type ShuffleProps = {
     done: () => void;
     shuffleDeck: () => void;
     cutDeck: () => void;
-    web: boolean;
 };
+const web = Platform.OS === 'web';
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
 
 const styles = StyleSheet.create({
@@ -37,20 +28,11 @@ const styles = StyleSheet.create({
     },
     instructions: {
         fontSize: instructionTextSize,
-        textAlign: 'center',
-        marginTop: 20
-    },
-
-    deck: {
-        alignSelf: 'center',
-        padding: 40,
-        width: viewWidth,
-        height: viewHeight,
-        position: 'relative'
+        textAlign: 'center'
     }
 });
 
-export default function Shuffle({ done, cutDeck, shuffleDeck, web = false }) {
+export default function Shuffle({ done, cutDeck, shuffleDeck }) {
     const [isShuffling, setIsShuffling] = useState(true);
     const [cutCount, setCutCount] = useState(0);
     const [cutCardIndex, setCutCardIndex] = useState(0);

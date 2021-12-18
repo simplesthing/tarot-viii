@@ -1,4 +1,4 @@
-import Card, { CardProps } from '../cards/card';
+import Card, { CardProps } from './card';
 
 import React from 'react';
 import { vmin } from 'react-native-expo-viewport-units';

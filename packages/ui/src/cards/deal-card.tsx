@@ -3,13 +3,13 @@ import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withTiming
-    } from 'react-native-reanimated';
-import Card from '../cards/card';
+} from 'react-native-reanimated';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { useRouting } from 'expo-next-react-navigation';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
+import Card from './card';
+import { StyleSheet } from 'react-native';
+import { useRouting } from 'expo-next-react-navigation';
 
 const SPREAD = [
     { displayName: 'Situation', coords: { x: 45, y: 21 } },
@@ -27,6 +27,7 @@ const SPREAD = [
 export type DealCardProps = {
     card: any;
     cardIndex: number;
+    dealt?: boolean;
     spreadIndex: number;
     reversed: boolean;
     onPress: (index: number) => void;
@@ -49,10 +50,11 @@ export default function DealCard({
     cardIndex,
     spreadIndex,
     reversed,
-    onPress
+    onPress,
+    dealt = false
 }: DealCardProps) {
     const offset = useSharedValue({ x: vmin(1), y: 0, r: 0 });
-    const [hasBeenDealt, setHasBeenDealt] = useState(false);
+    const [hasBeenDealt, setHasBeenDealt] = useState(dealt);
     const { navigate } = useRouting();
     // @ts-ignore
     const animatedStyles = useAnimatedStyle(() => {

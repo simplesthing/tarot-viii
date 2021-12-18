@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
 })
 
 const HomeScreen = () => {
+
     const [open, setOpen] = useState(false)
     const { navigate } = useRouting();
 
@@ -59,6 +60,7 @@ const HomeScreen = () => {
                     onPress={startNewReading}
                 />
             </SpeedDial>
+
         </View>
     );
 };
