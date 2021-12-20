@@ -1,15 +1,5 @@
-import {
-    Arrow,
-    Background,
-    Colors,
-    Deck
-} from '@tarot-viii/ui';
-import {
-    Dimensions,
-    Platform,
-    StyleSheet,
-    View
-} from 'react-native';
+import { Arrow, Background, Colors, Deck } from '@tarot-viii/ui';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 
 import React from 'react';
 import { Text } from 'react-native';
@@ -54,7 +44,6 @@ const styles = StyleSheet.create({
 });
 
 const Start = ({ onStart }: StartProps) => {
-
     const onPress = () => {
         onStart();
     };
