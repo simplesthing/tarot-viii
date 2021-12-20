@@ -41,18 +41,18 @@ const useReading = () => {
     const deal = ({ cards, spread }) => {
         const reading = spread.positions.map((pos, index) => {
             const desc = !!reversals[index]
-                ? cards[deck[index]].celtic_cross.reversed[pos.name]
-                : cards[deck[index]].celtic_cross.upright[pos.name];
+                ? cards[index].celtic_cross.reversed[pos.name]
+                : cards[index].celtic_cross.upright[pos.name];
             return {
                 positionName: pos.name,
                 displayName: pos.displayName,
                 positionDescription: pos.description,
-                cardName: cards[deck[index]].name,
-                cardNumber: cards[deck[index]].number,
+                cardName: cards[index].name,
+                cardNumber: cards[index].number,
                 cardDescription: desc,
-                hex: cards[deck[index]].hex,
-                image: cards[deck[index]].image,
-                index: cards[deck[index]].index,
+                hex: cards[index].hex,
+                image: cards[index].image,
+                index: cards[index].index,
                 reversed: !!reversals[index]
             };
         });
