@@ -114,22 +114,24 @@ const useFirestore = (): UseFirestore => {
 
     const fetchReadingsForUser = async userId => {
         if (!userId) return;
-        console.log(userId);
 
-        return firestore()
-            .collection('readings')
-            .where('userId', '==', userId)
-            .get()
-            .then(querySnapshot => {
-                let readings: any = [];
-                querySnapshot.forEach(doc => {
-                    readings.push(doc.data());
-                });
-                return readings;
-            })
-            .catch(e => {
-                console.log('Error getting cards collection');
-            });
+        return (
+            firestore()
+                .collection('readings')
+                .where('userId', '==', userId)
+                // .orderBy('creationTime', 'desc')
+                .get()
+                .then(querySnapshot => {
+                    let readings: any = [];
+                    querySnapshot.forEach(doc => {
+                        readings.push(doc.data());
+                    });
+                    return readings;
+                })
+                .catch(e => {
+                    console.log('Error getting cards collection', e);
+                })
+        );
     };
 
     const updateReadingTitle = async (documentId, title) => {

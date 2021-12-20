@@ -1,4 +1,3 @@
-import { Background, Colors } from '@tarot-viii/ui';
 import BottomSheet, {
     BottomSheetScrollView,
     BottomSheetTextInput
@@ -7,6 +6,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useAuth, useFirestore } from '../hooks';
 
+import { Colors } from '@tarot-viii/ui';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { Input } from 'react-native-elements';
 import { ShuffleDeal } from '@tarot-viii/app';
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        alignContent: 'stretch'
+        alignContent: 'stretch',
+        backgroundColor: Colors.silver_sand.base
     },
     header: { paddingHorizontal: 20 },
 
@@ -93,28 +94,24 @@ const ShuffleDealScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Background>
-                <Input
-                    rightIcon={{
-                        type: 'material-community',
-                        name: 'pencil',
-                        color: !!title
-                            ? Colors.silver_sand.base
-                            : Colors.silver_sand.muted
-                    }}
-                    value={title}
-                    onChangeText={setTitle}
-                    placeholder="Query"
-                    onBlur={updateTitle}
-                    autoCompleteType="off"
-                    inputContainerStyle={styles.header}
-                />
-                <ShuffleDeal
-                    getCards={getCards}
-                    spread={spread}
-                    generateReadingDoc={genReading}
-                />
-            </Background>
+            <Input
+                rightIcon={{
+                    type: 'material-community',
+                    name: 'pencil',
+                    color: !!title ? Colors.silver_sand.base : Colors.silver_sand.muted
+                }}
+                value={title}
+                onChangeText={setTitle}
+                placeholder="Query"
+                onBlur={updateTitle}
+                autoCompleteType="off"
+                inputContainerStyle={styles.header}
+            />
+            <ShuffleDeal
+                getCards={getCards}
+                spread={spread}
+                generateReadingDoc={genReading}
+            />
             <BottomSheet
                 ref={sheetRef}
                 index={0}

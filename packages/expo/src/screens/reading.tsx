@@ -1,4 +1,4 @@
-import { Background, Deal } from '@tarot-viii/ui';
+import { Background, Colors, Deal } from '@tarot-viii/ui';
 import BottomSheet, {
     BottomSheetScrollView,
     BottomSheetTextInput
@@ -15,11 +15,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        alignContent: 'stretch'
+        alignContent: 'stretch',
+        backgroundColor: Colors.silver_sand.base
     },
-    header: {
-        flexBasis: 120
-    },
+    header: { paddingHorizontal: 20 },
     scrollView: {
         flex: 1,
         backgroundColor: 'white'
@@ -74,42 +73,43 @@ const ReadingScreen = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.header}>
+                <Input
+                    rightIcon={{
+                        type: 'material-community',
+                        name: 'pencil',
+                        color: '#000'
+                    }}
+                    value={title}
+                    onChangeText={setTitle}
+                    onBlur={updateTitle}
+                    autoCompleteType="off"
+                />
+            </View>
+
             <Background>
-                <View style={styles.header}>
-                    <Input
-                        rightIcon={{
-                            type: 'material-community',
-                            name: 'pencil',
-                            color: '#000'
-                        }}
-                        value={title}
-                        onChangeText={setTitle}
-                        onBlur={updateTitle}
-                        autoCompleteType="off"
-                    />
-                </View>
-                <Deal reading={reading} />
-                <BottomSheet
-                    ref={sheetRef}
-                    index={1}
-                    snapPoints={snapPoints}
-                    keyboardBehavior="interactive"
-                    keyboardBlurBehavior="restore">
-                    <BottomSheetScrollView style={styles.scrollView}>
-                        <View style={styles.row}>
-                            <BottomSheetTextInput
-                                style={styles.input}
-                                keyboardType="default"
-                                onChangeText={value => setNotes(value)}
-                                onBlur={updateNotes}
-                                multiline={true}
-                                value={notes}
-                                placeholder="what would you like to learn from this reading?"
-                            />
-                        </View>
-                    </BottomSheetScrollView>
-                </BottomSheet>
+                <Deal reading={reading} dealt={true} />
             </Background>
+            <BottomSheet
+                ref={sheetRef}
+                index={1}
+                snapPoints={snapPoints}
+                keyboardBehavior="interactive"
+                keyboardBlurBehavior="restore">
+                <BottomSheetScrollView style={styles.scrollView}>
+                    <View style={styles.row}>
+                        <BottomSheetTextInput
+                            style={styles.input}
+                            keyboardType="default"
+                            onChangeText={value => setNotes(value)}
+                            onBlur={updateNotes}
+                            multiline={true}
+                            value={notes}
+                            placeholder="what would you like to learn from this reading?"
+                        />
+                    </View>
+                </BottomSheetScrollView>
+            </BottomSheet>
         </View>
     );
 };

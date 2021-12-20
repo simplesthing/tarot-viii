@@ -3,7 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { useAuth, useFirestore } from '../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { ROUTES } from '../navigation/config';
 import { Timeline } from 'react-native-just-timeline';
+import { useRouting } from 'expo-next-react-navigation';
 
 const styles = StyleSheet.create({
     container: {
@@ -14,24 +16,33 @@ const styles = StyleSheet.create({
     timelineWrapper: { width: '100%' }
 });
 
-const timelineData = history => {
-    return {
-        title: {
-            content: history.title || 'Untitled'
-        },
-        description: {
-            content: history.notes
-        },
-        time: {
-            content: new Date(history.creationTime).toDateString().slice(0, 10)
-        }
-    };
-};
 const HistoryScreen = () => {
     const { user } = useAuth();
     const { fetchReadingsForUser } = useFirestore();
     const [history, setHistory] = useState<FirebaseFirestoreTypes.DocumentData[]>();
     const [timeline, setTimeline] = useState<unknown>();
+    const { navigate } = useRouting();
+
+    const timelineData = data => {
+        return {
+            title: {
+                content: data.title || 'Untitled'
+            },
+            description: {
+                content: data.notes
+            },
+            time: {
+                content: new Date(data.creationTime).toDateString().slice(0, 10)
+            },
+            pressAction: () =>
+                navigate({
+                    routeName: ROUTES.screens.READING.name,
+                    params: {
+                        reading: data.id
+                    }
+                })
+        };
+    };
 
     useEffect(() => {
         if (user?.uid) {

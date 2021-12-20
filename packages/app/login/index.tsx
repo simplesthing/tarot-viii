@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { Button, Input, Text } from 'react-native-elements';
-import { Colors } from '@tarot-viii/ui';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useRouting } from 'expo-next-react-navigation';
 
+import { Colors } from '@tarot-viii/ui';
+import { useRouting } from 'expo-next-react-navigation';
 
 type LoginProps = {
     signin: ({ email, password }) => void;
@@ -128,6 +128,7 @@ export default function Login({
                         textContentType="emailAddress"
                         autoCompleteType="email"
                         autoCapitalize="none"
+                        keyboardType="email-address"
                     />
                 </View>
 
@@ -140,7 +141,7 @@ export default function Login({
                         placeholder="**************"
                         textContentType="password"
                         secureTextEntry={true}
-                        autoCompleteType="password"
+                        autoCompleteType="none"
                     />
                 </View>
 

@@ -9,7 +9,7 @@ type ShuffleDealProps = {
     cards?: Record<string, string>[];
     spread?: FirebaseFirestoreTypes.DocumentData;
     generateReadingDoc: (reading: Record<string, string>) => void;
-    getCards: (index: string[]) => Promise<ReadingProp[]>;
+    getCards: (index: string[]) => Promise<ReadingProp[] | {}[]>;
 };
 
 const ShuffleDeal = ({ spread, generateReadingDoc, getCards }: ShuffleDealProps) => {

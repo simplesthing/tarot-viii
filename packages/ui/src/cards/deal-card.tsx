@@ -35,7 +35,7 @@ export type DealCardProps = {
 
 const cardStyleProps = {
     width: vmin(15),
-    height: vmin(30)
+    height: vmin(25)
 };
 
 const styles = StyleSheet.create({
@@ -82,6 +82,16 @@ export default function DealCard({
             ]
         };
     });
+
+    useEffect(() => {
+        if (hasBeenDealt) {
+            offset.value = {
+                x: vw(SPREAD[spreadIndex].coords.x) - 40,
+                y: vh(SPREAD[spreadIndex].coords.y),
+                r: !!reversed ? 180 : 0
+            };
+        }
+    }, []);
 
     useEffect(() => {
         if (spreadIndex === 1 && !!hasBeenDealt) {

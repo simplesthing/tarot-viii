@@ -8,15 +8,15 @@ import TheSpread from './the-spread';
 
 type DealProps = {
     reading?: ReadingProp[];
-    done?: () => void;
+    dealt?: boolean;
 };
 
 const web = Platform.OS === 'web';
 const POSITIONS = Array.from(Array(10).keys());
 
-export default function Deal({ reading }: DealProps) {
+export default function Deal({ reading, dealt = false }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
-    const [dealDone] = useState(false);
+    const [dealDone] = useState(dealt);
 
     const castEnergyToDeck = (index: number) => {
         if (!dealDone) {
@@ -36,7 +36,7 @@ export default function Deal({ reading }: DealProps) {
                             spreadIndex={index}
                             onPress={castEnergyToDeck}
                             reversed={card.reversed}
-                            dealt={false}
+                            dealt={dealDone}
                         />
                     ) : (
                         <DealCard
@@ -46,7 +46,7 @@ export default function Deal({ reading }: DealProps) {
                             spreadIndex={index}
                             reversed={card.reversed}
                             onPress={castEnergyToDeck}
-                            dealt={false}
+                            dealt={dealDone}
                         />
                     );
                 })}
