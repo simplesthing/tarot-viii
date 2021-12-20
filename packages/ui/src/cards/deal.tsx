@@ -23,7 +23,6 @@ export default function Deal({ reading }: DealProps) {
             const updated = dealtCards.filter(item => item !== index);
             setDealtCards(updated);
         }
-        // add navigation to reading spread screens
     };
 
     return (

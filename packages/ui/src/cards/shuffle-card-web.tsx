@@ -63,7 +63,6 @@ export default function ShuffleCardWeb({
     const [style, setStyle] = useState(updateShuffle());
 
     const castEnergyToDeck = () => {
-        console.log('pressed')
         if (isShuffling) {
             onPress();
         } else {

@@ -39,13 +39,15 @@ const styles = StyleSheet.create({
 
 const ShuffleDealScreen = () => {
     const sheetRef = useRef<BottomSheet>(null);
-    const snapPoints = useMemo(() => ['10%', '50%'], []);
+    const snapPoints = useMemo(() => ['10%', '25%', '50%'], []);
 
-    const [cards, setCards] = useState<FirebaseFirestoreTypes.DocumentData[]>();
     const [spread, setSpread] = useState<FirebaseFirestoreTypes.DocumentData>();
+    const [readingId, setReadingId] = useState<string>();
+    const [title, setTitle] = useState<string>();
+    const [notes, setNotes] = useState<string>();
 
     const {
-        fetchDeck,
+        fetchCardsInSpread,
         fetchSpread,
         generateReadingDocument,
         updateReadingTitle,
@@ -54,17 +56,18 @@ const ShuffleDealScreen = () => {
 
     const { user } = useAuth();
 
-    const [readingId, setReadingId] = useState<string>();
-    const [title, setTitle] = useState('Untitled');
-    const [notes, setNotes] = useState('');
-
     useEffect(() => {
         const fetch = async () => {
-            fetchDeck().then(c => setCards(c));
             fetchSpread().then((s: FirebaseFirestoreTypes.DocumentData) => setSpread(s));
         };
         fetch();
     }, []);
+
+    const getCards = async readingIndexes => {
+        return fetchCardsInSpread(readingIndexes).then(c => {
+            return c;
+        });
+    };
 
     const genReading = reading => {
         if (user?.uid) {
@@ -77,13 +80,13 @@ const ShuffleDealScreen = () => {
     };
 
     const updateTitle = () => {
-        if (readingId) {
+        if (readingId && title) {
             updateReadingTitle(readingId, title);
         }
     };
 
     const updateNotes = () => {
-        if (readingId) {
+        if (readingId && notes) {
             updateReadingNotes(readingId, notes);
         }
     };
@@ -95,23 +98,26 @@ const ShuffleDealScreen = () => {
                     rightIcon={{
                         type: 'material-community',
                         name: 'pencil',
-                        color: Colors.silver_sand.muted
+                        color: !!title
+                            ? Colors.silver_sand.base
+                            : Colors.silver_sand.muted
                     }}
                     value={title}
                     onChangeText={setTitle}
+                    placeholder="Query"
                     onBlur={updateTitle}
                     autoCompleteType="off"
                     inputContainerStyle={styles.header}
                 />
                 <ShuffleDeal
-                    cards={cards}
+                    getCards={getCards}
                     spread={spread}
                     generateReadingDoc={genReading}
                 />
             </Background>
             <BottomSheet
                 ref={sheetRef}
-                index={1}
+                index={0}
                 snapPoints={snapPoints}
                 keyboardBehavior="interactive"
                 keyboardBlurBehavior="restore">
@@ -124,7 +130,7 @@ const ShuffleDealScreen = () => {
                             onBlur={updateNotes}
                             multiline={true}
                             value={notes}
-                            placeholder="what would you like to learn from this reading?"
+                            placeholder="Notes: "
                         />
                     </View>
                 </BottomSheetScrollView>

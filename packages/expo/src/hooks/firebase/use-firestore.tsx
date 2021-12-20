@@ -1,19 +1,21 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
 import uuid from 'react-native-uuid';
 
 type UseFirestore = {
     fetchDeck: () => Promise<FirebaseFirestoreTypes.DocumentData[]>;
     fetchSpread: () => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
+    fetchCardsInSpread: (indexes: string[]) => Promise<ReadingProp[]>;
     fetchUser: (
         uid: string
     ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
     generateReadingDocument: (
         userId: string,
         reading: Record<string, string>,
-        notes: string,
-        title: string
+        notes?: string,
+        title?: string
     ) => Promise<string | undefined>;
     generateUserDocument: (
         user: FirebaseAuthTypes.User,
@@ -72,7 +74,7 @@ const useFirestore = (): UseFirestore => {
     };
 
     //READINGS
-    const generateReadingDocument = async (userId, reading, notes, title) => {
+    const generateReadingDocument = async (userId, reading, notes = '', title) => {
         if (!userId || !reading) return;
 
         const documentId = uuid.v4().toString();
@@ -83,7 +85,7 @@ const useFirestore = (): UseFirestore => {
             userId: userId,
             reading,
             notes,
-            title,
+            title: title || now.toString(),
             creationTime: now.toString()
         };
 
@@ -112,10 +114,11 @@ const useFirestore = (): UseFirestore => {
 
     const fetchReadingsForUser = async userId => {
         if (!userId) return;
+        console.log(userId);
 
         return firestore()
-            .collection('readdings')
-            .where('user', '==', userId)
+            .collection('readings')
+            .where('userId', '==', userId)
             .get()
             .then(querySnapshot => {
                 let readings: any = [];
@@ -161,24 +164,19 @@ const useFirestore = (): UseFirestore => {
 
     //APP
     const fetchDeck = async () => {
-        return (
-            firestore()
-                .collection('newcards')
-                // .where('index', 'in', cardIndex)
-                // where in doesn't work with numbers on iOS
-                // waiting for issue to be merged https://github.com/invertase/react-native-firebase/pull/5840
-                .get()
-                .then(querySnapshot => {
-                    let _cards: any = [];
-                    querySnapshot.forEach(doc => {
-                        _cards.push(doc.data());
-                    });
-                    return _cards;
-                })
-                .catch(e => {
-                    console.log('Error getting cards collection');
-                })
-        );
+        return firestore()
+            .collection('newcards')
+            .get()
+            .then(querySnapshot => {
+                let _cards: any = [];
+                querySnapshot.forEach(doc => {
+                    _cards.push(doc.data());
+                });
+                return _cards;
+            })
+            .catch(e => {
+                console.log('Error getting cards collection');
+            });
     };
 
     const fetchSpread = async () => {
@@ -194,6 +192,25 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
+    const fetchCardsInSpread = async (indexes: string[]) => {
+        return firestore()
+            .collection('newcards')
+            .where('name', 'in', indexes)
+            .get()
+            .then(querySnapshot => {
+                let _cards: any = [];
+                querySnapshot.forEach(doc => {
+                    // console.log('doc ', doc.data());
+                    _cards.push(doc.data());
+                });
+                console.log(JSON.stringify(_cards.map(card => card.name)));
+                return _cards;
+            })
+            .catch(e => {
+                console.log('Error getting cards collection');
+            });
+    };
+
     return {
         generateUserDocument,
         fetchUser,
@@ -203,7 +220,8 @@ const useFirestore = (): UseFirestore => {
         updateReadingNotes,
         updateReadingTitle,
         fetchDeck,
-        fetchSpread
+        fetchSpread,
+        fetchCardsInSpread
     };
 };
 
