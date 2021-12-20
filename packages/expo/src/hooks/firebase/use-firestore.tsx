@@ -200,10 +200,8 @@ const useFirestore = (): UseFirestore => {
             .then(querySnapshot => {
                 let _cards: any = [];
                 querySnapshot.forEach(doc => {
-                    // console.log('doc ', doc.data());
                     _cards.push(doc.data());
                 });
-                console.log(JSON.stringify(_cards.map(card => card.name)));
                 return _cards;
             })
             .catch(e => {
