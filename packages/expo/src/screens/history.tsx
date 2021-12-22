@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { useAuth, useFirestore } from '../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { MDetailView } from '@tarot-viii/ui/';
 import { ROUTES } from '../navigation/config';
 import { Timeline } from 'react-native-just-timeline';
 import { useRouting } from 'expo-next-react-navigation';
@@ -61,9 +62,11 @@ const HistoryScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.timelineWrapper}>
+            {/* <View style={styles.timelineWrapper}>
                 <Timeline data={timeline} />
-            </View>
+            </View> */}
+
+            <MDetailView />
         </View>
     );
 };

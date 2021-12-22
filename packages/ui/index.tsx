@@ -13,3 +13,5 @@ export { default as useReading } from './src/hooks/use-reading';
 export { Percentage, Value } from './src/theme/fonts';
 // utils
 export { cardList } from './src/util/cards-list';
+
+export { default as MDetailView } from './src/example/fl-anim';
