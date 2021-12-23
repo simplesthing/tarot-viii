@@ -1,14 +1,9 @@
 import ReadingCarousel, { ReadingCarouselProps } from './reading-carousel';
 import { StyleSheet, View } from 'react-native';
 
-import ExApp from '../example/ExApp';
 import React from 'react';
 import { default as colors } from '../theme/colors';
-import reading from '../../assets/data/reading.json';
-
-const styles = StyleSheet.create({
-    container: {}
-});
+import { default as reading } from '../../assets/data/reading.json';
 
 export default {
     title: 'cards/reading',
@@ -29,6 +24,13 @@ export default {
 
 export const Default = (args: ReadingCarouselProps) => (
     <View style={styles.container}>
-        <ExApp />
+        <ReadingCarousel data={reading} />
     </View>
 );
+
+const styles = StyleSheet.create({
+    container: {
+        height: '100vh',
+        width: '100vw'
+    }
+});

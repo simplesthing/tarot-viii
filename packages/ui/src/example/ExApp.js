@@ -13,7 +13,7 @@ import React, { Component } from 'react';
 
 import SideSwipe from 'react-native-sideswipe'; // 1.3.0
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const planets = [
     { title: 'Sun', value: 'sun', abbr: 'SUN' },
@@ -59,7 +59,7 @@ export default class ExApp extends Component {
                         this.setState(() => ({ currentIndex: index }))
                     }
                     renderItem={({ itemIndex, currentIndex, item, animatedValue }) => (
-                      <View style={{ width: width - 120, paddingHorizontal: 20 }}>
+                      <View style={{ width: width - 10, paddingHorizontal: 20 }}>
    
                         <Text style={{ marginTop: 10 }}>
                           Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next 10. I don't know what you could say about a day in which you have seen four beautiful sunsets.
@@ -77,6 +77,7 @@ export default class ExApp extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: height,
         alignItems: 'stretch',
         justifyContent: 'flex-start',
         paddingTop: 50,

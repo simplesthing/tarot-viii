@@ -8,7 +8,6 @@ import {
     View
 } from 'react-native';
 import React, { Component } from 'react';
-import Ticker, { Tick } from 'react-native-ticker'; // 2.0.3
 
 // import images from '../images';
 import letters from './letters';
@@ -79,22 +78,7 @@ export const BottomBar = ({ destination }) => (
         <View style={styles.tagLineContainer}>
             <Text style={styles.tagLine}>Explore the Solar System</Text>
         </View>
-        <View style={styles.ports}>
-            <View style={styles.port}>
-                <Text style={styles.portTitle}>SFO</Text>
-            </View>
-            <View style={styles.port}>
-                <Ticker textStyle={styles.portTitle}>
-                    {destination.split('').map((char, i) => {
-                        return (
-                            <Tick key={i} rotateItems={letters}>
-                                {char}
-                            </Tick>
-                        );
-                    })}
-                </Ticker>
-            </View>
-        </View>
+       
 
     </View>
 );

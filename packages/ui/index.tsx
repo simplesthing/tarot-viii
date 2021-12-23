@@ -15,3 +15,4 @@ export { Percentage, Value } from './src/theme/fonts';
 export { cardList } from './src/util/cards-list';
 
 export { default as MDetailView } from './src/example/fl-anim';
+export { default as ExApp } from './src/example/ExApp';
