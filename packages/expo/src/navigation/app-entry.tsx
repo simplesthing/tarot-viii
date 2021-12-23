@@ -12,6 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import NewReading from '../screens/new-reading';
 import PasswordReset from '../screens/password-reset';
 import { ROUTES } from '@tarot-viii/expo/src/navigation/config';
+import ReadingDetailScreen from '../screens/reading-detail';
 import ReadingScreen from '../screens/reading';
 import ShuffleDealScreen from '../screens/shuffle-deal';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -85,6 +86,11 @@ const AppEntry = () => {
                             <Stack.Screen
                                 component={ReadingScreen}
                                 name={ROUTES.screens.READING.name}
+                            />
+
+                            <Stack.Screen
+                                component={ReadingDetailScreen}
+                                name={ROUTES.screens.READING_DEATIL.name}
                             />
                         </Stack.Group>
                     </>

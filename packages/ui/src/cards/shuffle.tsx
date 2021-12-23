@@ -2,7 +2,7 @@ import { Percentage, Value } from '../theme/fonts';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 
-import { CARDS } from './constants';
+import { CARD_ARRAY } from './constants';
 import ShuffleCard from './shuffle-card';
 import ShuffleCardWeb from './shuffle-card-web';
 import TheSpread from './the-spread';
@@ -65,7 +65,7 @@ export default function Shuffle({ done, cutDeck, shuffleDeck }) {
                 <Text style={styles.instructions}>{instruction}</Text>
             </View>
             <TheSpread>
-                {CARDS.map(index => {
+                {CARD_ARRAY.map(index => {
                     return web ? (
                         <ShuffleCardWeb
                             cardIndex={index}

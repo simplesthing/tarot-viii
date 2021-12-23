@@ -4,12 +4,13 @@ import BottomSheet, {
     BottomSheetTextInput
 } from '@gorhom/bottom-sheet';
 import { StyleSheet, View } from 'react-native';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { Input } from 'react-native-elements';
+import { ROUTES } from '../navigation/config';
 import React from 'react';
-import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
 import { useFirestore } from '../hooks';
+import { useRouting } from 'expo-next-react-navigation';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,34 +42,35 @@ const styles = StyleSheet.create({
 const ReadingScreen = ({ navigation, route }) => {
     const sheetRef = useRef<BottomSheet>(null);
     const snapPoints = useMemo(() => ['10%', '50%'], []);
+    const [data] = useState(route?.params?.data);
+    const [reading] = useState(route?.params?.data?.reading);
+    const [title, setTitle] = useState<string>(route?.params?.data?.title);
+    const [notes, setNotes] = useState<string>(route?.params?.data?.notes);
 
-    const [readingId] = useState(route?.params?.reading);
-    const [reading, setReading] = useState<ReadingProp[]>();
-    const [title, setTitle] = useState<string>();
-    const [notes, setNotes] = useState<string>();
+    const { updateReadingTitle, updateReadingNotes } = useFirestore();
 
-    const { fetchReadingById, updateReadingTitle, updateReadingNotes } = useFirestore();
-
-    useEffect(() => {
-        if (readingId) {
-            fetchReadingById(route.params.reading).then(readingDoc => {
-                setReading(readingDoc?.reading);
-                setTitle(readingDoc?.title);
-                setNotes(readingDoc?.notes);
-            });
-        }
-    }, [readingId]);
+    const { navigate } = useRouting();
 
     const updateTitle = () => {
-        if (readingId && title) {
-            updateReadingTitle(readingId, title);
+        if (title) {
+            updateReadingTitle(reading.id, title);
         }
     };
 
     const updateNotes = () => {
-        if (readingId && notes) {
-            updateReadingNotes(readingId, notes);
+        if (notes) {
+            updateReadingNotes(reading.id, notes);
         }
+    };
+
+    const openReadingDetail = spreadIndex => {
+        navigate({
+            routeName: ROUTES.screens.READING_DEATIL.name,
+            params: {
+                data: data,
+                startFrom: spreadIndex
+            }
+        });
     };
 
     return (
@@ -86,9 +88,8 @@ const ReadingScreen = ({ navigation, route }) => {
                     autoCompleteType="off"
                 />
             </View>
-
             <Background>
-                <Deal reading={reading} dealt={true} />
+                <Deal reading={reading} dealt={true} onPress={openReadingDetail} />
             </Background>
             <BottomSheet
                 ref={sheetRef}

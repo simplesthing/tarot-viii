@@ -9,7 +9,6 @@ import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
 import Card from './card';
 import { StyleSheet } from 'react-native';
-import { useRouting } from 'expo-next-react-navigation';
 
 const SPREAD = [
     { displayName: 'Situation', coords: { x: 45, y: 21 } },
@@ -55,7 +54,6 @@ export default function DealCard({
 }: DealCardProps) {
     const offset = useSharedValue({ x: vmin(1), y: 0, r: 0 });
     const [hasBeenDealt, setHasBeenDealt] = useState(dealt);
-    const { navigate } = useRouting();
     // @ts-ignore
     const animatedStyles = useAnimatedStyle(() => {
         return {
@@ -105,16 +103,14 @@ export default function DealCard({
 
     const castEnergyToDeck = () => {
         if (!hasBeenDealt) {
-            onPress(spreadIndex);
             offset.value = {
                 x: vw(SPREAD[spreadIndex].coords.x) - 40,
                 y: vh(SPREAD[spreadIndex].coords.y),
                 r: !!reversed ? 180 : 0
             };
             setHasBeenDealt(true);
-        } else {
-            navigate({ routeName: 'position', params: { card: card } });
         }
+        onPress(spreadIndex);
     };
 
     return (

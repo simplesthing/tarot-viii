@@ -1,4 +1,3 @@
-import { ExApp, MDetailView } from '@tarot-viii/ui/';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useAuth, useFirestore } from '../hooks';
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        paddingTop: 60
+        paddingTop: 100
     },
     timelineWrapper: { width: '100%' }
 });
@@ -39,7 +38,7 @@ const HistoryScreen = () => {
                 navigate({
                     routeName: ROUTES.screens.READING.name,
                     params: {
-                        reading: data.id
+                        data: data
                     }
                 })
         };
@@ -62,11 +61,9 @@ const HistoryScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* <View style={styles.timelineWrapper}>
+            <View style={styles.timelineWrapper}>
                 <Timeline data={timeline} />
-            </View> */}
-
-            <ExApp />
+            </View>
         </View>
     );
 };

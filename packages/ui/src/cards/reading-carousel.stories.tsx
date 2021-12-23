@@ -1,5 +1,5 @@
+import { Dimensions, StyleSheet, View } from 'react-native';
 import ReadingCarousel, { ReadingCarouselProps } from './reading-carousel';
-import { StyleSheet, View } from 'react-native';
 
 import React from 'react';
 import { default as colors } from '../theme/colors';
@@ -22,15 +22,26 @@ export default {
     }
 };
 
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const width = screenWidth / 2 - 20;
+const height = screenHeight / 2 - 20;
+
 export const Default = (args: ReadingCarouselProps) => (
     <View style={styles.container}>
-        <ReadingCarousel data={reading} />
+        <View style={styles.wrapper}>
+            <ReadingCarousel data={reading} />
+        </View>
     </View>
 );
 
 const styles = StyleSheet.create({
     container: {
-        height: '100vh',
-        width: '100vw'
+        height
+    },
+    wrapper: {
+        position: 'relative',
+        width,
+        height: '120%',
+        overflow: 'hidden'
     }
 });

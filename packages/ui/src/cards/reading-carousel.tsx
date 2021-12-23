@@ -1,74 +1,59 @@
-import {
-    Dimensions,
-    Image,
-    Platform,
-    StatusBar,
-    StyleSheet,
-    Text,
-    View
-} from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 
-import { ReadingProp } from 'src/hooks/use-reading';
+import ReadCard from './read-card';
+import { ReadingDoc } from '@tarot-viii/expo/src/types/firestore';
+import { ReadingProp } from '../../../expo/src/types/firestore';
 import SideSwipe from 'react-native-sideswipe';
+import { Text } from 'react-native-elements';
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-const width = screenWidth - 20;
-const height = screenHeight - 60;
-
-const planets = [
-    { title: 'Sun', value: 'sun', abbr: 'SUN' },
-    { title: 'Mercury', value: 'mercury', abbr: 'MRC' },
-    { title: 'Venus', value: 'venus', abbr: 'VNS' },
-    { title: 'Earth', value: 'earth', abbr: 'ERH' },
-    { title: 'Tesla', value: 'tesla', abbr: 'TSL' },
-    { title: 'Moon', value: 'moon', abbr: 'MON' },
-    { title: 'Mars', value: 'mars', abbr: 'MAR' },
-    { title: 'Jupiter', value: 'jupiter', abbr: 'JYT' },
-    { title: 'Saturn', value: 'saturn', abbr: 'SAT' },
-    { title: 'Uranus', value: 'uranus', abbr: 'UNS' },
-    { title: 'Neptune', value: 'neptune', abbr: 'NEP' }
-];
+const { width } = Dimensions.get('window');
 
 export type ReadingCarouselProps = {
-    data: ReadingProp[];
+    data: ReadingDoc;
+    startFromIndex?: number;
 };
 
-const ReadingCarousel = ({ data }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const offset = screenWidth - width / 3;
+const ReadingCarousel = ({ data, startFromIndex = 0 }) => {
+    const [currentIndex, setCurrentIndex] = useState(startFromIndex);
+    const CARD_WIDTH = width / 3;
+    const OFFSET = (width - CARD_WIDTH) / 2;
+
+    const selectCard = index => {
+        if (currentIndex === index && index < data.reading.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        } else {
+            setCurrentIndex(index);
+        }
+    };
+
     return (
         <View style={styles.container}>
+            <Text h1 h1Style={{ fontSize: 24, fontWeight: 'bold' }}>
+                {data.reading[currentIndex].cardName}
+            </Text>
             <SideSwipe
-                data={data}
-                shouldCapture={() => true}
+                data={data.reading}
+                index={currentIndex}
                 style={[styles.fill, { width }]}
-                contentContainerStyle={{ paddingTop: 100 }}
-                itemWidth={screenWidth / 3}
-                threshold={screenWidth / 3}
-                extractKey={item => item.value}
-                contentOffset={offset}
+                contentContainerStyle={{ paddingTop: 10 }}
+                itemWidth={CARD_WIDTH}
+                threshold={CARD_WIDTH}
+                extractKey={(item: ReadingProp) => item.cardName}
+                contentOffset={OFFSET}
                 onIndexChange={index => setCurrentIndex(index)}
-                renderItem={({ itemIndex, currentIndex, item, animatedValue }) => {
-                    console.log(itemIndex);
+                useVelocityForIndex={true}
+                renderItem={({ itemIndex, item, animatedValue }) => {
                     return (
-                        <View style={styles.centerCard}>
-                            <View style={styles.card}>
-                                <Text style={{ marginTop: 10 }}>
-                                    {item.positionName}
-                                    <br />
-                                    {item.cardName}
-                                    <br />
-                                    {item.positionDescription}
-                                    <br />
-                                    {itemIndex}
-                                </Text>
-                            </View>
-                        </View>
+                        <ReadCard
+                            card={item}
+                            itemIndex={itemIndex}
+                            currentIndex={currentIndex}
+                            onPress={() => selectCard(itemIndex)}
+                        />
                     );
                 }}
             />
-            <Text style={[styles.title, styles.titlePlatformSpecific]}>SPACED</Text>
         </View>
     );
 };
@@ -76,37 +61,16 @@ const ReadingCarousel = ({ data }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: height,
-        alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        paddingTop: 50,
-        backgroundColor: 'pink'
+        width: width,
+        alignItems: 'center',
+        overflow: 'hidden'
     },
     fill: {
         position: 'absolute',
-        top: 0,
+        top: 80,
         left: 0,
         right: 0,
         bottom: 0
-    },
-    centerCard: {},
-    card: {
-        width: width / 3,
-        height: height,
-        backgroundColor: 'rgba(255,255,255,.5)'
-    },
-    title: {
-        fontSize: 32,
-        color: 'white',
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        marginTop: 8,
-        letterSpacing: 1.6,
-        zIndex: 2,
-        alignSelf: 'center'
-    },
-    titlePlatformSpecific: {
-        marginBottom: 0
     }
 });
 

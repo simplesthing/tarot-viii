@@ -1,17 +1,5 @@
 import { useState } from 'react';
 
-export type ReadingProp = {
-    positionName: string;
-    displayName: string;
-    positionDescription: string;
-    cardName: string;
-    cardNumber: string;
-    hex: string;
-    image: string;
-    index: number;
-    reversed: boolean;
-};
-
 const useReading = () => {
     const [deck, setDeck] = useState(Array.from(Array(78).keys()));
     const [reversals, setReversals] = useState(deck.map(c => false));
