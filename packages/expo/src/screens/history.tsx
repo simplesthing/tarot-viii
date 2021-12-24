@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        paddingTop: 60
+        paddingTop: 100
     },
     timelineWrapper: { width: '100%' }
 });
@@ -38,7 +38,7 @@ const HistoryScreen = () => {
                 navigate({
                     routeName: ROUTES.screens.READING.name,
                     params: {
-                        reading: data.id
+                        data: data
                     }
                 })
         };

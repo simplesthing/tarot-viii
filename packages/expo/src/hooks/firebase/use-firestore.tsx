@@ -1,7 +1,7 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
+import { ReadingProp } from '../../types/firestore';
 import uuid from 'react-native-uuid';
 
 type UseFirestore = {

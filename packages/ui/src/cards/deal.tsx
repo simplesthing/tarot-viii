@@ -3,18 +3,19 @@ import React, { useState } from 'react';
 import DealCard from './deal-card';
 import DealCardWeb from './deal-card-web';
 import { Platform } from 'react-native';
-import { ReadingProp } from '@tarot-viii/ui/src/hooks/use-reading';
+import { ReadingProp } from '@tarot-viii/expo/src/types/firestore';
 import TheSpread from './the-spread';
 
 type DealProps = {
-    reading?: ReadingProp[];
+    reading: ReadingProp[];
     dealt?: boolean;
+    onPress?: (spreadIndex: number) => void;
 };
 
 const web = Platform.OS === 'web';
 const POSITIONS = Array.from(Array(10).keys());
 
-export default function Deal({ reading, dealt = false }: DealProps) {
+export default function Deal({ reading, dealt = false, onPress }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
     const [dealDone] = useState(dealt);
 
@@ -22,6 +23,9 @@ export default function Deal({ reading, dealt = false }: DealProps) {
         if (!dealDone) {
             const updated = dealtCards.filter(item => item !== index);
             setDealtCards(updated);
+        }
+        if (onPress) {
+            onPress(index);
         }
     };
 

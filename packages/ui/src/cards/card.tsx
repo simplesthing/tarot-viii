@@ -1,8 +1,8 @@
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+
 import React from 'react';
 import useSvgCards from './svg/use-svg-cards';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { vmin } from 'react-native-expo-viewport-units';
-
 
 export type CardProps = {
     cardIndex: number;
