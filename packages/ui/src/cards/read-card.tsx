@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import Card from './card';
 import React from 'react';
-import { ReadingProp } from '@tarot-viii/expo/src/types/firestore';
+import { ReadingProp } from '@tarot-viii/ui/types';
 
 export type ReadingCard = {
     cardName: string;

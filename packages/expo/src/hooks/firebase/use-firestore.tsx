@@ -1,7 +1,7 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { ReadingProp } from '../../types/firestore';
+import { ReadingProp } from '@tarot-viii/ui/types';
 import uuid from 'react-native-uuid';
 
 type UseFirestore = {
@@ -29,6 +29,7 @@ type UseFirestore = {
     fetchReadingById: (
         id: string
     ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
+    uploadData: (collectionName: string, data: any[], key: string) => void;
 };
 
 const useFirestore = (): UseFirestore => {
@@ -211,6 +212,14 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
+    const uploadData = (collectionName: string, data: any[], key: string) => {
+        const collection = firestore().collection(collectionName);
+
+        data.forEach(item => {
+            collection.doc(item[key]).set(item);
+        });
+    };
+
     return {
         generateUserDocument,
         fetchUser,
@@ -221,7 +230,8 @@ const useFirestore = (): UseFirestore => {
         updateReadingTitle,
         fetchDeck,
         fetchSpread,
-        fetchCardsInSpread
+        fetchCardsInSpread,
+        uploadData
     };
 };
 

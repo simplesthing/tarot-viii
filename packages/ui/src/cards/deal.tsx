@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DealCard from './deal-card';
 import DealCardWeb from './deal-card-web';
 import { Platform } from 'react-native';
-import { ReadingProp } from '@tarot-viii/expo/src/types/firestore';
+import { ReadingProp } from '@tarot-viii/ui/types';
 import TheSpread from './the-spread';
 
 type DealProps = {

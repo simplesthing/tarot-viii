@@ -2,8 +2,8 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import ReadCard from './read-card';
-import { ReadingDoc } from '@tarot-viii/expo/src/types/firestore';
-import { ReadingProp } from '../../../expo/src/types/firestore';
+import { ReadingDoc } from '@tarot-viii/ui/types';
+import { ReadingProp } from '@tarot-viii/ui/types';
 import SideSwipe from 'react-native-sideswipe';
 import { Text } from 'react-native-elements';
 
