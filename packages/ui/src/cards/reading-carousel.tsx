@@ -62,13 +62,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: width,
+        marginLeft: 6,
         alignItems: 'center',
         overflow: 'hidden'
     },
     fill: {
         position: 'absolute',
         top: 80,
-        left: 0,
+        left: -12,
         right: 0,
         bottom: 0
     }

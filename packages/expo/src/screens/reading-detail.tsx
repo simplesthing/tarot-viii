@@ -27,8 +27,7 @@ const styles = StyleSheet.create({
     },
     carousel: {
         width,
-        height: height / 2,
-        backgroundColor: 'orange'
+        height: height / 2
     }
 });
 export default ReadingDetailScreen;
