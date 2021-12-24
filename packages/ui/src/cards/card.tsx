@@ -17,7 +17,8 @@ const height = vmin(18);
 const styles = StyleSheet.create({
     card: {
         position: 'absolute',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        opacity: 1
     },
     cardImage: {
         position: 'absolute',
@@ -35,8 +36,9 @@ export default function Card({
 }: CardProps) {
     const _width = styleProps ? styleProps.width : width;
     const _height = styleProps ? styleProps.height : height;
+    const opacity = styleProps ? styleProps.opacity : 1;
     const svgImage = useSvgCards(cardIndex, {
-        ...{ width: _width, height: _height }
+        ...{ width: _width, height: _height, opacity }
     });
 
     const cardImage = face ? (

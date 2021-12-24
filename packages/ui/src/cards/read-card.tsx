@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Card from './card';
 import React from 'react';
@@ -20,18 +20,18 @@ export type ReadCardProps = {
     itemIndex: number;
     currentIndex: number;
     onPress: (index: number) => void;
+    width: number;
 };
 
 export default function ReadCard({
     card,
     itemIndex,
     currentIndex,
-    onPress
+    onPress,
+    width
 }: ReadCardProps) {
     const rot = !!card.reversed ? '180deg' : '0deg';
-    const { width, height } = Dimensions.get('window');
-    const ratio = width > height ? height : width;
-    const itemWidth = currentIndex === itemIndex ? ratio / 2 : ratio / 3;
+    const itemWidth = currentIndex === itemIndex ? width / 2 : width / 3;
 
     const setCardIndex = () => {
         onPress(card.index);
