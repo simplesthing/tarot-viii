@@ -1,14 +1,14 @@
-import firebaseConfig from '../../firebase.config';
 import {
-    doc,
     DocumentData,
+    doc,
     getDoc,
     getFirestore,
     setDoc
-    } from '@firebase/firestore/lite';
+} from '@firebase/firestore/lite';
+
+import firebaseConfig from '../../firebase.config';
 import { initializeApp } from 'firebase/app';
 import { useState } from 'react';
-
 
 const useFirebase = () => {
     const app = initializeApp(firebaseConfig);
@@ -16,7 +16,7 @@ const useFirebase = () => {
     const firestore = getFirestore(app);
 
     const getCard = async cardName => {
-        const docRef = doc(firestore, `newcards/${cardName}`);
+        const docRef = doc(firestore, `cards/${cardName}`);
         return await getDoc(docRef)
             .then(docRef => {
                 setCard(docRef.data());
@@ -27,7 +27,7 @@ const useFirebase = () => {
     };
 
     const saveCard = async (cardName, updatedValues) => {
-        const docRef = doc(firestore, `newcards/${cardName}`);
+        const docRef = doc(firestore, `cards/${cardName}`);
         return await setDoc(docRef, updatedValues).catch(e =>
             console.log('update error ', e)
         );

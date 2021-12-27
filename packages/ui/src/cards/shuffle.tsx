@@ -16,22 +16,6 @@ export type ShuffleProps = {
 const web = Platform.OS === 'web';
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignContent: 'stretch'
-    },
-    instructionWrapper: {
-        flexBasis: 120,
-        paddingHorizontal: 10
-    },
-    instructions: {
-        fontSize: instructionTextSize,
-        textAlign: 'center'
-    }
-});
-
 export default function Shuffle({ done, cutDeck, shuffleDeck }) {
     const [isShuffling, setIsShuffling] = useState(true);
     const [cutCount, setCutCount] = useState(0);
@@ -90,3 +74,18 @@ export default function Shuffle({ done, cutDeck, shuffleDeck }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column'
+    },
+    instructionWrapper: {
+        flexBasis: 120,
+        paddingHorizontal: 10
+    },
+    instructions: {
+        fontSize: instructionTextSize,
+        textAlign: 'center'
+    }
+});

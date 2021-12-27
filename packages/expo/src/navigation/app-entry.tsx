@@ -1,20 +1,21 @@
 import * as Linking from 'expo-linking';
 
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 
-import AccountScreen from '../screens/account';
+import AccountScreen from '../screens/account/account';
 import CloseScreen from '../navigation/close-screen';
 import { Colors } from '@tarot-viii/ui';
-import HistoryScreen from '../screens/history';
+import HistoryScreen from '../screens/history/history';
 import HomeScreen from '../screens/home';
-import LoginScreen from '../screens/login';
-import { NavigationContainer } from '@react-navigation/native';
-import NewReading from '../screens/new-reading';
-import PasswordReset from '../screens/password-reset';
+import LoginScreen from '../screens/account/login';
+import NewReading from '../screens/readings/new';
+import PasswordReset from '../screens/account/password-reset';
 import { ROUTES } from '@tarot-viii/expo/src/navigation/config';
-import ReadingDetailScreen from '../screens/reading-detail';
-import ReadingScreen from '../screens/reading';
-import ShuffleDealScreen from '../screens/shuffle-deal';
+import ReadingDetailScreen from '../screens/readings/reading';
+import ReadingScreen from '../screens/readings/spread';
+import ShuffleDealScreen from '../screens/readings/shuffle';
+import colors from '@tarot-viii/ui/src/theme/colors';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/';
 
@@ -33,8 +34,16 @@ const AppEntry = () => {
 
     const Stack = createNativeStackNavigator();
 
+    const MyTheme = {
+        ...DefaultTheme,
+        colors: {
+            ...DefaultTheme.colors,
+            background: colors.silver_sand.base
+        }
+    };
+
     return (
-        <NavigationContainer linking={linking}>
+        <NavigationContainer linking={linking} theme={MyTheme}>
             <Stack.Navigator>
                 {signedIn ? (
                     <>
@@ -85,12 +94,12 @@ const AppEntry = () => {
 
                             <Stack.Screen
                                 component={ReadingScreen}
-                                name={ROUTES.screens.READING.name}
+                                name={ROUTES.screens.SPREAD.name}
                             />
 
                             <Stack.Screen
                                 component={ReadingDetailScreen}
-                                name={ROUTES.screens.READING_DEATIL.name}
+                                name={ROUTES.screens.READING.name}
                             />
                         </Stack.Group>
                     </>

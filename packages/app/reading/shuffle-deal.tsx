@@ -15,9 +15,15 @@ type ShuffleDealProps = {
     spread?: FirebaseFirestoreTypes.DocumentData;
     generateReadingDoc: (reading: Record<string, string>) => void;
     getCards: (index: string[]) => Promise<ReadingProp[] | {}[]>;
+    openReading: (index: number) => void;
 };
 
-const ShuffleDeal = ({ spread, generateReadingDoc, getCards }: ShuffleDealProps) => {
+const ShuffleDeal = ({
+    spread,
+    generateReadingDoc,
+    getCards,
+    openReading
+}: ShuffleDealProps) => {
     const [shuffleDone, setShuffleDone] = useState(false);
     const [dealt, setDealt] = useState();
 
@@ -47,7 +53,7 @@ const ShuffleDeal = ({ spread, generateReadingDoc, getCards }: ShuffleDealProps)
                     cutDeck={cutDeck}
                 />
             )}
-            {shuffleDone && dealt && <Deal reading={dealt} />}
+            {shuffleDone && dealt && <Deal reading={dealt} onPress={openReading} />}
         </Background>
     );
 };

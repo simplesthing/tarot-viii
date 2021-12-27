@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import Card from './card';
+import Card from '../card';
 import React from 'react';
 import { ReadingProp } from '@tarot-viii/ui/types';
 
@@ -43,7 +43,7 @@ export default function ReadCard({
                 face={true}
                 styleProps={{
                     width: itemWidth,
-                    height: itemWidth * 2,
+                    height: itemWidth * 1.65,
                     transform: [{ rotate: card.cardName === 'challenge' ? '0deg' : rot }]
                 }}
                 onPress={setCardIndex}

@@ -1,9 +1,9 @@
 export const PATHS = {
     HOME: '/',
-    NEW_READING: '/new-reading',
-    SHUFFLE_DEAL: '/shuffle-deal',
+    NEW_READING: '/new',
+    SHUFFLE_DEAL: '/shuffle',
+    SPREAD: '/spread',
     READING: '/reading',
-    READING_DETAIL: '/reading-detail',
     CARDS: '/cards',
     HISTORY: '/history',
     ACCOUNT: '/account'
@@ -23,13 +23,13 @@ export const ROUTES = {
             path: PATHS['SHUFFLE_DEAL'],
             name: 'SHUFFLE_DEAL'
         },
+        SPREAD: {
+            path: PATHS['SPREAD'],
+            name: 'SPREAD'
+        },
         READING: {
             path: PATHS['READING'],
             name: 'READING'
-        },
-        READING_DEATIL: {
-            path: PATHS['READING_DEATIL'],
-            name: 'READING_DEATIL'
         },
         CARDS: {
             path: PATHS['CARDS'],

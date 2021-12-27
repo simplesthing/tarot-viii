@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import Deal from '../cards/deal';
 import React from 'react';
+import { ReadingProp } from '../../types/';
 import { default as colors } from '../theme/colors';
 import readingJson from '../../assets/data/reading.json';
 
@@ -32,6 +33,6 @@ export default {
 
 export const Default = args => (
     <View style={styles.container}>
-        <Deal reading={readingJson} />
+        <Deal reading={readingJson as ReadingProp[]} onPress={() => {}} />
     </View>
 );

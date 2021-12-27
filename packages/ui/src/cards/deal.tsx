@@ -9,7 +9,7 @@ import TheSpread from './the-spread';
 type DealProps = {
     reading: ReadingProp[];
     dealt?: boolean;
-    onPress?: (spreadIndex: number) => void;
+    onPress: (spreadIndex: number) => void;
 };
 
 const web = Platform.OS === 'web';
@@ -24,7 +24,7 @@ export default function Deal({ reading, dealt = false, onPress }: DealProps) {
             const updated = dealtCards.filter(item => item !== index);
             setDealtCards(updated);
         }
-        if (onPress) {
+        if (dealtCards.length === 0) {
             onPress(index);
         }
     };

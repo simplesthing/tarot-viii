@@ -2,8 +2,8 @@ import ReadingCarousel, { ReadingCarouselProps } from './reading-carousel';
 import { StyleSheet, View } from 'react-native';
 
 import React from 'react';
-import { default as colors } from '../theme/colors';
-import { default as reading } from '../../assets/data/reading.json';
+import { default as colors } from '../../theme/colors';
+import { default as reading } from '../../../assets/data/reading.json';
 
 export default {
     title: 'cards/carousel',
