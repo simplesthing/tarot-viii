@@ -141,7 +141,6 @@ const useFirestore = (): UseFirestore => {
             .doc(documentId)
             .update({ reading: reading })
             .then(() => {
-                console.log('reading updated');
                 return true;
             })
             .catch(e => {
@@ -156,7 +155,6 @@ const useFirestore = (): UseFirestore => {
             .doc(documentId)
             .update({ title: title })
             .then(() => {
-                console.log('title updated');
                 return true;
             })
             .catch(e => {
@@ -171,7 +169,6 @@ const useFirestore = (): UseFirestore => {
             .doc(documentId)
             .update({ notes: notes })
             .then(() => {
-                console.log('notes updated');
                 return true;
             })
             .catch(e => {

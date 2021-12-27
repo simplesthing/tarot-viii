@@ -12,7 +12,6 @@ const ReadingScreen = ({ navigation, route }) => {
     const { navigate } = useRouting();
 
     const openReadingDetail = spreadIndex => {
-        console.log('open?');
         navigate({
             routeName: ROUTES.screens.READING.name,
             params: {

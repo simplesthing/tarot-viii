@@ -24,7 +24,7 @@ export default function Deal({ reading, dealt = false, onPress }: DealProps) {
             const updated = dealtCards.filter(item => item !== index);
             setDealtCards(updated);
         }
-        if (dealDone) {
+        if (dealtCards.length === 0 || !!dealDone) {
             onPress(index);
         }
     };
