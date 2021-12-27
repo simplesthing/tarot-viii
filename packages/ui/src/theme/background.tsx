@@ -13,7 +13,6 @@ const Background = ({ children }: any) => {
             flex: 1,
             flexDirection: 'row',
             width: viewWidth,
-            minHeight: viewHeight,
             justifyContent: 'center',
             alignItems: 'stretch',
             backgroundColor: Colors.silver_sand.base
@@ -24,6 +23,14 @@ const Background = ({ children }: any) => {
             right: 0,
             top: 500,
             paddingTop: viewHeight - 500,
+            zIndex: 1
+        },
+        bottom: {
+            position: 'absolute',
+            bottom: -500,
+            width: viewWidth,
+            height: 600,
+            backgroundColor: Colors.spanish_gray.base,
             zIndex: 0
         },
         foreground: {
@@ -38,6 +45,7 @@ const Background = ({ children }: any) => {
                 locations={[0.7, 1]}
                 style={styles.background}
             />
+            <View style={styles.bottom} />
             <View style={styles.foreground}>{children}</View>
         </View>
     );

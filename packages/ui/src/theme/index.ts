@@ -1,8 +1,9 @@
 import { default as colors } from './colors';
 //https://reactnativeelements.com/docs/customization
 
- const theme: any = {
+const theme: any = {
     colors: {
+        background: colors.spanish_gray.base,
         primary: colors.medium_aquamarine.base,
         secondary: colors.lemon.base,
         white: colors.spanish_white.base,
@@ -31,4 +32,4 @@ import { default as colors } from './colors';
     }
 };
 
-export default theme
+export default theme;

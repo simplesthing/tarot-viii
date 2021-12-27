@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useAuth, useFirestore } from '../hooks';
+import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { ROUTES } from '../navigation/config';
+import { ROUTES } from '../../navigation/config';
 import { Timeline } from 'react-native-just-timeline';
 import { useRouting } from 'expo-next-react-navigation';
 
@@ -36,7 +36,7 @@ const HistoryScreen = () => {
             },
             pressAction: () =>
                 navigate({
-                    routeName: ROUTES.screens.READING.name,
+                    routeName: ROUTES.screens.SPREAD.name,
                     params: {
                         data: data
                     }

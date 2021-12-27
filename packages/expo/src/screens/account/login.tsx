@@ -1,6 +1,6 @@
-import React from 'react';
 import { Login } from '@tarot-viii/app';
-import { useAuth } from '../hooks';
+import React from 'react';
+import { useAuth } from '../../hooks';
 
 const LoginScreen = () => {
     const {

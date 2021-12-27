@@ -1,5 +1,5 @@
+import { Dimensions, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Percentage, Value } from '../theme/fonts';
-import { Platform, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 
 import { CARD_ARRAY } from './constants';
@@ -13,14 +13,83 @@ export type ShuffleProps = {
     shuffleDeck: () => void;
     cutDeck: () => void;
 };
+
+const { width } = Dimensions.get('window');
 const web = Platform.OS === 'web';
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
+
+export default function Shuffle({ done, cutDeck, shuffleDeck }) {
+    const [isShuffling, setIsShuffling] = useState(true);
+    const [cutCount, setCutCount] = useState(0);
+    const [cutCardIndex, setCutCardIndex] = useState(0);
+    const { instruction, next } = useInstructions();
+
+    const cutCards = (selectedCardIndex: number) => {
+        cutDeck(selectedCardIndex);
+        setCutCardIndex(selectedCardIndex);
+        setCutCount(cutCount + 1);
+        if (cutCount < 2) {
+            setIsShuffling(true);
+            setTimeout(() => {
+                next();
+                shuffleDeck();
+            }, 100);
+        } else {
+            next();
+            done();
+        }
+    };
+
+    const stopShuffle = () => {
+        setIsShuffling(false);
+        next();
+    };
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.instructionWrapper}>
+                <Text style={styles.instructions}>{instruction}</Text>
+            </View>
+            {isShuffling && <Pressable onPress={stopShuffle} style={styles.wrapper} />}
+            <TheSpread>
+                {CARD_ARRAY.map(index => {
+                    return web ? (
+                        <ShuffleCardWeb
+                            cardIndex={index}
+                            key={index}
+                            isShuffling={isShuffling}
+                            cutCards={cutCards}
+                            cutCardIndex={cutCardIndex}
+                            onPress={() => {}}
+                        />
+                    ) : (
+                        <ShuffleCard
+                            cardIndex={index}
+                            key={index}
+                            isShuffling={isShuffling}
+                            cutCardIndex={cutCardIndex}
+                            cutCards={cutCards}
+                            onPress={() => {}}
+                        />
+                    );
+                })}
+            </TheSpread>
+        </View>
+    );
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        alignContent: 'stretch'
+        flexDirection: 'column'
+    },
+    wrapper: {
+        position: 'absolute',
+        top: 60,
+        left: 0,
+        width,
+        height: width * 1.5,
+        zIndex: 10
     },
     instructionWrapper: {
         flexBasis: 120,
@@ -31,62 +100,3 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     }
 });
-
-export default function Shuffle({ done, cutDeck, shuffleDeck }) {
-    const [isShuffling, setIsShuffling] = useState(true);
-    const [cutCount, setCutCount] = useState(0);
-    const [cutCardIndex, setCutCardIndex] = useState(0);
-    const { instruction, next } = useInstructions();
-
-    const castEnergyToDeck = () => {
-        setIsShuffling(false);
-        next();
-    };
-
-    const cutCards = (cutCardIndex: number) => {
-        cutDeck(cutCardIndex);
-        setCutCardIndex(cutCardIndex);
-        setCutCount(cutCount + 1);
-        if (cutCount < 2) {
-            setTimeout(() => {
-                next();
-                shuffleDeck();
-                setIsShuffling(true);
-            }, 800);
-        } else {
-            next();
-            done();
-        }
-    };
-
-    return (
-        <View style={styles.container}>
-            <View style={styles.instructionWrapper}>
-                <Text style={styles.instructions}>{instruction}</Text>
-            </View>
-            <TheSpread>
-                {CARD_ARRAY.map(index => {
-                    return web ? (
-                        <ShuffleCardWeb
-                            cardIndex={index}
-                            key={index}
-                            isShuffling={isShuffling}
-                            cutCards={cutCards}
-                            cutCardIndex={cutCardIndex}
-                            onPress={castEnergyToDeck}
-                        />
-                    ) : (
-                        <ShuffleCard
-                            cardIndex={index}
-                            key={index}
-                            isShuffling={isShuffling}
-                            cutCards={cutCards}
-                            cutCardIndex={cutCardIndex}
-                            onPress={castEnergyToDeck}
-                        />
-                    );
-                })}
-            </TheSpread>
-        </View>
-    );
-}

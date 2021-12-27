@@ -1,8 +1,8 @@
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import Card from './card';
+import Card from '../card';
 import React from 'react';
-import { ReadingProp } from '@tarot-viii/expo/src/types/firestore';
+import { ReadingProp } from '@tarot-viii/ui/types';
 
 export type ReadingCard = {
     cardName: string;
@@ -20,18 +20,18 @@ export type ReadCardProps = {
     itemIndex: number;
     currentIndex: number;
     onPress: (index: number) => void;
+    width: number;
 };
 
 export default function ReadCard({
     card,
     itemIndex,
     currentIndex,
-    onPress
+    onPress,
+    width
 }: ReadCardProps) {
     const rot = !!card.reversed ? '180deg' : '0deg';
-    const { width, height } = Dimensions.get('window');
-    const ratio = width > height ? height : width;
-    const itemWidth = currentIndex === itemIndex ? ratio / 2 : ratio / 3;
+    const itemWidth = currentIndex === itemIndex ? width / 2 : width / 3;
 
     const setCardIndex = () => {
         onPress(card.index);
@@ -43,7 +43,7 @@ export default function ReadCard({
                 face={true}
                 styleProps={{
                     width: itemWidth,
-                    height: itemWidth * 2,
+                    height: itemWidth * 1.65,
                     transform: [{ rotate: card.cardName === 'challenge' ? '0deg' : rot }]
                 }}
                 onPress={setCardIndex}

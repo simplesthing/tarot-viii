@@ -19,8 +19,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingHorizontal: 40,
         width: viewWidth,
-        height: viewHeight,
-        position: 'relative'
+        height: viewHeight - 20,
+        position: 'relative',
+        marginVertical: 40
     }
 });
 

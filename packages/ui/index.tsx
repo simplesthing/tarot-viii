@@ -6,7 +6,7 @@ export { default as Card } from './src/cards/card';
 export { default as Colors } from './src/theme/colors';
 export { default as Deal } from './src/cards/deal';
 export { default as Deck } from './src/cards/deck';
-export { default as ReadingCarousel } from './src/cards/reading-carousel';
+export { default as ReadingCarousel } from './src/cards/carousel/reading-carousel';
 export { default as ShuffleAnimation } from './src/cards/shuffle';
 // hooks
 export { default as useInstructions } from './src/hooks/use-instructions';

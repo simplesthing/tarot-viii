@@ -8,5 +8,13 @@ export default function Page() {
 
     const generateReadingDoc = () => ({});
 
-    return <Reading getCards={getCards} generateReadingDoc={generateReadingDoc} />;
+    const openReading = () => ({});
+
+    return (
+        <Reading
+            getCards={getCards}
+            generateReadingDoc={generateReadingDoc}
+            openReading={openReading}
+        />
+    );
 }

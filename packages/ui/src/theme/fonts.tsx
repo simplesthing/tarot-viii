@@ -27,3 +27,9 @@ export function Value(fontSize: number, standardScreenHeight: number = 680) {
 
     return Math.round(heightPercent);
 }
+
+/**
+ * https://type-scale.com/
+ * base 16px
+ * major third
+ */
