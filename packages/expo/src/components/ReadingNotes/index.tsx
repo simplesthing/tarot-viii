@@ -16,7 +16,6 @@ const ReadingNotes = ({ children, data, snapToIndex = 0 }) => {
     const snapPoints = useMemo(() => ['10%', '20%', '50%', '80%'], []);
     const [title, setTitle] = useState<string>(data?.title);
     const [notes, setNotes] = useState<string>(data?.notes);
-    console.log(data);
     const { updateReadingTitle, updateReadingNotes } = useFirestore();
 
     const updateTitle = () => {

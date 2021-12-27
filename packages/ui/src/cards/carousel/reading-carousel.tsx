@@ -39,7 +39,6 @@ const ReadingCarousel = ({
         setCurrentIndex(index);
     };
 
-    console.log(data);
     return (
         <ScrollView style={styles.container}>
             {data.reading && (
@@ -74,6 +73,7 @@ const ReadingCarousel = ({
                     <CardDetail
                         card={data.reading[currentIndex]}
                         height={(width / 2) * 1.75}
+                        width={width}
                     />
                 </>
             )}
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
     fill: {
         position: 'absolute',
-        top: 0,
+        top: 35,
         left: 0,
         right: 0,
         bottom: 0,

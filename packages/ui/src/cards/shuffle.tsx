@@ -1,5 +1,5 @@
+import { Dimensions, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Percentage, Value } from '../theme/fonts';
-import { Platform, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 
 import { CARD_ARRAY } from './constants';
@@ -13,6 +13,8 @@ export type ShuffleProps = {
     shuffleDeck: () => void;
     cutDeck: () => void;
 };
+
+const { width } = Dimensions.get('window');
 const web = Platform.OS === 'web';
 const instructionTextSize = Platform.OS === 'web' ? Value(10) : Percentage(2.5);
 
@@ -22,25 +24,25 @@ export default function Shuffle({ done, cutDeck, shuffleDeck }) {
     const [cutCardIndex, setCutCardIndex] = useState(0);
     const { instruction, next } = useInstructions();
 
-    const castEnergyToDeck = () => {
-        setIsShuffling(false);
-        next();
-    };
-
-    const cutCards = (cutCardIndex: number) => {
-        cutDeck(cutCardIndex);
-        setCutCardIndex(cutCardIndex);
+    const cutCards = (selectedCardIndex: number) => {
+        cutDeck(selectedCardIndex);
+        setCutCardIndex(selectedCardIndex);
         setCutCount(cutCount + 1);
         if (cutCount < 2) {
+            setIsShuffling(true);
             setTimeout(() => {
                 next();
                 shuffleDeck();
-                setIsShuffling(true);
-            }, 800);
+            }, 100);
         } else {
             next();
             done();
         }
+    };
+
+    const stopShuffle = () => {
+        setIsShuffling(false);
+        next();
     };
 
     return (
@@ -48,6 +50,7 @@ export default function Shuffle({ done, cutDeck, shuffleDeck }) {
             <View style={styles.instructionWrapper}>
                 <Text style={styles.instructions}>{instruction}</Text>
             </View>
+            {isShuffling && <Pressable onPress={stopShuffle} style={styles.wrapper} />}
             <TheSpread>
                 {CARD_ARRAY.map(index => {
                     return web ? (
@@ -57,16 +60,16 @@ export default function Shuffle({ done, cutDeck, shuffleDeck }) {
                             isShuffling={isShuffling}
                             cutCards={cutCards}
                             cutCardIndex={cutCardIndex}
-                            onPress={castEnergyToDeck}
+                            onPress={() => {}}
                         />
                     ) : (
                         <ShuffleCard
                             cardIndex={index}
                             key={index}
                             isShuffling={isShuffling}
-                            cutCards={cutCards}
                             cutCardIndex={cutCardIndex}
-                            onPress={castEnergyToDeck}
+                            cutCards={cutCards}
+                            onPress={() => {}}
                         />
                     );
                 })}
@@ -79,6 +82,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column'
+    },
+    wrapper: {
+        position: 'absolute',
+        top: 60,
+        left: 0,
+        width,
+        height: width * 1.5,
+        zIndex: 10
     },
     instructionWrapper: {
         flexBasis: 120,

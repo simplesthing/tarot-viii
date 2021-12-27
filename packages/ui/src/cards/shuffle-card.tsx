@@ -111,11 +111,7 @@ export default function ShuffleCard({
     };
 
     const castEnergyToDeck = () => {
-        if (isShuffling) {
-            onPress();
-        } else {
-            cutCards(cardIndex);
-        }
+        cutCards(cardIndex);
     };
 
     useEffect(() => {

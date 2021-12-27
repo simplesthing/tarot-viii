@@ -8,37 +8,34 @@ import { Value } from '../../theme/fonts';
 export type CardDetailProps = {
     card: ReadingProp;
     height: number;
+    width: number;
 };
 
-export default function CardDetail({ card, height }: CardDetailProps) {
+export default function CardDetail({ card, height, width }: CardDetailProps) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
             <Text h1 h1Style={styles.h1Style}>
-                {card.displayName}
+                {card.cardName}
+            </Text>
+            <Text style={styles.title}>
+                {card.title || 'Lord of title needs to be added'}
             </Text>
 
-            <View style={{ height }}></View>
+            <View style={{ width, height }}></View>
 
-            <View>
+            <View style={styles.lower}>
                 <Text h2 h2Style={styles.h2Style}>
-                    {card.cardName}
+                    {card.displayName}
                 </Text>
-                <Text style={styles.title}>{card.title || 'Lord of things'}</Text>
-
-                <Text style={styles.exalted}>{card.exaltation || 'aries,sun,10'}</Text>
-
                 <Text style={styles.keywords}>
-                    {card.keywords || 'keywords, like, this'}
-                </Text>
-
-                <Text style={styles.base}>
-                    {card.cardDescription || 'Card description should be here'}
+                    {card.keywords ||
+                        'a, comma, separated, list, of, keywords, like, this'}
                 </Text>
                 <Text style={styles.base}>
                     {card.cardReading || 'Card reading should be here'}
                 </Text>
-                <Text h2 h2Style={styles.h2Style}>
-                    Position
+                <Text style={styles.base}>
+                    {card.cardDescription || 'Card description should be here'}
                 </Text>
                 <Text style={styles.base}>{card.positionDescription}</Text>
             </View>
@@ -49,27 +46,32 @@ export default function CardDetail({ card, height }: CardDetailProps) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'stretch',
+        paddingBottom: 100
+    },
+    lower: {
         marginHorizontal: 16
     },
     h1Style: {
         fontSize: Value(25),
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     h2Style: {
         fontSize: Value(21),
-        fontWeight: 'bold',
-        marginVertical: 8
+        fontWeight: 'bold'
     },
     title: {
-        fontSize: Value(16)
+        fontSize: Value(12.8),
+        fontStyle: 'italic',
+        textAlign: 'center'
     },
     base: {
         fontSize: Value(16),
         marginVertical: 8
     },
     keywords: {
-        fontSize: Value(12.8),
+        fontSize: Value(16),
         fontStyle: 'italic',
         marginVertical: 4
     },
