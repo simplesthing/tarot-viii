@@ -1,8 +1,8 @@
-import CardForm from './card-form';
 import React, { useEffect } from 'react';
-import useFirebase from '../hooks/use-card-form';
 import { StyleSheet, View } from 'react-native';
 
+import CardForm from './card-form';
+import useFirebase from '../hooks/use-card-form';
 
 const styles = StyleSheet.create({
     container: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: 'forms/cardForm',
+    title: 'admin/cardForm',
     component: CardForm,
     args: { cardName: 'Two of Coins' }
 };

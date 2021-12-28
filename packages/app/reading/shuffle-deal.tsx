@@ -13,14 +13,14 @@ import { ReadingProp } from '@tarot-viii/ui/types';
 type ShuffleDealProps = {
     cards?: Record<string, string>[];
     spread?: FirebaseFirestoreTypes.DocumentData;
-    generateReadingDoc: (reading: Record<string, string>) => void;
+    updateReading: (reading: Record<string, string>) => void;
     getCards: (index: string[]) => Promise<ReadingProp[] | {}[]>;
     openReading: (index: number) => void;
 };
 
 const ShuffleDeal = ({
     spread,
-    generateReadingDoc,
+    updateReading,
     getCards,
     openReading
 }: ShuffleDealProps) => {
@@ -38,7 +38,7 @@ const ShuffleDeal = ({
             const reading = deck.slice(0, 10).map(index => CARD_NAME_INDEXES[index]);
             getCards(reading).then(cards => {
                 const d = deal({ cards, spread });
-                generateReadingDoc(d);
+                updateReading(d);
                 setDealt(d);
             });
         }

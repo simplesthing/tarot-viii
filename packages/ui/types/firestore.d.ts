@@ -1,18 +1,19 @@
 export type ReadingProp = {
+    positionDescription: string;
+    positionName: string;
     cardName: string;
     cardNumber: string;
     cardDescription: string;
     cardReading: string;
+    cardTitle?: string;
     displayName: string;
-    element: string;
-    exaltation: string;
+    element?: string;
+    exaltation?: string;
     hex: string;
     image: string;
     index: number;
-    keywords: string;
-    title: string;
-    positionDescription: string;
-    positionName: string;
+    path?: string;
+    keywords?: string;
     reversed: boolean;
 };
 

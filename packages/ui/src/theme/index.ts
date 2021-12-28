@@ -4,8 +4,8 @@ import { default as colors } from './colors';
 const theme: any = {
     colors: {
         background: colors.spanish_gray.base,
-        primary: colors.medium_aquamarine.base,
-        secondary: colors.lemon.base,
+        primary: colors.smoky_black.base,
+        secondary: '#fff',
         white: colors.spanish_white.base,
         black: colors.smoky_black.base,
         grey0: colors.silver_sand.light,
@@ -27,7 +27,8 @@ const theme: any = {
             paddingRight: 20
         },
         titleStyle: {
-            color: colors.smoky_black.base
+            color: '#fff',
+            fontWeight: 'bold'
         }
     }
 };

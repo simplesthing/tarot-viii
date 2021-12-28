@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import AccountScreen from '../screens/account/account';
 import CloseScreen from '../navigation/close-screen';
 import { Colors } from '@tarot-viii/ui';
+import ForgotPasswordScreen from '../screens/account/forgot-password';
 import HistoryScreen from '../screens/history/history';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
@@ -15,6 +16,7 @@ import { ROUTES } from '@tarot-viii/expo/src/navigation/config';
 import ReadingDetailScreen from '../screens/readings/reading';
 import ReadingScreen from '../screens/readings/spread';
 import ShuffleDealScreen from '../screens/readings/shuffle';
+import SignupScreen from '../screens/account/signup';
 import colors from '@tarot-viii/ui/src/theme/colors';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/';
@@ -101,20 +103,46 @@ const AppEntry = () => {
                                 component={ReadingDetailScreen}
                                 name={ROUTES.screens.READING.name}
                             />
+                            <Stack.Screen
+                                component={ForgotPasswordScreen}
+                                name={ROUTES.screens.FORGOT_PASSWORD.name}
+                            />
+                            <Stack.Screen
+                                component={PasswordReset}
+                                name={ROUTES.screens.PASSWORD_RESET.name}
+                                options={{ headerShown: false }}
+                            />
                         </Stack.Group>
                     </>
                 ) : (
                     <>
                         <Stack.Screen
                             component={LoginScreen}
-                            name="login"
+                            name={ROUTES.screens.LOGIN.name}
                             options={{ headerShown: false }}
                         />
-                        <Stack.Screen
-                            component={PasswordReset}
-                            name="password"
-                            options={{ headerShown: false }}
-                        />
+                        <Stack.Group
+                            screenOptions={{
+                                headerTitle: '',
+                                headerBackTitle: '',
+                                headerTintColor: Colors.smoky_black.base,
+                                headerStyle: { backgroundColor: Colors.silver_sand.base },
+                                headerShadowVisible: false
+                            }}>
+                            <Stack.Screen
+                                component={SignupScreen}
+                                name={ROUTES.screens.SIGNUP.name}
+                            />
+                            <Stack.Screen
+                                component={ForgotPasswordScreen}
+                                name={ROUTES.screens.FORGOT_PASSWORD.name}
+                            />
+                            <Stack.Screen
+                                component={PasswordReset}
+                                name={ROUTES.screens.PASSWORD_RESET.name}
+                                options={{ headerShown: false }}
+                            />
+                        </Stack.Group>
                     </>
                 )}
             </Stack.Navigator>

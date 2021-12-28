@@ -1,26 +1,18 @@
 import { StyleSheet, View } from 'react-native';
 
-import AvatarButton from './avatar-button';
+import ForgotPassword from './forgot-password';
 import React from 'react';
 import { default as colors } from '../theme/colors';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 50
-    }
-});
-
 export default {
-    title: 'account/avatarButton',
-    component: AvatarButton,
+    title: 'account/ForgotPassword',
+    component: ForgotPassword,
     argTypes: {
-        onPress: { action: 'avatar pressed' },
-        size: { number: 100 }
+        buttonPress: { action: 'send password reset email' }
     },
-    args: { size: 300 },
+    args: {
+        error: {}
+    },
     parameters: {
         backgrounds: {
             default: 'default',
@@ -36,6 +28,16 @@ export default {
 
 export const Default = args => (
     <View style={styles.container}>
-        <AvatarButton {...args} />
+        <ForgotPassword {...args} />
     </View>
 );
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 50,
+        backgroundColor: colors.silver_sand.light
+    }
+});

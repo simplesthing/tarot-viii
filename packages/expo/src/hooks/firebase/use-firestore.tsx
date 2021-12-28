@@ -12,6 +12,7 @@ type UseFirestore = {
     fetchUser: (
         uid: string
     ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
+    updateUserInfo: (uuid: string, name: string, url: string) => Promise<boolean>;
     generateReadingDocument: (userId: string) => Promise<string | undefined>;
     generateUserDocument: (
         user: FirebaseAuthTypes.User,
@@ -71,6 +72,22 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
+    const updateUserInfo = async (uid: string, name: string, url: string) => {
+        if (!uid) return false;
+
+        return firestore()
+            .collection(COLLECTIONS.USER)
+            .doc(uid)
+            .update({ displayName: name, photoURL: url })
+            .then(() => {
+                return true;
+            })
+            .catch(e => {
+                console.log('reading updating ', e);
+                return false;
+            });
+    };
+
     //READINGS
     const generateReadingDocument = async userId => {
         if (!userId) return;
@@ -81,6 +98,7 @@ const useFirestore = (): UseFirestore => {
         const document = {
             id: documentId,
             userId: userId,
+            reading: [],
             creationTime: now.toString()
         };
 
@@ -244,7 +262,8 @@ const useFirestore = (): UseFirestore => {
         fetchDeck,
         fetchSpread,
         fetchCardsInSpread,
-        uploadData
+        uploadData,
+        updateUserInfo
     };
 };
 
