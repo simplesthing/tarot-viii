@@ -13,7 +13,7 @@ export default function Page() {
     return (
         <Reading
             getCards={getCards}
-            generateReadingDoc={generateReadingDoc}
+            updateReading={generateReadingDoc}
             openReading={openReading}
         />
     );

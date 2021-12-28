@@ -9,7 +9,7 @@ const PasswordReset = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <Text h4>
-                A password reset link will be sent if account is found for
+                A password reset link will be sent if an account is found for
                 <Text style={styles.userEmail}> {address} </Text>
             </Text>
             <Button

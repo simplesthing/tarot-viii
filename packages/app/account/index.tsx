@@ -11,7 +11,7 @@ type AccountProps = {
     resetPassword: (email: string) => void;
 };
 
-const { height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const Account = ({ username, logout, resetPassword }: AccountProps) => {
     const [isAnon, setAnon] = useState(false);
@@ -24,6 +24,9 @@ const Account = ({ username, logout, resetPassword }: AccountProps) => {
         }
     }, [username]);
 
+    const sendPasswordReset = () => {
+        resetPassword(username);
+    };
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -47,14 +50,16 @@ const Account = ({ username, logout, resetPassword }: AccountProps) => {
                 {!isAnon && (
                     <Button
                         title="Reset password"
-                        buttonStyle={styles.passwordButton}
-                        titleStyle={styles.passwordInfo}
-                        onPress={() => resetPassword}
+                        type="clear"
+                        buttonStyle={{ height: 60 }}
+                        titleStyle={styles.password}
+                        onPress={sendPasswordReset}
                     />
                 )}
-                <View style={styles.logoutButton}>
+                <View style={styles.logoutButtonWrapper}>
                     <Button
                         title="Logout"
+                        buttonStyle={styles.logoutButton}
                         titleStyle={styles.logoutTitle}
                         onPress={logout}
                     />
@@ -88,16 +93,22 @@ const styles = StyleSheet.create({
         color: Colors.smoky_black.base
     },
     password: {
-        fontSize: Value(16)
+        fontSize: Value(16),
+        color: Colors.smoky_black.accent2
     },
-    passwordButton: {
-        backgroundColor: 'white'
-    },
-    logoutButton: {
+    passwordButton: {},
+    logoutButtonWrapper: {
         flex: 1,
+        width: '100%',
         flexDirection: 'row',
         alignItems: 'flex-end',
+        justifyContent: 'center',
         marginVertical: 80
+    },
+    logoutButton: {
+        alignSelf: 'stretch',
+        height: 60,
+        width: width - 80
     },
     logoutTitle: {
         paddingHorizontal: 40

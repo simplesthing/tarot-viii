@@ -49,8 +49,8 @@ const ShuffleDealScreen = () => {
         });
     };
 
-    const genReading = reading => {
-        if (user?.uid && documentId) {
+    const updateReadingDoc = reading => {
+        if (user?.uid && documentId && reading) {
             updateReading(documentId, reading);
         }
     };
@@ -71,7 +71,7 @@ const ShuffleDealScreen = () => {
             <ShuffleDeal
                 getCards={getCards}
                 spread={spread}
-                generateReadingDoc={genReading}
+                updateReading={updateReadingDoc}
                 openReading={openReading}
             />
         </ReadingNotes>

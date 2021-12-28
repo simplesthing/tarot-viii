@@ -12,7 +12,10 @@ const AccountScreen = () => {
     const resetPassword = () => {
         if (user?.email) {
             forgotPassword(user.email).then(() => {
-                navigate({ routeName: ROUTES.screens.PASSWORD_RESET.name });
+                navigate({
+                    routeName: ROUTES.screens.PASSWORD_RESET.name,
+                    params: { emailAddress: user.email }
+                });
             });
         }
     };

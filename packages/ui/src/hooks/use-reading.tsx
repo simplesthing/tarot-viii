@@ -46,7 +46,7 @@ const useReading = () => {
                 hex: cards[index].hex,
                 image: cards[index].image,
                 index: cards[index].index,
-                path: cards[index]?.path,
+                path: cards[index]?.path || '',
                 keywords: isReversed
                     ? cards[index]?.reversedKeywords || ''
                     : cards[index]?.keywords || '',

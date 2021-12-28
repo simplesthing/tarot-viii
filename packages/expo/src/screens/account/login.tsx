@@ -1,23 +1,29 @@
 import { Login } from '@tarot-viii/app';
+import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { useAuth } from '../../hooks';
+import { useRouting } from 'expo-next-react-navigation';
 
 const LoginScreen = () => {
-    const {
-        createLoginWithEmailAndPassword,
-        error,
-        forgotPassword,
-        loginWithEmailAndPassword,
-        loginAnonymously
-    } = useAuth();
+    const { error, loginWithEmailAndPassword, loginAnonymously } = useAuth();
+
+    const { navigate } = useRouting();
+
+    const register = () => {
+        navigate({ routeName: ROUTES.screens.SIGNUP.name });
+    };
+
+    const resetPassword = () => {
+        navigate({ routeName: ROUTES.screens.FORGOT_PASSWORD.name });
+    };
 
     return (
         <Login
             signin={loginWithEmailAndPassword}
-            signup={createLoginWithEmailAndPassword}
+            signup={register}
             error={error}
-            forgotPassword={forgotPassword}
             loginAnon={loginAnonymously}
+            resetPassword={resetPassword}
         />
     );
 };
