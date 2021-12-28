@@ -10,6 +10,7 @@ const LoginScreen = () => {
         loginWithEmailAndPassword,
         loginAnonymously
     } = useAuth();
+
     return (
         <Login
             signin={loginWithEmailAndPassword}

@@ -1,11 +1,6 @@
 import { Button, Text } from 'react-native-elements';
 import { Field, Form, Formik } from 'formik';
-import {
-    GestureResponderEvent,
-    Image,
-    StyleSheet,
-    View
-} from 'react-native';
+import { GestureResponderEvent, Image, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 
 import { default as Colors } from '../theme/colors';
@@ -74,6 +69,7 @@ export interface CardFormValues {
     reversedKeywords: string;
     name: string;
     type: string;
+    path: string;
     celtic_cross: {
         upright: CelticCross;
         reversed: CelticCross;
@@ -124,14 +120,28 @@ const CardForm = ({ card, save }) => {
                                 <Text style={styles.readOnly}>{initialValues.index}</Text>
                             </View>
                             <View style={styles.formRow}>
-                                <Text style={styles.label}>Image</Text>
+                                <Text style={styles.label}>Upright</Text>
                                 <Image
                                     source={{ uri: imageRoot }}
                                     style={{
                                         width: 120,
                                         height: 240,
                                         borderColor: 'black',
-                                        borderWidth: 2
+                                        borderWidth: 2,
+                                        marginRight: '20vw'
+                                    }}
+                                />
+                            </View>
+                            <View style={styles.formRow}>
+                                <Text style={styles.label}>Reversed</Text>
+                                <Image
+                                    source={{ uri: imageRoot }}
+                                    style={{
+                                        width: 120,
+                                        height: 240,
+                                        borderColor: 'black',
+                                        borderWidth: 2,
+                                        transform: [{ rotate: '180deg' }]
                                     }}
                                 />
                             </View>
@@ -148,7 +158,11 @@ const CardForm = ({ card, save }) => {
 
                         <View style={styles.splitRow}>
                             <View style={styles.formRow}>
-                                <Text style={styles.label}>Color (King Scale)</Text>
+                                <Text style={styles.label}>Path</Text>
+                                <Field name="path" style={fieldStyle(props, 'path')} />
+                            </View>
+                            <View style={styles.formRow}>
+                                <Text style={styles.label}>Color (Queen Scale)</Text>
                                 <Field name="color" style={fieldStyle(props, 'color')} />
                             </View>
                             <View style={styles.formRow}>
@@ -182,7 +196,6 @@ const CardForm = ({ card, save }) => {
                                 <Field name="title" style={fieldStyle(props, 'title')} />
                             </View>
 
-                         
                             <View style={styles.formRow}>
                                 <Text style={styles.label}>Decan / Attribution</Text>
                                 <Field name="decan" style={fieldStyle(props, 'decan')} />
@@ -192,7 +205,6 @@ const CardForm = ({ card, save }) => {
                                 <Text style={styles.label}>Type</Text>
                                 <Field name="type" style={fieldStyle(props, 'type')} />
                             </View>
-
                         </View>
 
                         <View style={styles.formRow}>
@@ -424,7 +436,7 @@ const CardForm = ({ card, save }) => {
                                 title="save"
                                 style={{ marginVertical: 20 }}
                                 onPress={
-                                    (props.handleSubmit as unknown) as (
+                                    props.handleSubmit as unknown as (
                                         event: GestureResponderEvent
                                     ) => void
                                 }

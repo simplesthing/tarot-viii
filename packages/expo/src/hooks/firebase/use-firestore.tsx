@@ -81,6 +81,7 @@ const useFirestore = (): UseFirestore => {
         const document = {
             id: documentId,
             userId: userId,
+            reading: [],
             creationTime: now.toString()
         };
 

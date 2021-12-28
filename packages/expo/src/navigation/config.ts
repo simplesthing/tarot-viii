@@ -6,7 +6,9 @@ export const PATHS = {
     READING: '/reading',
     CARDS: '/cards',
     HISTORY: '/history',
-    ACCOUNT: '/account'
+    ACCOUNT: '/account',
+    PASSWORD_RESET: '/password-reset',
+    LOGIN: '/login'
 };
 
 export const ROUTES = {
@@ -42,6 +44,14 @@ export const ROUTES = {
         ACCOUNT: {
             path: PATHS['ACCOUNT'],
             name: 'ACCOUNT'
+        },
+        PASSWORD_RESET: {
+            path: PATHS['PASSWORD_RESET'],
+            name: 'PASSWORD_RESET'
+        },
+        LOGIN: {
+            path: PATHS['LOGIN'],
+            name: 'LOGIN'
         }
     }
 };

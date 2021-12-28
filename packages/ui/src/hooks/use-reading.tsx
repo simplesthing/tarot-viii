@@ -37,6 +37,7 @@ const useReading = () => {
                 displayName: pos.displayName,
                 positionDescription: pos.description,
                 cardName: cards[index].name,
+                cardTitle: cards[index]?.title || '',
                 cardNumber: cards[index].number,
                 cardDescription: cards[index]?.description || '',
                 cardReading: desc,
@@ -45,6 +46,7 @@ const useReading = () => {
                 hex: cards[index].hex,
                 image: cards[index].image,
                 index: cards[index].index,
+                path: cards[index]?.path,
                 keywords: isReversed
                     ? cards[index]?.reversedKeywords || ''
                     : cards[index]?.keywords || '',

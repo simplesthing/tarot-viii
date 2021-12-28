@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Colors } from '@tarot-viii/ui';
-import { useRouting } from 'expo-next-react-navigation';
 
 type LoginProps = {
     signin: ({ email, password }) => void;
@@ -15,51 +14,6 @@ type LoginProps = {
         message: string;
     };
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    loginForm: {
-        width: '100%',
-        padding: 20
-    },
-    formRow: {
-        alignItems: 'flex-start',
-        marginTop: 10,
-        marginBottom: 10
-    },
-    input: {
-        height: 40,
-        marginTop: 10,
-        alignSelf: 'stretch'
-    },
-    loginButton: {
-        height: 60,
-        backgroundColor: Colors.smoky_black.base,
-        marginBottom: 20
-    },
-    loginButtonTitleStyle: {
-        fontWeight: '800'
-    },
-    signupButton: {
-        height: 60,
-        marginBottom: 20
-    },
-    signupTitleStyle: {
-        fontWeight: '700',
-        color: Colors.smoky_black.base
-    },
-    errorMessage: {
-        fontSize: 18,
-        marginTop: 10,
-        marginBottom: 20,
-        color: 'red'
-    },
-    forgotPasswordButton: {}
-});
 
 export default function Login({
     loginAnon,
@@ -103,16 +57,12 @@ export default function Login({
         signup({ email: emailAddress, password: password });
     };
 
-    const { navigate } = useRouting();
-
     const passwordReset = () => {
         try {
             forgotPassword(emailAddress);
         } catch (e) {
             console.log('error sending link', e);
         }
-        console.log('link sent');
-        navigate({ routeName: 'password', params: { emailAddress: emailAddress } });
     };
 
     return (
@@ -124,7 +74,7 @@ export default function Login({
                         style={emailInputStyle}
                         onChangeText={onChangeEmailAddress}
                         value={emailAddress}
-                        placeholder="user528@anon.com"
+                        placeholder="user528@internet.com"
                         textContentType="emailAddress"
                         autoCompleteType="email"
                         autoCapitalize="none"
@@ -187,3 +137,47 @@ export default function Login({
         </View>
     );
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    loginForm: {
+        width: '100%',
+        padding: 20
+    },
+    formRow: {
+        alignItems: 'flex-start',
+        marginTop: 10,
+        marginBottom: 10
+    },
+    input: {
+        height: 40,
+        marginTop: 10,
+        alignSelf: 'stretch'
+    },
+    loginButton: {
+        height: 60,
+        backgroundColor: Colors.smoky_black.base,
+        marginBottom: 20
+    },
+    loginButtonTitleStyle: {
+        fontWeight: '800'
+    },
+    signupButton: {
+        height: 60,
+        marginBottom: 20
+    },
+    signupTitleStyle: {
+        fontWeight: '700',
+        color: Colors.smoky_black.base
+    },
+    errorMessage: {
+        fontSize: 18,
+        marginTop: 10,
+        marginBottom: 20,
+        color: 'red'
+    },
+    forgotPasswordButton: {}
+});

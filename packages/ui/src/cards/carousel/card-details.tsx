@@ -18,7 +18,7 @@ export default function CardDetail({ card, height, width }: CardDetailProps) {
                 {card.cardName}
             </Text>
             <Text style={styles.title}>
-                {card.title || 'Lord of title needs to be added'}
+                {card?.cardTitle || 'Lord of title needs to be added'}
             </Text>
 
             <View style={{ width, height }}></View>

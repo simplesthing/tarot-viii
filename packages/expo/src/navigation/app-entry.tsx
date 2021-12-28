@@ -101,18 +101,24 @@ const AppEntry = () => {
                                 component={ReadingDetailScreen}
                                 name={ROUTES.screens.READING.name}
                             />
+
+                            <Stack.Screen
+                                component={PasswordReset}
+                                name={ROUTES.screens.PASSWORD_RESET.name}
+                                options={{ headerShown: false }}
+                            />
                         </Stack.Group>
                     </>
                 ) : (
                     <>
                         <Stack.Screen
                             component={LoginScreen}
-                            name="login"
+                            name={ROUTES.screens.LOGIN.name}
                             options={{ headerShown: false }}
                         />
                         <Stack.Screen
                             component={PasswordReset}
-                            name="password"
+                            name={ROUTES.screens.PASSWORD_RESET.name}
                             options={{ headerShown: false }}
                         />
                     </>
