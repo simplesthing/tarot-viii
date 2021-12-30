@@ -141,6 +141,7 @@ const CardForm = ({ card, save }) => {
                                         height: 240,
                                         borderColor: 'black',
                                         borderWidth: 2,
+                                        marginRight: '20vw',
                                         transform: [{ rotate: '180deg' }]
                                     }}
                                 />

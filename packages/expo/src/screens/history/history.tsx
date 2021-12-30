@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flex: 1
     },
     timelineWrapper: { width: '100%', paddingTop: 100 },
     empty: {

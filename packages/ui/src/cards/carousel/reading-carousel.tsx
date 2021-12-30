@@ -1,5 +1,5 @@
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ReadingDoc, ReadingProp } from '@tarot-viii/ui/types';
 
 import CardDetail from './card-details';
@@ -35,12 +35,15 @@ const ReadingCarousel = ({
         }
     }, []);
 
+    const svRef = useRef<ScrollView>(null);
+
     const selectCard = index => {
+        svRef.current?.scrollTo({ y: 0, x: 0, animated: true });
         setCurrentIndex(index);
     };
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView ref={svRef} style={styles.container}>
             {data.reading && (
                 <>
                     <SideSwipe
