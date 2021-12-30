@@ -1,10 +1,15 @@
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
 
-import { Background } from '@tarot-viii/ui';
+import ImageZoom from 'react-native-image-pan-zoom';
 import { ROUTES } from '../navigation/config';
 import { SpeedDial } from 'react-native-elements';
 import { useRouting } from 'expo-next-react-navigation';
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
+const height = screenHeight;
+const width = screenHeight * 0.707;
 
 const HomeScreen = () => {
     const [open, setOpen] = useState(false);
@@ -24,12 +29,22 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Background />
+            <ImageZoom
+                cropHeight={screenHeight}
+                cropWidth={screenWidth}
+                imageHeight={height}
+                imageWidth={width}
+                minScale={1}>
+                <Image
+                    style={{ width, height }}
+                    source={require('../../../ui/assets/images/Tree_Of_Life.jpg')}
+                />
+            </ImageZoom>
             <SpeedDial
-                color="white"
+                color={open ? 'white' : 'black'}
                 isOpen={open}
-                icon={{ name: 'navigation', color: '#000' }}
-                openIcon={{ name: 'close', color: '#000' }}
+                icon={{ name: 'navigation', color: 'white' }}
+                openIcon={{ name: 'close', color: 'black' }}
                 onOpen={() => setOpen(!open)}
                 onClose={() => setOpen(!open)}>
                 <SpeedDial.Action

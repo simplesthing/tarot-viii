@@ -37,6 +37,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-expo-viewport-units": "^0.0.8",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-image-pan-zoom": "^2.1.12",
     "react-native-just-timeline": "^0.0.2",
     "react-native-reanimated": "^2.3.1",
     "react-native-safe-area-context": "3.3.2",

@@ -42,7 +42,7 @@ const Background = ({ children }: any) => {
         <View style={styles.container}>
             <LinearGradient
                 colors={[Colors.silver_sand.base, Colors.spanish_gray.base]}
-                locations={[0.7, 1]}
+                locations={[0, 0.55]}
                 style={styles.background}
             />
             <View style={styles.bottom} />

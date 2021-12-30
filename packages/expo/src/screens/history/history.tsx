@@ -1,4 +1,4 @@
-import { Background, Colors } from '@tarot-viii/ui';
+import { Background, Colors, Value } from '@tarot-viii/ui';
 import { Button, Text } from 'react-native-elements';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
@@ -75,16 +75,17 @@ const HistoryScreen = () => {
             <Background>
                 <View style={styles.container}>
                     <View style={styles.timelineWrapper}>
+                        {!history?.length && (
+                            <View style={styles.message}>
+                                <Text style={styles.text}>
+                                    You have no reading history.{' '}
+                                </Text>
+                                <Button title="New Reading" onPress={newReading} />
+                            </View>
+                        )}
                         <Timeline data={timeline} />
                     </View>
                 </View>
-                {!history?.length && (
-                    <View style={styles.empty}>
-                        <Text style={styles.message}>You have no reading history. </Text>
-
-                        <Button title="New Reading" onPress={newReading} />
-                    </View>
-                )}
             </Background>
         </View>
     );
@@ -101,11 +102,6 @@ const styles = StyleSheet.create({
         flex: 1
     },
     timelineWrapper: { width: '100%', paddingTop: 100 },
-    empty: {
-        width,
-        alignItems: 'center'
-    },
-    message: {
-        marginVertical: 60
-    }
+    message: { alignSelf: 'center' },
+    text: { fontSize: Value(16), marginVertical: Value(16) }
 });
