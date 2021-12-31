@@ -15,7 +15,7 @@ export type ReadingCarouselProps = {
     height?: number;
 };
 
-const _height = (windowWidth / 2) * 1.75;
+const _height = (windowWidth / 2) * 1.65;
 
 const ReadingCarousel = ({
     data,
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
     },
     fill: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        top: 50,
+        left: 10,
+        right: 10,
+        bottom: 10,
         zIndex: 10
     }
 });

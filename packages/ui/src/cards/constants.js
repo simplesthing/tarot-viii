@@ -93,3 +93,10 @@ export const CARD_NAME_INDEXES = [
     'Queen of Coins',
     'King of Coins'
 ];
+
+export const COLLECTIONS = {
+    USER: 'users',
+    READING: 'readings',
+    DECK: 'cards',
+    SPREAD: 'spreads'
+};

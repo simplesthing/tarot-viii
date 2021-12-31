@@ -14,16 +14,14 @@ export type CardDetailProps = {
 export default function CardDetail({ card, height, width }: CardDetailProps) {
     return (
         <View style={[styles.container, { width }]}>
-            <View>
-                <Text h1 h1Style={styles.h1Style}>
-                    {card.cardName}
-                </Text>
-                <Text style={styles.title}>
-                    {card?.cardTitle || 'Lord of title needs to be added'}
-                </Text>
-            </View>
+            <Text h1 h1Style={styles.h1Style}>
+                {card.cardName}
+            </Text>
+            <Text style={styles.title}>
+                {card?.cardTitle || 'Lord of title needs to be added'}
+            </Text>
 
-            <View style={{ width, height: height - 40 }}></View>
+            <View style={{ width, height: height }}></View>
 
             <View style={styles.lower}>
                 <Text h2 h2Style={styles.h2Style}>
