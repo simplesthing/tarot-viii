@@ -135,8 +135,8 @@ android {
         applicationId "fun.simplesthing.tarot"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 430000001
-        versionName "0.0.1"
+        versionCode 430000002
+        versionName "0.0.2"
     }
     splits {
         abi {
