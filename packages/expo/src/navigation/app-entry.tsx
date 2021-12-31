@@ -93,12 +93,10 @@ const AppEntry = () => {
                                 component={ShuffleDealScreen}
                                 name={ROUTES.screens.SHUFFLE_DEAL.name}
                             />
-
                             <Stack.Screen
                                 component={ReadingScreen}
                                 name={ROUTES.screens.SPREAD.name}
                             />
-
                             <Stack.Screen
                                 component={ReadingDetailScreen}
                                 name={ROUTES.screens.READING.name}

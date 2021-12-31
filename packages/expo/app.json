@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tarot 8",
-    "slug": "tarot-viii",
+    "name": "Simples Tarot",
+    "slug": "simplestarot",
     "scheme": "simplestarot",
     "version": "0.0.1",
     "assetBundlePatterns": [
@@ -15,5 +15,5 @@
       "bundleIdentifier": "fun.simplesthing.tarot"
     }
   },
-  "name": "tarot8"
+  "name": "simplestarot"
 }
