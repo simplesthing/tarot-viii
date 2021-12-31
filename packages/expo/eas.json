@@ -3,23 +3,20 @@
     "version": ">= 0.42.4"
   },
   "build": {
-    "development": {
-      "distribution": "internal",
-      "android": {
-        "gradleCommand": ":app:assembleDebug"
-      },
+    "production": {
+      "node": "16.13.0",
       "ios": {
-        "buildConfiguration": "Debug",
         "cocoapods": "1.11.2"
       }
     },
     "preview": {
+      "extends": "production",
       "distribution": "internal"
     },
-    "production": {
-      "ios": {
-        "cocoapods": "1.11.2"
-      }
+    "development": {
+      "extends": "production",
+      "developmentClient": "true",
+      "distribution": "internal"
     }
   },
   "submit": {
