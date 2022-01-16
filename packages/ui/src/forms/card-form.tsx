@@ -141,6 +141,7 @@ const CardForm = ({ card, save }) => {
                                         height: 240,
                                         borderColor: 'black',
                                         borderWidth: 2,
+                                        marginRight: '20vw',
                                         transform: [{ rotate: '180deg' }]
                                     }}
                                 />
@@ -269,25 +270,7 @@ const CardForm = ({ card, save }) => {
                                     )}
                                 />
                             </View>
-                            <View style={styles.formRow}>
-                                <Text style={styles.label}>Root Strength</Text>
-                                <Field
-                                    name="celtic_cross.upright.root"
-                                    as="textarea"
-                                    style={fieldStyle(props, 'celtic_cross.upright.root')}
-                                />
-                            </View>
-                            <View style={styles.formRowReversed}>
-                                <Text style={styles.label}>Reversed Root Strength</Text>
-                                <Field
-                                    name="celtic_cross.reversed.root"
-                                    as="textarea"
-                                    style={fieldStyle(
-                                        props,
-                                        'celtic_cross.reversed.root'
-                                    )}
-                                />
-                            </View>
+
                             <View style={styles.formRow}>
                                 <Text style={styles.label}>Crowning Power</Text>
                                 <Field
@@ -326,6 +309,25 @@ const CardForm = ({ card, save }) => {
                                     style={fieldStyle(
                                         props,
                                         'celtic_cross.reversed.past'
+                                    )}
+                                />
+                            </View>
+                            <View style={styles.formRow}>
+                                <Text style={styles.label}>Root Strength</Text>
+                                <Field
+                                    name="celtic_cross.upright.root"
+                                    as="textarea"
+                                    style={fieldStyle(props, 'celtic_cross.upright.root')}
+                                />
+                            </View>
+                            <View style={styles.formRowReversed}>
+                                <Text style={styles.label}>Reversed Root Strength</Text>
+                                <Field
+                                    name="celtic_cross.reversed.root"
+                                    as="textarea"
+                                    style={fieldStyle(
+                                        props,
+                                        'celtic_cross.reversed.root'
                                     )}
                                 />
                             </View>

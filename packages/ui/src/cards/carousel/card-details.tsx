@@ -21,7 +21,7 @@ export default function CardDetail({ card, height, width }: CardDetailProps) {
                 {card?.cardTitle || 'Lord of title needs to be added'}
             </Text>
 
-            <View style={{ width, height }}></View>
+            <View style={{ width, height: height }}></View>
 
             <View style={styles.lower}>
                 <Text h2 h2Style={styles.h2Style}>

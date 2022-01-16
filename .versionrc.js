@@ -24,11 +24,11 @@ module.exports = {
             updater: require.resolve('standard-version-expo/ios')
         },
         {
-            filename: 'packages/expo/ios/tarot8/Info.plist',
+            filename: 'packages/expo/ios/simplestarot/Info.plist',
             updater: require.resolve('@brettdh/standard-version-expo/ios/native/app-version')
         },
         {
-            filename: 'packages/expo/ios/tarot8/Info.plist',
+            filename: 'packages/expo/ios/simplestarot/Info.plist',
             updater: require.resolve('@brettdh/standard-version-expo/ios/native/buildnum/increment')
         },
         {

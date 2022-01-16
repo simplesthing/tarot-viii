@@ -1,19 +1,19 @@
 {
   "expo": {
-    "name": "Tarot 8",
-    "slug": "tarot-viii",
+    "name": "Simples Tarot",
+    "slug": "simplestarot",
     "scheme": "simplestarot",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
-      "versionCode": 430000001
+      "versionCode": 430000002
     },
     "ios": {
-      "buildNumber": "0.0.1",
+      "buildNumber": "0.0.2",
       "bundleIdentifier": "fun.simplesthing.tarot"
     }
   },
-  "name": "tarot8"
+  "name": "simplestarot"
 }

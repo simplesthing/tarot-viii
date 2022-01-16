@@ -1,6 +1,6 @@
 {
   "name": "tarot-viii",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",

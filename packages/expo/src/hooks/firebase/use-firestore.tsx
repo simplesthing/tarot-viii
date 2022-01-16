@@ -1,6 +1,6 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { COLLECTIONS } from '@tarot-viii/ui/firebase.config';
+import { COLLECTIONS } from '@tarot-viii/ui/src/cards/constants';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { ReadingProp } from '@tarot-viii/ui/types';
 import uuid from 'react-native-uuid';
