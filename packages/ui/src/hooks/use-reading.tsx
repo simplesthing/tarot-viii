@@ -1,9 +1,23 @@
 import { useState } from 'react';
 
-const useReading = () => {
-    const [deck, setDeck] = useState(Array.from(Array(78).keys()));
-    const [reversals, setReversals] = useState(deck.map(c => false));
+function createDeck(arr) {
+    var tmp,
+        cur,
+        len = arr.length;
+    if (len)
+        while (--len) {
+            cur = Math.floor(Math.random() * (len + 1));
+            tmp = arr[cur];
+            arr[cur] = arr[len];
+            arr[len] = tmp;
+        }
+    return arr;
+}
 
+const useReading = () => {
+    const [deck, setDeck] = useState(createDeck(Array.from(Array(78).keys())));
+    const [reversals, setReversals] = useState(deck.map(c => false));
+    console.log(deck);
     const shuffleDeck = () => {
         let shuffledDeck = [...deck];
 
