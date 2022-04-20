@@ -17,7 +17,7 @@ function createDeck(arr) {
 const useReading = () => {
     const [deck, setDeck] = useState(createDeck(Array.from(Array(78).keys())));
     const [reversals, setReversals] = useState(deck.map(c => false));
-    console.log(deck);
+
     const shuffleDeck = () => {
         let shuffledDeck = [...deck];
 
