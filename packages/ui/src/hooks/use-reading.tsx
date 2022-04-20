@@ -16,8 +16,9 @@ function createDeck(arr) {
 
 const useReading = () => {
     const [deck, setDeck] = useState(createDeck(Array.from(Array(78).keys())));
-    const [reversals, setReversals] = useState(deck.map(c => false));
-
+    const [reversals, setReversals] = useState(
+        deck.map(c => Math.floor(Math.random() * 360) < 180)
+    );
     const shuffleDeck = () => {
         let shuffledDeck = [...deck];
 
@@ -31,7 +32,12 @@ const useReading = () => {
             shuffledDeck[index] = temp;
         }
         setDeck(shuffledDeck);
-        setReversals(shuffledDeck.map(c => Math.floor(Math.random() * 360) > 180));
+        setReversals(
+            shuffledDeck.map(c => {
+                const flipped = Math.floor(Math.random() * 360) < 180;
+                return reversals[c] !== flipped;
+            })
+        );
     };
 
     const cutDeck = (index: number) => {
