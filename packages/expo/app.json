@@ -2,9 +2,18 @@
   "expo": {
     "name": "tarot",
     "slug": "tarot",
-    "version": "1.0.0",
+    "scheme": "tarot",
+    "version": "0.0.2",
     "assetBundlePatterns": [
       "**/*"
-    ]
-  }
+    ],
+    "android": {
+      "versionCode": 430000002
+    },
+    "ios": {
+      "buildNumber": "0.0.2",
+      "bundleIdentifier": "fun.simplesthing.tarot"
+    }
+  },
+  "name": "tarot"
 }

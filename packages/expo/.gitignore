@@ -21,6 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+xcshareddata
 
 # Android/IntelliJ
 #
@@ -53,3 +54,6 @@ buck-out/
 .expo/
 web-build/
 dist/
+
+google-services.json
+GoogleService-Info.plist
