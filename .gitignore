@@ -32,4 +32,6 @@ dist/
 
 tsconfig.tsbuildinfo
 
+firebase.config.js
+
 workspace.*
