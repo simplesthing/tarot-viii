@@ -7,7 +7,7 @@ import React from 'react';
 type LoginProps = {
     signin: ({ email, password }) => void;
     signup: () => void;
-    loginAnon: () => void;
+    loginAnon?: () => void;
     resetPassword: () => void;
     error: {
         type?: string;

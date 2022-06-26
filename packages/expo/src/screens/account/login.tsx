@@ -5,11 +5,10 @@ import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { useRouter } from 'solito/router';
 
+// const { error, loginWithEmailAndPassword, loginAnonymously } = useAuth();
 const LoginScreen = () => {
     const p = {
         signin: ({ email, password }) => ({}),
-        loginAnon: () => ({}),
-        resetPassword: () => ({}),
         error: {
             message: ''
         }
@@ -21,14 +20,17 @@ const LoginScreen = () => {
         push({ pathname: ROUTES.screens.SIGNUP.path });
     };
 
+    const resetPassword = () => {
+        push({ pathname: ROUTES.screens.FORGOT_PASSWORD.path });
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <Login
                 signin={p.signin}
                 signup={register}
                 error={p.error}
-                loginAnon={p.loginAnon}
-                resetPassword={p.resetPassword}
+                resetPassword={resetPassword}
             />
         </SafeAreaView>
     );

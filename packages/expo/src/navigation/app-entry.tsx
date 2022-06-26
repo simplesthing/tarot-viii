@@ -4,8 +4,10 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { PATHS, ROUTES } from './config';
 import React, { useEffect, useState } from 'react';
 
+import ForgotPasswordScreen from '../screens/account/forgot-password';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
+import PasswordReset from '../screens/account/password-reset';
 import SignupScreen from '../screens/account/signup';
 import colors from '@tarot-viii/ui/src/theme/colors';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -61,7 +63,7 @@ const AppEntry = () => {
                                 component={SignupScreen}
                                 name={ROUTES.screens.SIGNUP.name}
                             />
-                            {/* <Stack.Screen
+                            <Stack.Screen
                                 component={ForgotPasswordScreen}
                                 name={ROUTES.screens.FORGOT_PASSWORD.name}
                             />
@@ -69,7 +71,7 @@ const AppEntry = () => {
                                 component={PasswordReset}
                                 name={ROUTES.screens.PASSWORD_RESET.name}
                                 options={{ headerShown: false }}
-                            /> */}
+                            />
                         </Stack.Group>
                     </>
                 )}
