@@ -1,4 +1,4 @@
-import { Button, Input, Text } from 'react-native-elements';
+import { Button, Input, Text } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -54,7 +54,6 @@ const EmailPassword = ({ error = {}, buttonLabel, buttonPress }: EmailPasswordPr
                     value={emailAddress}
                     placeholder="user528@internet.com"
                     textContentType="emailAddress"
-                    autoCompleteType="email"
                     autoCapitalize="none"
                     keyboardType="email-address"
                 />
@@ -70,7 +69,6 @@ const EmailPassword = ({ error = {}, buttonLabel, buttonPress }: EmailPasswordPr
                     placeholder="**************"
                     textContentType="password"
                     secureTextEntry={true}
-                    autoCompleteType="none"
                 />
             </View>
 

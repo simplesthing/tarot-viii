@@ -1,9 +1,7 @@
-import { Button, Text } from 'react-native-elements';
+import { Avatar, Button, Text } from '@rneui/themed';
 import { Colors, Value } from '@tarot-viii/ui';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-
-import { Avatar } from 'react-native-elements';
 
 type AccountProps = {
     username: string;

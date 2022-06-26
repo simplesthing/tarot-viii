@@ -1,7 +1,7 @@
 import { Colors, EmailPassword } from '@tarot-viii/ui';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/themed';
 import React from 'react';
 
 type LoginProps = {
@@ -13,6 +13,7 @@ type LoginProps = {
         type?: string;
         message: string;
     };
+    flag_anon?: boolean;
 };
 
 export default function Login({
@@ -20,8 +21,20 @@ export default function Login({
     signin,
     signup,
     resetPassword,
-    error
+    error,
+    flag_anon = false
 }: LoginProps) {
+    const anon = (
+        <View style={styles.formRow}>
+            <Button
+                title="Log in Anonymously"
+                buttonStyle={[styles.button, styles.secondaryBtn]}
+                titleStyle={styles.signupTitleStyle}
+                accessibilityLabel="Log in Anonymously"
+                onPress={loginAnon}
+            />
+        </View>
+    );
     return (
         <View style={styles.container}>
             <EmailPassword buttonLabel="Login" buttonPress={signin} error={error} />
@@ -36,15 +49,7 @@ export default function Login({
                 />
             </View>
 
-            <View style={styles.formRow}>
-                <Button
-                    title="Log in Anonymously"
-                    buttonStyle={[styles.button, styles.secondaryBtn]}
-                    titleStyle={styles.signupTitleStyle}
-                    accessibilityLabel="Log in Anonymously"
-                    onPress={loginAnon}
-                />
-            </View>
+            {flag_anon && anon}
 
             <View style={styles.formRow}>
                 <Button

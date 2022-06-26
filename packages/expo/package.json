@@ -15,6 +15,8 @@
     "@react-navigation/native-stack": "^6.6.2",
     "@rneui/base": "^4.0.0-rc.5",
     "@rneui/themed": "^4.0.0-rc.5",
+    "@tarot-viii/app": "*",
+    "@tarot-viii/ui": "*",
     "expo": "~45.0.0",
     "expo-linear-gradient": "^11.3.0",
     "expo-linking": "^3.1.0",
@@ -24,12 +26,16 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-expo-viewport-units": "^0.0.8",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.13.1",
+    "react-native-svg": "^12.3.0",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-web": "^0.18.1"
+    "react-native-web": "^0.18.1",
+    "solito": "^0.0.26"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@expo/next-adapter": "^4.0.7"
   }
 }

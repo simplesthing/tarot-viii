@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import React from 'react';
 import { ReadingProp } from '@tarot-viii/ui/types';
-import { Text } from 'react-native-elements';
+import { Text } from '@rneui/themed';
 import { Value } from '../../theme/fonts';
 
 export type CardDetailProps = {

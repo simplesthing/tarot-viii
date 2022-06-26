@@ -1,11 +1,13 @@
+import { ThemeProvider, createTheme } from '@rneui/themed';
+
 import React from 'react';
-import { ThemeProvider } from 'react-native-elements';
-import theme  from '../src/theme'
+import theme from '../src/theme'
 
 export const decorators = [
-    (Story) => (
-      <ThemeProvider theme={theme}>
-        <Story />
-      </ThemeProvider>
-    ),
-  ];
+  (Story) => (
+    <ThemeProvider theme={createTheme(theme)}>
+      <Story />
+    </ThemeProvider>
+  ),
+];
+

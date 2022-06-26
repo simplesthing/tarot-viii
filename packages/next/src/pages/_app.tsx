@@ -1,10 +1,11 @@
-import Head from 'next/head';
-import theme from '@tarot-viii/ui/src/theme';
-import { AppProps } from 'next/app';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ThemeProvider } from 'react-native-elements';
 import 'setimmediate';
 
+import { ThemeProvider, createTheme } from '@rneui/themed';
+
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import theme from '@tarot-viii/ui/src/theme';
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     name="viewport"
                 />
             </Head>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={themed}>
                 <SafeAreaProvider>
                     <Component {...pageProps} />
                 </SafeAreaProvider>
@@ -26,3 +27,5 @@ export default function App({ Component, pageProps }: AppProps) {
         </>
     );
 }
+
+const themed = createTheme(theme);
