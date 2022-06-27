@@ -1,4 +1,4 @@
-package com.tarot.newarchitecture.modules;
+package  fun.simplesthing.tarot.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

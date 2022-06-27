@@ -1,4 +1,4 @@
-package com.tarot.newarchitecture.components;
+package  fun.simplesthing.tarot.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

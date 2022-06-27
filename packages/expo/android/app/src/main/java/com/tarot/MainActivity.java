@@ -1,4 +1,4 @@
-package com.tarot;
+package  fun.simplesthing.tarot;
 
 import android.os.Build;
 import android.os.Bundle;

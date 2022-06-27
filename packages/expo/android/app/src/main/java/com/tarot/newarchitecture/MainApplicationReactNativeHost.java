@@ -1,4 +1,4 @@
-package com.tarot.newarchitecture;
+package  fun.simplesthing.tarot.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.tarot.BuildConfig;
-import com.tarot.newarchitecture.components.MainComponentsRegistry;
-import com.tarot.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import fun.simplesthing.tarot.BuildConfig;
+import fun.simplesthing.tarot.newarchitecture.components.MainComponentsRegistry;
+import fun.simplesthing.tarot.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
