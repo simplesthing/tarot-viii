@@ -3,16 +3,11 @@ import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import { Login } from '@tarot-viii/app';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
+import { useAuth } from '../../hooks';
 import { useRouter } from 'solito/router';
 
-// const { error, loginWithEmailAndPassword, loginAnonymously } = useAuth();
 const LoginScreen = () => {
-    const p = {
-        signin: ({ email, password }) => ({}),
-        error: {
-            message: ''
-        }
-    };
+    const { error, loginWithEmailAndPassword } = useAuth();
 
     const { push } = useRouter();
 
@@ -27,9 +22,9 @@ const LoginScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Login
-                signin={p.signin}
+                signin={loginWithEmailAndPassword}
                 signup={register}
-                error={p.error}
+                error={error}
                 resetPassword={resetPassword}
             />
         </SafeAreaView>

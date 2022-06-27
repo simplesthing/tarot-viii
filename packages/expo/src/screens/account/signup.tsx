@@ -1,11 +1,11 @@
 import React from 'react';
 import { Signup } from '@tarot-viii/app';
-// import { useAuth } from '../../hooks';
+import { useAuth } from '../../hooks';
 
 const SignupScreen = () => {
-    // const { error, createLoginWithEmailAndPassword } = useAuth();
+    const { error, createLoginWithEmailAndPassword } = useAuth();
 
-    return <Signup error={{ message: '' }} signup={() => ({})} />;
+    return <Signup error={error} signup={createLoginWithEmailAndPassword} />;
 };
 
 export default SignupScreen;

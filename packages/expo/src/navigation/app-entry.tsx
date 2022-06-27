@@ -11,9 +11,15 @@ import PasswordReset from '../screens/account/password-reset';
 import SignupScreen from '../screens/account/signup';
 import colors from '@tarot-viii/ui/src/theme/colors';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuth } from '../hooks/';
 
 const AppEntry = () => {
-    const [signedIn, setSignedIn] = useState(false);
+    const { user } = useAuth();
+    const [signedIn, setSignedIn] = useState(!!user?.uid);
+
+    useEffect(() => {
+        setSignedIn(!!user?.uid);
+    }, [user]);
 
     const prefix = Linking.createURL('/');
     const linking = {
