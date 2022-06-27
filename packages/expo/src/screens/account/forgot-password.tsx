@@ -8,11 +8,16 @@ const ForgotPasswordScreen = () => {
     const { error, forgotPassword } = useAuth();
     const { push } = useRouter();
 
-    // const register = () => {
-    //     push({ pathname: ROUTES.screens.SIGNUP.path });
-    // };
+    const resetEmail = ({ email }) => {
+        forgotPassword(email).then(res => {
+            push({
+                pathname: ROUTES.screens.PASSWORD_RESET.path,
+                query: { emailAddress: email }
+            });
+        });
+    };
 
-    return <ForgotPassword resetPassword={forgotPassword} error={error} />;
+    return <ForgotPassword resetPassword={resetEmail} error={error} />;
 };
 
 export default ForgotPasswordScreen;

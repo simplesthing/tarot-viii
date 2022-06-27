@@ -2,10 +2,17 @@ import { Button, Text } from '@rneui/themed';
 import { StyleSheet, View } from 'react-native';
 
 import { Colors } from '@tarot-viii/ui';
+import { ROUTES } from '../../navigation/config';
 import React from 'react';
+import { useRouter } from 'solito/router';
 
 const PasswordReset = ({ navigation, route }) => {
     const address = route?.params?.emailAddress;
+    const { push } = useRouter();
+
+    const onPress = () => {
+        push({ pathname: ROUTES.screens.LOGIN.path });
+    };
     return (
         <View style={styles.container}>
             <Text h4>
@@ -14,10 +21,10 @@ const PasswordReset = ({ navigation, route }) => {
             </Text>
             <Button
                 buttonStyle={styles.goBackButton}
-                onPress={() => navigation.goBack()}
+                onPress={onPress}
                 type="clear"
                 titleStyle={styles.goBackTitle}
-                title="Go back"
+                title="Sign in"
             />
         </View>
     );

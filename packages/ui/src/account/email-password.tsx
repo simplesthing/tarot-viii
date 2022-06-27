@@ -1,6 +1,6 @@
 import { Button, Input, Text } from '@rneui/themed';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
 
 import { default as Colors } from '../theme/colors';
 
@@ -44,7 +44,7 @@ const EmailPassword = ({ error = {}, buttonLabel, buttonPress }: EmailPasswordPr
     };
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
             <View style={styles.formRow}>
                 <Input
                     label="email address"
@@ -82,7 +82,7 @@ const EmailPassword = ({ error = {}, buttonLabel, buttonPress }: EmailPasswordPr
                 accessibilityLabel={buttonLabel}
                 onPress={onPress}
             />
-        </View>
+        </KeyboardAvoidingView>
     );
 };
 

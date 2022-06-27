@@ -1130,6 +1130,33 @@ PODS:
     - RNFBApp
   - RNGestureHandler (2.5.0):
     - React-Core
+  - RNReanimated (2.8.0):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNScreens (3.13.1):
     - React-Core
     - React-RCTImage
@@ -1194,6 +1221,7 @@ DEPENDENCIES:
   - "RNFBCrashlytics (from `../../../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBFirestore (from `../../../node_modules/@react-native-firebase/firestore`)"
   - RNGestureHandler (from `../../../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../../../node_modules/react-native-reanimated`)
   - RNScreens (from `../../../node_modules/react-native-screens`)
   - RNSVG (from `../../../node_modules/react-native-svg`)
   - RNVectorIcons (from `../../../node_modules/react-native-vector-icons`)
@@ -1329,6 +1357,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/@react-native-firebase/firestore"
   RNGestureHandler:
     :path: "../../../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../../../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../../../node_modules/react-native-screens"
   RNSVG:
@@ -1413,6 +1443,7 @@ SPEC CHECKSUMS:
   RNFBCrashlytics: f2b5e456c4969bdec60482e83d973d873ff17f1d
   RNFBFirestore: 70f47946084f6ce68c827c4a770613e0adb46da3
   RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
+  RNReanimated: 64573e25e078ae6bec03b891586d50b9ec284393
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
