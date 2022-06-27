@@ -1,12 +1,7 @@
+import { Dimensions, Image, StyleSheet, TouchableOpacity } from 'react-native';
+
 import React from 'react';
 import { default as colors } from '../theme/colors';
-import {
-    Dimensions,
-    Image,
-    StyleSheet,
-    TouchableOpacity
-    } from 'react-native';
-
 
 export type DeckProps = {
     onPress: () => void;

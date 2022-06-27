@@ -8,13 +8,30 @@ import { useRouter } from 'solito/router';
 
 const PasswordReset = ({ navigation, route }) => {
     const address = route?.params?.emailAddress;
+    const message = route?.params?.message;
     const { push } = useRouter();
+
+    console.log(route);
 
     const onPress = () => {
         push({ pathname: ROUTES.screens.LOGIN.path });
     };
-    return (
-        <View style={styles.container}>
+
+    const loggedIn = (
+        <>
+            <Text h4>{message}</Text>
+            <Button
+                buttonStyle={styles.goBackButton}
+                onPress={() => navigation.goBack()}
+                type="clear"
+                titleStyle={styles.goBackTitle}
+                title="Go back"
+            />
+        </>
+    );
+
+    const loggedOut = (
+        <>
             <Text h4>
                 A password reset link will be sent if an account is found for
                 <Text style={styles.userEmail}> {address} </Text>
@@ -26,8 +43,11 @@ const PasswordReset = ({ navigation, route }) => {
                 titleStyle={styles.goBackTitle}
                 title="Sign in"
             />
-        </View>
+        </>
     );
+
+    const content = message ? loggedIn : loggedOut;
+    return <View style={styles.container}>{content}</View>;
 };
 
 export default PasswordReset;
