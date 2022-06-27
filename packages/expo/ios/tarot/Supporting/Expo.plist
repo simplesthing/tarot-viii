@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
         <key>EXUpdatesSDKVersion</key>
-        <string>YOUR-APP-SDK-VERSION-HERE</string>
+        <string>45.0.0</string>
         <key>EXUpdatesURL</key>
-        <string>YOUR-APP-URL-HERE</string>
+        <string>https://exp.host/@simplesthing/tarot-viii</string>
 </dict>
 </plist>

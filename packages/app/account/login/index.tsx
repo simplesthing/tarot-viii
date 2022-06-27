@@ -13,7 +13,6 @@ type LoginProps = {
         type?: string;
         message: string;
     };
-    flag_anon?: boolean;
 };
 
 export default function Login({
@@ -21,8 +20,7 @@ export default function Login({
     signin,
     signup,
     resetPassword,
-    error,
-    flag_anon = false
+    error
 }: LoginProps) {
     const anon = (
         <View style={styles.formRow}>
@@ -49,7 +47,7 @@ export default function Login({
                 />
             </View>
 
-            {flag_anon && anon}
+            {loginAnon && anon}
 
             <View style={styles.formRow}>
                 <Button

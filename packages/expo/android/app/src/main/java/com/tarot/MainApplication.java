@@ -1,4 +1,4 @@
-package  fun.simplesthing.tarot;
+package fun.simplesthing.tarot;
 
 import android.app.Application;
 import android.content.Context;
