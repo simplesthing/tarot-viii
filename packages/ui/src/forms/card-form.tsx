@@ -1,4 +1,4 @@
-import { Button, Text } from 'react-native-elements';
+import { Button, Text } from '@rneui/themed';
 import { Field, Form, Formik } from 'formik';
 import { GestureResponderEvent, Image, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';

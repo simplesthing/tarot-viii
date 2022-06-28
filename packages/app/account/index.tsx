@@ -1,14 +1,12 @@
-import { Button, Text } from 'react-native-elements';
+import { Avatar, Button, Text } from '@rneui/themed';
 import { Colors, Value } from '@tarot-viii/ui';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-import { Avatar } from 'react-native-elements';
-
 type AccountProps = {
     username: string;
     logout: () => void;
-    resetPassword: (email: string) => void;
+    resetPassword: () => void;
 };
 
 const { width, height } = Dimensions.get('window');
@@ -24,9 +22,6 @@ const Account = ({ username, logout, resetPassword }: AccountProps) => {
         }
     }, [username]);
 
-    const sendPasswordReset = () => {
-        resetPassword(username);
-    };
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -53,7 +48,7 @@ const Account = ({ username, logout, resetPassword }: AccountProps) => {
                         type="clear"
                         buttonStyle={{ height: 60 }}
                         titleStyle={styles.password}
-                        onPress={sendPasswordReset}
+                        onPress={resetPassword}
                     />
                 )}
                 <View style={styles.logoutButtonWrapper}>
@@ -82,18 +77,18 @@ const styles = StyleSheet.create({
         marginTop: 100
     },
     username: {
-        fontSize: Value(21),
+        fontSize: Value(16),
         marginVertical: 20
     },
     passwordInfo: {
-        fontSize: Value(12.8),
+        fontSize: Value(16),
         lineHeight: Value(20),
         fontStyle: 'italic',
         fontWeight: 'normal',
         color: Colors.smoky_black.base
     },
     password: {
-        fontSize: Value(16),
+        fontSize: Value(18),
         color: Colors.smoky_black.accent2
     },
     passwordButton: {},

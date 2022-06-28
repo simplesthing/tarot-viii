@@ -2,21 +2,27 @@ import { Account } from '@tarot-viii/app';
 import { Background } from '@tarot-viii/ui';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useAuth } from '../../hooks/';
-import { useRouting } from 'expo-next-react-navigation';
+import { useRouter } from 'solito/router';
 
 const AccountScreen = () => {
     const { forgotPassword, user, logout } = useAuth();
-    const { navigate } = useRouting();
+    const { push } = useRouter();
 
     const resetPassword = () => {
         if (user?.email) {
-            forgotPassword(user.email).then(() => {
-                navigate({
-                    routeName: ROUTES.screens.PASSWORD_RESET.name,
-                    params: { emailAddress: user.email }
+            forgotPassword(user?.email)
+                .catch(e => crashlytics().recordError(e))
+                .finally(() => {
+                    push({
+                        pathname: ROUTES.screens.PASSWORD_RESET.path,
+                        query: {
+                            emailAddress: user?.email,
+                            message: 'A password reset link has been sent.'
+                        }
+                    });
                 });
-            });
         }
     };
 

@@ -3,14 +3,13 @@ import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { ROUTES } from '../../navigation/config';
-import ReadingNotes from '../../components/ReadingNotes';
 import { ShuffleDeal } from '@tarot-viii/app';
-import { useRouting } from 'expo-next-react-navigation';
+import { useRouter } from 'solito/router';
 
 const ShuffleDealScreen = () => {
     const [spread, setSpread] = useState<FirebaseFirestoreTypes.DocumentData>();
     const [documentId, setDocumentId] = useState<string>();
-    const { navigate } = useRouting();
+    const { push } = useRouter();
 
     const {
         fetchCardsInSpread,
@@ -58,23 +57,21 @@ const ShuffleDealScreen = () => {
     const openReading = (index: number) => {
         if (documentId) {
             fetchReadingById(documentId).then(data => {
-                navigate({
-                    routeName: ROUTES.screens.READING.name,
-                    params: { data: data, startFrom: index }
+                push({
+                    pathname: ROUTES.screens.READING.path,
+                    query: { data: JSON.stringify(data), startFrom: index }
                 });
             });
         }
     };
 
     return (
-        <ReadingNotes data={{ documentId }} snapToIndex={1}>
-            <ShuffleDeal
-                getCards={getCards}
-                spread={spread}
-                updateReading={updateReadingDoc}
-                openReading={openReading}
-            />
-        </ReadingNotes>
+        <ShuffleDeal
+            getCards={getCards}
+            spread={spread}
+            updateReading={updateReadingDoc}
+            openReading={openReading}
+        />
     );
 };
 

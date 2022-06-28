@@ -1,5 +1,5 @@
+import { Avatar } from '@rneui/themed';
 import React from 'react';
-import { Avatar } from 'react-native-elements';
 
 type AvatarButtonProps = {
     onPress?: any;

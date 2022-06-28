@@ -1,31 +1,40 @@
+import { SafeAreaView, StyleSheet } from 'react-native';
+
 import { Login } from '@tarot-viii/app';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { useAuth } from '../../hooks';
-import { useRouting } from 'expo-next-react-navigation';
+import { useRouter } from 'solito/router';
 
 const LoginScreen = () => {
-    const { error, loginWithEmailAndPassword, loginAnonymously } = useAuth();
+    const { error, loginWithEmailAndPassword } = useAuth();
 
-    const { navigate } = useRouting();
+    const { push } = useRouter();
 
     const register = () => {
-        navigate({ routeName: ROUTES.screens.SIGNUP.name });
+        push({ pathname: ROUTES.screens.SIGNUP.path });
     };
 
     const resetPassword = () => {
-        navigate({ routeName: ROUTES.screens.FORGOT_PASSWORD.name });
+        push({ pathname: ROUTES.screens.FORGOT_PASSWORD.path });
     };
 
     return (
-        <Login
-            signin={loginWithEmailAndPassword}
-            signup={register}
-            error={error}
-            loginAnon={loginAnonymously}
-            resetPassword={resetPassword}
-        />
+        <SafeAreaView style={styles.container}>
+            <Login
+                signin={loginWithEmailAndPassword}
+                signup={register}
+                error={error}
+                resetPassword={resetPassword}
+            />
+        </SafeAreaView>
     );
 };
 
 export default LoginScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
