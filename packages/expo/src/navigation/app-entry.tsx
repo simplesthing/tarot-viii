@@ -12,6 +12,7 @@ import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
 import NewReading from 'src/screens/readings/new';
 import PasswordReset from '../screens/account/password-reset';
+import ReadingDetailScreen from '../screens/readings/reading';
 import ReadingScreen from '../screens/readings/spread';
 import SignupScreen from '../screens/account/signup';
 import colors from '@tarot-viii/ui/src/theme/colors';
@@ -94,6 +95,10 @@ const AppEntry = () => {
                             <Stack.Screen
                                 component={ReadingScreen}
                                 name={ROUTES.screens.SPREAD.name}
+                            />
+                            <Stack.Screen
+                                component={ReadingDetailScreen}
+                                name={ROUTES.screens.READING.name}
                             />
                         </Stack.Group>
                     </>

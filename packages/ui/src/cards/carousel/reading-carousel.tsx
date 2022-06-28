@@ -26,14 +26,13 @@ const ReadingCarousel = ({
     const [currentIndex, setCurrentIndex] = useState(0);
     const CARD_WIDTH = width / 3;
     const OFFSET = (width - width / 2) / 2;
-
     useEffect(() => {
         if (startFromIndex) {
             setTimeout(() => {
                 setCurrentIndex(startFromIndex);
             }, 100);
         }
-    }, []);
+    }, [startFromIndex]);
 
     const svRef = useRef<ScrollView>(null);
 

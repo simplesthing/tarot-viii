@@ -8,23 +8,24 @@ import { useRouter } from 'solito/router';
 
 const ReadingScreen = ({ navigation, route }) => {
     const [id] = useState(route?.params?.id);
-    const [reading, setReading] = useState();
+    const [reading, setReading] = useState([]);
+    const [data, setData] = useState();
     const { push } = useRouter();
 
     const { fetchReadingById } = useFirestore();
 
     useEffect(() => {
         fetchReadingById(id).then(data => {
-            console.log(data);
             setReading(data?.reading);
+            setData(data);
         });
     }, [id]);
 
     const openReadingDetail = spreadIndex => {
         push({
-            pathname: ROUTES.screens.READING.name,
+            pathname: ROUTES.screens.READING.path,
             query: {
-                id: id,
+                data: JSON.stringify(data),
                 startFrom: spreadIndex
             }
         });
