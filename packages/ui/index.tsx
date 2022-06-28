@@ -12,5 +12,6 @@ export { default as ReadingCarousel } from './src/cards/carousel/reading-carouse
 export { default as ShuffleAnimation } from './src/cards/shuffle';
 // hooks
 export { default as useInstructions } from './src/hooks/use-instructions';
+export { default as useReading } from './src/hooks/use-reading';
 // functions
 export { Percentage, Value } from './src/theme/fonts';

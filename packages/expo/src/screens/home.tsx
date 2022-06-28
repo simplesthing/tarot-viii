@@ -1,7 +1,7 @@
 import { SafeAreaView, StyleSheet, Text } from 'react-native';
 
 import { Background } from '@tarot-viii/ui';
-import QuickNav from 'src/components/quickNav';
+import QuickNav from 'src/navigation/quickNav';
 import React from 'react';
 
 const HomeScreen = () => {

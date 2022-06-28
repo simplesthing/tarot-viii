@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ROUTES } from '../navigation/config';
+import { ROUTES } from './config';
 import { SpeedDial } from '@rneui/themed';
 import { useRouter } from 'solito/router';
 

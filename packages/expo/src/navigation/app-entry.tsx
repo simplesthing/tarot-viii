@@ -14,6 +14,7 @@ import NewReading from 'src/screens/readings/new';
 import PasswordReset from '../screens/account/password-reset';
 import ReadingDetailScreen from '../screens/readings/reading';
 import ReadingScreen from '../screens/readings/spread';
+import ShuffleDealScreen from '../screens/readings/shuffle';
 import SignupScreen from '../screens/account/signup';
 import colors from '@tarot-viii/ui/src/theme/colors';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -92,6 +93,10 @@ const AppEntry = () => {
                                 headerStyle: { backgroundColor: colors.silver_sand.base },
                                 headerShadowVisible: false
                             }}>
+                            <Stack.Screen
+                                component={ShuffleDealScreen}
+                                name={ROUTES.screens.SHUFFLE_DEAL.name}
+                            />
                             <Stack.Screen
                                 component={ReadingScreen}
                                 name={ROUTES.screens.SPREAD.name}
