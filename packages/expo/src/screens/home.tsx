@@ -1,17 +1,15 @@
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text } from 'react-native';
-import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 
+import { Background } from '@tarot-viii/ui';
 import QuickNav from 'src/components/quickNav';
-
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-
-const height = screenHeight;
-const width = screenHeight * 0.707;
+import React from 'react';
 
 const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Home</Text>
+            <Background>
+                <Text>Home</Text>
+            </Background>
             <QuickNav />
         </SafeAreaView>
     );

@@ -8,12 +8,10 @@ const styles = StyleSheet.create({
     container: {
         paddingLeft: 0,
         paddingRight: 40,
-        position: 'relative',
-        left: -5
+        position: 'relative'
     },
     icon: {
-        position: 'absolute',
-        left: 0
+        position: 'absolute'
     }
 });
 

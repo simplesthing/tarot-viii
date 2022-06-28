@@ -12,6 +12,7 @@ import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
 import NewReading from 'src/screens/readings/new';
 import PasswordReset from '../screens/account/password-reset';
+import ReadingScreen from '../screens/readings/spread';
 import SignupScreen from '../screens/account/signup';
 import colors from '@tarot-viii/ui/src/theme/colors';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -79,6 +80,20 @@ const AppEntry = () => {
                             <Stack.Screen
                                 component={PasswordReset}
                                 name={ROUTES.screens.PASSWORD_RESET.name}
+                            />
+                        </Stack.Group>
+
+                        <Stack.Group
+                            screenOptions={{
+                                headerTitle: '',
+                                headerBackTitle: '',
+                                headerTintColor: colors.smoky_black.base,
+                                headerStyle: { backgroundColor: colors.silver_sand.base },
+                                headerShadowVisible: false
+                            }}>
+                            <Stack.Screen
+                                component={ReadingScreen}
+                                name={ROUTES.screens.SPREAD.name}
                             />
                         </Stack.Group>
                     </>

@@ -18,7 +18,6 @@ const POSITIONS = Array.from(Array(10).keys());
 export default function Deal({ reading, dealt = false, onPress }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
     const [dealDone] = useState(dealt);
-
     const castEnergyToDeck = (index: number) => {
         if (!dealDone) {
             const updated = dealtCards.filter(item => item !== index);

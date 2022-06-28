@@ -1,109 +1,98 @@
 import { Background, Colors, Value } from '@tarot-viii/ui';
 import { Button, Text } from '@rneui/themed';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useAuth, useFirestore } from '../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { ROUTES } from '../../navigation/config';
-
-// import { Timeline } from 'react-native-just-timeline';
-// import { useRouting } from 'expo-next-react-navigation';
-
-const { width } = Dimensions.get('window');
+import { ROUTES } from '../navigation/config';
+import { Timeline } from 'react-native-just-timeline';
+import { useRouter } from 'solito/router';
 
 const HistoryScreen = () => {
     const { user } = useAuth();
-    // const { fetchReadingsForUser } = useFirestore();
-    // const [history, setHistory] = useState<FirebaseFirestoreTypes.DocumentData[]>();
-    // const [timeline, setTimeline] = useState<unknown>();
-    // const { navigate } = useRouting();
+    const { fetchReadingsForUser } = useFirestore();
+    const [history, setHistory] = useState<FirebaseFirestoreTypes.DocumentData[]>();
+    const [timeline, setTimeline] = useState<unknown>();
+    const { push } = useRouter();
 
-    // const timelineData = data => {
-    //     return {
-    //         title: {
-    //             content: data.title || 'Untitled',
-    //             style: {
-    //                 color: Colors.spanish_gray.shadow
-    //             }
-    //         },
-    //         description: {
-    //             content: data.notes
-    //         },
-    //         time: {
-    //             content: new Date(data.creationTime).toDateString().slice(0, 10),
-    //             style: {
-    //                 color: Colors.smoky_black.base
-    //             }
-    //         },
-    //         icon: {
-    //             style: {
-    //                 backgroundColor: Colors.cambridge_blue.base,
-    //                 borderColor: Colors.cambridge_blue.accent1
-    //             }
-    //         },
-    //         pressAction: () =>
-    //             navigate({
-    //                 routeName: ROUTES.screens.SPREAD.name,
-    //                 params: {
-    //                     data: data
-    //                 }
-    //             })
-    //     };
-    // };
+    const timelineData = data => {
+        return {
+            title: {
+                content: data.title || 'Untitled',
+                style: {
+                    color: Colors.spanish_gray.shadow
+                }
+            },
+            description: {
+                content: data.notes
+            },
+            time: {
+                content: new Date(data.creationTime).toDateString().slice(0, 10),
+                style: {
+                    color: Colors.smoky_black.base
+                }
+            },
+            icon: {
+                style: {
+                    backgroundColor: Colors.cambridge_blue.base,
+                    borderColor: Colors.cambridge_blue.accent1
+                }
+            },
+            pressAction: () =>
+                push({
+                    pathname: ROUTES.screens.SPREAD.path,
+                    query: {
+                        id: data.id
+                    }
+                })
+        };
+    };
 
-    // useEffect(() => {
-    //     if (user?.uid) {
-    //         fetchReadingsForUser(user.uid).then(historyDocs => {
-    //             setHistory(historyDocs);
-    //         });
-    //     }
-    // }, [user]);
+    useEffect(() => {
+        if (user?.uid) {
+            fetchReadingsForUser(user.uid).then(historyDocs => {
+                setHistory(historyDocs);
+            });
+        }
+    }, [user]);
 
-    // useEffect(() => {
-    //     if (history) {
-    //         const tl = history.map(doc => timelineData(doc));
-    //         setTimeline(tl);
-    //     }
-    // }, [history]);
+    useEffect(() => {
+        if (history) {
+            const tl = history.map(doc => timelineData(doc));
+            setTimeline(tl);
+        }
+    }, [history]);
 
-    // const newReading = () => {
-    //     navigate({ routeName: ROUTES.screens.NEW_READING.name });
-    // };
+    const newReading = () => {
+        push({ pathname: ROUTES.screens.NEW_READING.path });
+    };
 
     return (
-        <View style={styles.backgroundWrapper}>
-            <Background>
-                <View style={styles.container}>
-                    <View style={styles.timelineWrapper}>
-                        {user}
-                        {/* {!history?.length && (
-                            <View style={styles.message}>
-                                <Text style={styles.text}>
-                                    You have no reading history.{' '}
-                                </Text>
-                                <Button title="New Reading" onPress={newReading} />
-                            </View>
-                        )}
-                        <Timeline data={timeline} /> */}
-                    </View>
+        <Background>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.timelineWrapper}>
+                    {!history?.length && (
+                        <View style={styles.message}>
+                            <Text style={styles.text}>You have no reading history. </Text>
+                            <Button title="New Reading" onPress={newReading} />
+                        </View>
+                    )}
+                    <Timeline data={timeline} />
                 </View>
-            </Background>
-        </View>
+            </SafeAreaView>
+        </Background>
     );
 };
 
 export default HistoryScreen;
 
 const styles = StyleSheet.create({
-    backgroundWrapper: {
-        flex: 1
-    },
     container: {
         flexDirection: 'row',
         flex: 1
     },
-    timelineWrapper: { width: '100%', paddingTop: 100 },
+    timelineWrapper: { width: '100%', paddingTop: Platform.OS === 'android' ? 60 : 0 },
     message: { alignSelf: 'center' },
     text: { fontSize: Value(16), marginVertical: Value(16) }
 });
