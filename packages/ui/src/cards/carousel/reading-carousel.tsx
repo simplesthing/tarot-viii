@@ -28,11 +28,10 @@ const ReadingCarousel = ({
     const OFFSET = (width - width / 2) / 2;
 
     useEffect(() => {
-        if (startFromIndex) {
-            setTimeout(() => {
-                setCurrentIndex(startFromIndex);
-            }, 100);
-        }
+        const index = startFromIndex || 0;
+        setTimeout(() => {
+            setCurrentIndex(index);
+        }, 100);
     }, []);
 
     const svRef = useRef<ScrollView>(null);

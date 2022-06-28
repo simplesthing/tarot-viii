@@ -1,4 +1,4 @@
-import { Button, Text } from 'react-native-elements';
+import { Button, Text } from '@rneui/themed';
 import { Field, Form, Formik } from 'formik';
 import { GestureResponderEvent, Image, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
@@ -56,6 +56,7 @@ type CelticCross = {
 };
 
 export interface CardFormValues {
+    angels: string;
     arcana: string;
     color: string;
     decan: string;
@@ -157,6 +158,11 @@ const CardForm = ({ card, save }) => {
                             />
                         </View>
 
+                        <View style={styles.formRow}>
+                            <Text style={styles.label}>Title</Text>
+                            <Field name="title" style={fieldStyle(props, 'title')} />
+                        </View>
+
                         <View style={styles.splitRow}>
                             <View style={styles.formRow}>
                                 <Text style={styles.label}>Path</Text>
@@ -191,20 +197,22 @@ const CardForm = ({ card, save }) => {
                                     style={fieldStyle(props, 'element')}
                                 />
                             </View>
+                            <View style={styles.formRow}>
+                                <Text style={styles.label}>Type</Text>
+                                <Field name="type" style={fieldStyle(props, 'type')} />
+                            </View>
 
                             <View style={styles.formRow}>
-                                <Text style={styles.label}>Title</Text>
-                                <Field name="title" style={fieldStyle(props, 'title')} />
+                                <Text style={styles.label}>Angels</Text>
+                                <Field
+                                    name="angels"
+                                    style={fieldStyle(props, 'angels')}
+                                />
                             </View>
 
                             <View style={styles.formRow}>
                                 <Text style={styles.label}>Decan / Attribution</Text>
                                 <Field name="decan" style={fieldStyle(props, 'decan')} />
-                            </View>
-
-                            <View style={styles.formRow}>
-                                <Text style={styles.label}>Type</Text>
-                                <Field name="type" style={fieldStyle(props, 'type')} />
                             </View>
                         </View>
 

@@ -1,30 +1,39 @@
-import { Deal } from '@tarot-viii/ui';
+import { Background, Deal } from '@tarot-viii/ui';
+import { useEffect, useState } from 'react';
+
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
-import ReadingNotes from '../../components/ReadingNotes/index';
-import { useRouting } from 'expo-next-react-navigation';
-import { useState } from 'react';
+import { useFirestore } from '../../hooks';
+import { useRouter } from 'solito/router';
 
 const ReadingScreen = ({ navigation, route }) => {
-    const [data] = useState(route?.params?.data);
-    const [reading] = useState(route?.params?.data?.reading);
+    const [id] = useState(route?.params?.id);
+    const [reading, setReading] = useState([]);
+    const [data, setData] = useState();
+    const { push } = useRouter();
 
-    const { navigate } = useRouting();
+    const { fetchReadingById } = useFirestore();
+
+    useEffect(() => {
+        fetchReadingById(id).then(data => {
+            setReading(data?.reading);
+            setData(data);
+        });
+    }, [id]);
 
     const openReadingDetail = spreadIndex => {
-        navigate({
-            routeName: ROUTES.screens.READING.name,
-            params: {
-                data: data,
+        push({
+            pathname: ROUTES.screens.READING.path,
+            query: {
+                data: JSON.stringify(data),
                 startFrom: spreadIndex
             }
         });
     };
-
     return (
-        <ReadingNotes data={data} snapToIndex={1}>
+        <Background>
             <Deal reading={reading} dealt={true} onPress={openReadingDetail} />
-        </ReadingNotes>
+        </Background>
     );
 };
 

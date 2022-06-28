@@ -1,18 +1,17 @@
 import * as Linking from 'expo-linking';
 
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { PATHS, ROUTES } from './config';
 import React, { useEffect, useState } from 'react';
 
-import AccountScreen from '../screens/account/account';
-import CloseScreen from '../navigation/close-screen';
-import { Colors } from '@tarot-viii/ui';
+import AccountScreen from 'src/screens/account/account';
+import CloseScreen from './close-screen';
 import ForgotPasswordScreen from '../screens/account/forgot-password';
-import HistoryScreen from '../screens/history/history';
+import HistoryScreen from 'src/screens/history';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
-import NewReading from '../screens/readings/new';
+import NewReading from 'src/screens/readings/new';
 import PasswordReset from '../screens/account/password-reset';
-import { ROUTES } from '@tarot-viii/expo/src/navigation/config';
 import ReadingDetailScreen from '../screens/readings/reading';
 import ReadingScreen from '../screens/readings/spread';
 import ShuffleDealScreen from '../screens/readings/shuffle';
@@ -31,10 +30,9 @@ const AppEntry = () => {
 
     const prefix = Linking.createURL('/');
     const linking = {
-        prefixes: [prefix]
+        prefixes: [prefix],
+        config: { screens: PATHS }
     };
-
-    const Stack = createNativeStackNavigator();
 
     const MyTheme = {
         ...DefaultTheme,
@@ -44,8 +42,10 @@ const AppEntry = () => {
         }
     };
 
+    const Stack = createNativeStackNavigator();
+
     return (
-        <NavigationContainer linking={linking} theme={MyTheme}>
+        <NavigationContainer theme={MyTheme} linking={linking}>
             <Stack.Navigator>
                 {signedIn ? (
                     <>
@@ -79,14 +79,18 @@ const AppEntry = () => {
                                 component={AccountScreen}
                                 name={ROUTES.screens.ACCOUNT.name}
                             />
+                            <Stack.Screen
+                                component={PasswordReset}
+                                name={ROUTES.screens.PASSWORD_RESET.name}
+                            />
                         </Stack.Group>
 
                         <Stack.Group
                             screenOptions={{
                                 headerTitle: '',
                                 headerBackTitle: '',
-                                headerTintColor: Colors.smoky_black.base,
-                                headerStyle: { backgroundColor: Colors.silver_sand.base },
+                                headerTintColor: colors.smoky_black.base,
+                                headerStyle: { backgroundColor: colors.silver_sand.base },
                                 headerShadowVisible: false
                             }}>
                             <Stack.Screen
@@ -101,30 +105,22 @@ const AppEntry = () => {
                                 component={ReadingDetailScreen}
                                 name={ROUTES.screens.READING.name}
                             />
-                            <Stack.Screen
-                                component={ForgotPasswordScreen}
-                                name={ROUTES.screens.FORGOT_PASSWORD.name}
-                            />
-                            <Stack.Screen
-                                component={PasswordReset}
-                                name={ROUTES.screens.PASSWORD_RESET.name}
-                                options={{ headerShown: false }}
-                            />
                         </Stack.Group>
                     </>
                 ) : (
                     <>
-                        <Stack.Screen
-                            component={LoginScreen}
-                            name={ROUTES.screens.LOGIN.name}
-                            options={{ headerShown: false }}
-                        />
+                        <Stack.Group screenOptions={{ headerShown: false }}>
+                            <Stack.Screen
+                                component={LoginScreen}
+                                name={ROUTES.screens.LOGIN.name}
+                            />
+                        </Stack.Group>
                         <Stack.Group
                             screenOptions={{
                                 headerTitle: '',
                                 headerBackTitle: '',
-                                headerTintColor: Colors.smoky_black.base,
-                                headerStyle: { backgroundColor: Colors.silver_sand.base },
+                                headerTintColor: colors.smoky_black.base,
+                                headerStyle: { backgroundColor: colors.silver_sand.base },
                                 headerShadowVisible: false
                             }}>
                             <Stack.Screen

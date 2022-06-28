@@ -1,9 +1,10 @@
 {
   "expo": {
-    "name": "Simples Tarot",
-    "slug": "simplestarot",
-    "scheme": "simplestarot",
+    "name": "tarot",
+    "slug": "tarot",
+    "scheme": "tarot",
     "version": "0.0.2",
+    "sdkVersion": "45.0.0",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -15,5 +16,6 @@
       "bundleIdentifier": "fun.simplesthing.tarot"
     }
   },
-  "name": "simplestarot"
+  "name": "tarot",
+  "displayName": "Tarot"
 }
