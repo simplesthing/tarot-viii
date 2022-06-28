@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "react-native start",
-    "android": "expo run:android",
+    "android": "adb reverse tcp:8081 tcp:8081 && expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web"
   },
@@ -46,6 +46,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@expo/next-adapter": "^4.0.7"
+    "@brettdh/standard-version-expo": "^1.1.1",
+    "@commitlint/cli": "^17.0.3",
+    "@expo/next-adapter": "^4.0.7",
+    "standard-version": "^9.5.0",
+    "standard-version-expo": "^1.0.3"
   }
 }
