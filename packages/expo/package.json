@@ -10,7 +10,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "preview:android": "eas build --platform android --profile preview",
-    "eas-build-pre-install": "echo $GOOGLE_SERVICES_BASE64 | base64 --decode > ./android/app/google-services.json"
+    "eas-build-pre-install": "echo $GOOGLE_SERVICES_BASE64 | base64 --decode > ./android/app/google-services.json && echo $GOOGLE_SERVICES_INFO_BASE64 | base64 --decode > ./ios/GoogleService-Info.plist"
   },
   "dependencies": {
     "@react-native-firebase/analytics": "^14.0.1",
