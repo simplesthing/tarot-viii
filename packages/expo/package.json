@@ -8,7 +8,9 @@
     "start": "react-native start",
     "android": "adb reverse tcp:8081 tcp:8081 && expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "preview:android": "eas build --platform android --profile preview",
+    "eas-build-pre-install": "echo $GOOGLE_SERVICES_BASE64 | base64 --decode > ./android/app/google-services.json"
   },
   "dependencies": {
     "@react-native-firebase/analytics": "^14.0.1",
