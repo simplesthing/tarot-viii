@@ -11,7 +11,6 @@ const AccountScreen = () => {
     const { push } = useRouter();
 
     const resetPassword = () => {
-        console.log(user?.email);
         if (user?.email) {
             forgotPassword(user?.email)
                 .catch(e => crashlytics().recordError(e))

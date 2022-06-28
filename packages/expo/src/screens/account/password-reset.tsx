@@ -11,8 +11,6 @@ const PasswordReset = ({ navigation, route }) => {
     const message = route?.params?.message;
     const { push } = useRouter();
 
-    console.log(route);
-
     const onPress = () => {
         push({ pathname: ROUTES.screens.LOGIN.path });
     };
