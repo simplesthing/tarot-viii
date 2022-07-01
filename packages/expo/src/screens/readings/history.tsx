@@ -2,16 +2,18 @@ import { Background, Colors, Value } from '@tarot-viii/ui';
 import { Button, Text } from '@rneui/themed';
 import { Platform, SafeAreaView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useAuth, useFirestore } from '../hooks';
+import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { ROUTES } from '../navigation/config';
+import QuickNav from 'src/navigation/quickNav';
+import { ROUTES } from '../../navigation/config';
 import { Timeline } from 'react-native-just-timeline';
 import { useRouter } from 'solito/router';
 
 const HistoryScreen = () => {
     const { user } = useAuth();
     const { fetchReadingsForUser } = useFirestore();
+    const [loaded, setLoaded] = useState(false);
     const [history, setHistory] = useState<FirebaseFirestoreTypes.DocumentData[]>();
     const [timeline, setTimeline] = useState<unknown>();
     const { push } = useRouter();
@@ -53,6 +55,7 @@ const HistoryScreen = () => {
         if (user?.uid) {
             fetchReadingsForUser(user.uid).then(historyDocs => {
                 setHistory(historyDocs);
+                setLoaded(true);
             });
         }
     }, [user]);
@@ -69,19 +72,26 @@ const HistoryScreen = () => {
     };
 
     return (
-        <Background>
+        <>
             <SafeAreaView style={styles.container}>
-                <View style={styles.timelineWrapper}>
-                    {!history?.length && (
-                        <View style={styles.message}>
-                            <Text style={styles.text}>You have no reading history. </Text>
-                            <Button title="New Reading" onPress={newReading} />
+                <Background>
+                    <View style={styles.screen}>
+                        <View style={styles.timelineWrapper}>
+                            {!history?.length && !!loaded && (
+                                <View style={styles.message}>
+                                    <Text style={styles.text}>
+                                        You have no reading history.{' '}
+                                    </Text>
+                                    <Button title="New Reading" onPress={newReading} />
+                                </View>
+                            )}
+                            <Timeline data={timeline} />
                         </View>
-                    )}
-                    <Timeline data={timeline} />
-                </View>
+                    </View>
+                </Background>
+                <QuickNav />
             </SafeAreaView>
-        </Background>
+        </>
     );
 };
 
@@ -89,6 +99,9 @@ export default HistoryScreen;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1
+    },
+    screen: {
         flexDirection: 'row',
         flex: 1
     },

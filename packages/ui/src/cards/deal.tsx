@@ -17,11 +17,15 @@ const POSITIONS = Array.from(Array(10).keys());
 
 export default function Deal({ reading, dealt = false, onPress }: DealProps) {
     const [dealtCards, setDealtCards] = useState(POSITIONS);
-    const [dealDone] = useState(dealt);
+    const [dealDone, setDealDone] = useState(dealt);
+
     const castEnergyToDeck = (index: number) => {
         if (!dealDone) {
-            const updated = dealtCards.filter(item => item !== index);
-            setDealtCards(updated);
+            for (var i = 0; i < 10; i++) {
+                const updated = dealtCards.filter(item => item !== i);
+                setDealtCards(updated);
+            }
+            setDealDone(true);
         }
         if (dealtCards.length === 0 || !!dealDone) {
             onPress(index);

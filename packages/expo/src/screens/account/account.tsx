@@ -1,5 +1,8 @@
+import { SafeAreaView, StyleSheet } from 'react-native';
+
 import { Account } from '@tarot-viii/app';
 import { Background } from '@tarot-viii/ui';
+import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import crashlytics from '@react-native-firebase/crashlytics';
@@ -27,14 +30,23 @@ const AccountScreen = () => {
     };
 
     return (
-        <Background>
-            <Account
-                username={user?.email || ''}
-                resetPassword={resetPassword}
-                logout={logout}
-            />
-        </Background>
+        <SafeAreaView style={styles.container}>
+            <Background>
+                <Account
+                    username={user?.email || ''}
+                    resetPassword={resetPassword}
+                    logout={logout}
+                />
+            </Background>
+            <QuickNav />
+        </SafeAreaView>
     );
 };
 
 export default AccountScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});

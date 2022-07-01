@@ -1,6 +1,8 @@
 import { Background, Deal } from '@tarot-viii/ui';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { useEffect, useState } from 'react';
 
+import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { useFirestore } from '../../hooks';
@@ -30,11 +32,25 @@ const ReadingScreen = ({ navigation, route }) => {
             }
         });
     };
+
+    const quickNavEvent = isOpen => {
+        navigation.setOptions({ headerShown: !isOpen });
+    };
+
     return (
-        <Background>
-            <Deal reading={reading} dealt={true} onPress={openReadingDetail} />
-        </Background>
+        <SafeAreaView style={styles.container}>
+            <Background>
+                <Deal reading={reading} dealt={true} onPress={openReadingDetail} />
+            </Background>
+            <QuickNav navigationEvent={quickNavEvent} />
+        </SafeAreaView>
     );
 };
 
 export default ReadingScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import { ShuffleDeal } from '@tarot-viii/app';
 import { useRouter } from 'solito/router';
 
-const ShuffleDealScreen = () => {
+const ShuffleDealScreen = ({ navigation }) => {
     const [spread, setSpread] = useState<FirebaseFirestoreTypes.DocumentData>();
     const [documentId, setDocumentId] = useState<string>();
     const { push } = useRouter();
@@ -65,14 +67,27 @@ const ShuffleDealScreen = () => {
         }
     };
 
+    const quickNavEvent = isOpen => {
+        navigation.setOptions({ headerShown: !isOpen });
+    };
+
     return (
-        <ShuffleDeal
-            getCards={getCards}
-            spread={spread}
-            updateReading={updateReadingDoc}
-            openReading={openReading}
-        />
+        <SafeAreaView style={styles.container}>
+            <ShuffleDeal
+                getCards={getCards}
+                spread={spread}
+                updateReading={updateReadingDoc}
+                openReading={openReading}
+            />
+            <QuickNav navigationEvent={quickNavEvent} />
+        </SafeAreaView>
     );
 };
 
 export default ShuffleDealScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});

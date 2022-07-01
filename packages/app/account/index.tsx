@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     },
     password: {
         fontSize: Value(18),
+        fontWeight: '600',
         color: Colors.smoky_black.accent2
     },
     passwordButton: {},
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'center',
-        marginVertical: 80
+        marginVertical: 150
     },
     logoutButton: {
         alignSelf: 'stretch',

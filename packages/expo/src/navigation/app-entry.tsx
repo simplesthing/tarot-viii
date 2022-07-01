@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import AccountScreen from 'src/screens/account/account';
 import CloseScreen from './close-screen';
 import ForgotPasswordScreen from '../screens/account/forgot-password';
-import HistoryScreen from 'src/screens/history';
+import HistoryScreen from 'src/screens/readings/history';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
 import NewReading from 'src/screens/readings/new';
@@ -54,6 +54,18 @@ const AppEntry = () => {
                                 component={HomeScreen}
                                 name={ROUTES.screens.HOME.name}
                             />
+                            <Stack.Screen
+                                component={AccountScreen}
+                                name={ROUTES.screens.ACCOUNT.name}
+                            />
+                            <Stack.Screen
+                                component={NewReading}
+                                name={ROUTES.screens.NEW_READING.name}
+                            />
+                            <Stack.Screen
+                                component={HistoryScreen}
+                                name={ROUTES.screens.HISTORY.name}
+                            />
                         </Stack.Group>
 
                         <Stack.Group
@@ -67,18 +79,6 @@ const AppEntry = () => {
                                     headerTitle: ''
                                 };
                             }}>
-                            <Stack.Screen
-                                component={NewReading}
-                                name={ROUTES.screens.NEW_READING.name}
-                            />
-                            <Stack.Screen
-                                component={HistoryScreen}
-                                name={ROUTES.screens.HISTORY.name}
-                            />
-                            <Stack.Screen
-                                component={AccountScreen}
-                                name={ROUTES.screens.ACCOUNT.name}
-                            />
                             <Stack.Screen
                                 component={PasswordReset}
                                 name={ROUTES.screens.PASSWORD_RESET.name}
