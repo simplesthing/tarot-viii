@@ -90,7 +90,14 @@ const AppEntry = () => {
                                 headerTitle: '',
                                 headerBackTitle: '',
                                 headerTintColor: colors.smoky_black.base,
-                                headerStyle: { backgroundColor: colors.silver_sand.base },
+                                headerStyle: {
+                                    backgroundColor: colors.silver_sand.base
+                                },
+                                headerTitleAlign: 'center',
+                                headerTitleStyle: {
+                                    fontWeight: 'bold',
+                                    fontSize: 36
+                                },
                                 headerShadowVisible: false
                             }}>
                             <Stack.Screen

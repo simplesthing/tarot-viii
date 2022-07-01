@@ -2,6 +2,7 @@ import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { ReadingDoc, ReadingProp } from '@tarot-viii/ui/types';
 
+import { CAROUSEL_HEIGHT_RATIO } from './constants';
 import CardDetail from './card-details';
 import ReadCard from './read-card';
 import SideSwipe from 'react-native-sideswipe';
@@ -10,39 +11,38 @@ const { width: windowWidth } = Dimensions.get('window');
 
 export type ReadingCarouselProps = {
     data: ReadingDoc;
-    startFromIndex?: number;
+    startFromIndex: number;
     width?: number;
     height?: number;
+    navigationEvent: (cardTitle: string) => void;
 };
 
-const _height = (windowWidth / 2) * 1.65;
+const _height = (windowWidth / 2) * CAROUSEL_HEIGHT_RATIO;
 
 const ReadingCarousel = ({
     data,
     startFromIndex = 0,
     width = windowWidth,
-    height = _height
+    navigationEvent
 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const CARD_WIDTH = width / 3;
     const OFFSET = (width - width / 2) / 2;
 
     useEffect(() => {
-        const index = startFromIndex || 0;
+        const index = startFromIndex;
         setTimeout(() => {
             setCurrentIndex(index);
         }, 100);
     }, []);
 
-    const svRef = useRef<ScrollView>(null);
-
     const selectCard = index => {
-        svRef.current?.scrollTo({ y: 0, x: 0, animated: true });
         setCurrentIndex(index);
+        navigationEvent(index);
     };
 
     return (
-        <ScrollView ref={svRef} style={styles.container}>
+        <View style={styles.container}>
             {data.reading && (
                 <>
                     <SideSwipe
@@ -53,7 +53,7 @@ const ReadingCarousel = ({
                         threshold={CARD_WIDTH}
                         extractKey={(item: ReadingProp) => item.cardName}
                         contentOffset={OFFSET}
-                        onIndexChange={index => setCurrentIndex(index)}
+                        onIndexChange={index => selectCard(index)}
                         useVelocityForIndex={false}
                         renderItem={({ itemIndex, item, animatedValue }) => {
                             return (
@@ -72,14 +72,15 @@ const ReadingCarousel = ({
                             );
                         }}
                     />
+                    <View style={styles.spacer} />
                     <CardDetail
                         card={data.reading[currentIndex]}
-                        height={(width / 2) * 1.75}
+                        height={(width / 2) * 1.55}
                         width={width}
                     />
                 </>
             )}
-        </ScrollView>
+        </View>
     );
 };
 
@@ -88,14 +89,17 @@ const styles = StyleSheet.create({
         flex: 1,
         minHeight: _height,
         position: 'relative',
+        top: 0,
         zIndex: 1
+    },
+    spacer: {
+        height: _height
     },
     fill: {
         position: 'absolute',
-        top: 50,
+        top: -50,
         left: 10,
         right: 10,
-        bottom: 10,
         zIndex: 10
     }
 });

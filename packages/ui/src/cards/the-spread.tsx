@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40,
         width: viewWidth,
         height: viewHeight - 20,
-        position: 'relative',
-        marginVertical: 40
+        position: 'relative'
     }
 });
 

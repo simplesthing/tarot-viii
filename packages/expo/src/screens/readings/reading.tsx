@@ -1,27 +1,39 @@
 import { Background, ReadingCarousel } from '@tarot-viii/ui';
 import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
 
 import QuickNav from 'src/navigation/quickNav';
-import React from 'react';
 
 const { width } = Dimensions.get('window');
 
 const ReadingDetailScreen = ({ navigation, route }) => {
     const data = route?.params?.data;
     const startFrom = route?.params?.startFrom;
+    const jsonData = JSON.parse(data);
+
     const quickNavEvent = isOpen => {
         navigation.setOptions({ headerShown: !isOpen });
     };
 
     const index = startFrom ? parseInt(startFrom) : 0;
+    console.log(jsonData.reading[index].cardName);
+
+    useEffect(() => {
+        navigation.setOptions({ headerTitle: jsonData.reading[index].cardName });
+    }, [index]);
+
+    const carouselNavEvent = (index: number) => {
+        navigation.setOptions({ headerTitle: jsonData.reading[index].cardName });
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             <Background>
                 <ReadingCarousel
-                    data={JSON.parse(data)}
+                    data={jsonData}
                     startFromIndex={index}
                     width={width}
+                    navigationEvent={carouselNavEvent}
                 />
             </Background>
             <QuickNav navigationEvent={quickNavEvent} />

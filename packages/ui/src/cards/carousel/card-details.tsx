@@ -1,6 +1,6 @@
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import React from 'react';
 import { ReadingProp } from '@tarot-viii/ui/types';
 import { Text } from '@rneui/themed';
 import { Value } from '../../theme/fonts';
@@ -12,58 +12,40 @@ export type CardDetailProps = {
 };
 
 export default function CardDetail({ card, height, width }: CardDetailProps) {
+    const svRef = useRef<ScrollView>(null);
+
+    useEffect(() => {
+        svRef.current?.scrollTo({ y: 0, x: 0, animated: true });
+    }, [card]);
+
     return (
-        <View style={[styles.container, { width }]}>
-            <Text h1 h1Style={styles.h1Style}>
-                {card.cardName}
-            </Text>
-            <Text style={styles.title}>
-                {card?.cardTitle || 'Lord of title needs to be added'}
-            </Text>
-
-            <View style={{ width, height: height }}></View>
-
+        <ScrollView ref={svRef}>
             <View style={styles.lower}>
                 <Text h2 h2Style={styles.h2Style}>
                     {card.displayName}
                 </Text>
-                <Text style={styles.keywords}>
-                    {card.keywords ||
-                        'a, comma, separated, list, of, keywords, like, this'}
-                </Text>
-                <Text style={styles.base}>
-                    {card.cardReading || 'Card reading should be here'}
-                </Text>
-                <Text style={styles.base}>
-                    {card.cardDescription || 'Card description should be here'}
-                </Text>
+
+                <Text style={styles.keywords}>{card.keywords}</Text>
+                <Text style={styles.base}>{card.cardReading}</Text>
                 <Text style={styles.base}>{card.positionDescription}</Text>
+                <Text style={styles.base}>{card.cardDescription}</Text>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'stretch',
-        paddingBottom: 100
-    },
     lower: {
         marginHorizontal: 16,
-        marginVertical: 21
-    },
-    h1Style: {
-        fontSize: Value(25),
-        fontWeight: 'bold',
-        textAlign: 'center'
+        marginVertical: 20,
+        paddingBottom: 80
     },
     h2Style: {
-        fontSize: Value(21),
+        fontSize: Value(24),
         fontWeight: 'bold'
     },
     title: {
-        fontSize: Value(12.8),
+        fontSize: Value(18),
         fontStyle: 'italic',
         textAlign: 'center'
     },
