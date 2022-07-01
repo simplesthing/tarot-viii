@@ -80,24 +80,25 @@ export default function DealCard({
     }, []);
 
     useEffect(() => {
-        if (spreadIndex === 1 && !!hasBeenDealt) {
-            offset.value = {
-                x: vw(SPREAD[spreadIndex].coords.x) - 40,
-                y: vh(SPREAD[spreadIndex].coords.y),
-                r: 90
-            };
-        }
-    }, [hasBeenDealt]);
-
-    const castEnergyToDeck = () => {
-        if (!hasBeenDealt) {
+        if (!!dealt) {
             offset.value = {
                 x: vw(SPREAD[spreadIndex].coords.x) - 40,
                 y: vh(SPREAD[spreadIndex].coords.y),
                 r: !!reversed ? 180 : 0
             };
+            //this must eval last to be layered in top of index 0
+            if (spreadIndex === 1) {
+                offset.value = {
+                    x: vw(SPREAD[spreadIndex].coords.x) - 40,
+                    y: vh(SPREAD[spreadIndex].coords.y),
+                    r: 90
+                };
+            }
             setHasBeenDealt(true);
         }
+    }, [dealt]);
+
+    const castEnergyToDeck = () => {
         onPress(spreadIndex);
     };
 

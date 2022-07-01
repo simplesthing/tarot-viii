@@ -1,8 +1,12 @@
+import { SafeAreaView, StyleSheet } from 'react-native';
+
+import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { Start } from '@tarot-viii/app';
 import analytics from '@react-native-firebase/analytics';
 import { useRouter } from 'solito/router';
+
 const NewReading = () => {
     const { push } = useRouter();
 
@@ -19,7 +23,18 @@ const NewReading = () => {
         return;
     };
 
-    return <Start onStart={onStart} />;
+    return (
+        <SafeAreaView style={styles.container}>
+            <Start onStart={onStart} />
+            <QuickNav />
+        </SafeAreaView>
+    );
 };
 
 export default NewReading;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
