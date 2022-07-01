@@ -45,7 +45,7 @@ export default function DealCard({
     // @ts-ignore
     const animatedStyles = useAnimatedStyle(() => {
         return {
-            zIndex: spreadIndex === 1 && !!hasBeenDealt ? 10 : 10 - spreadIndex,
+            zIndex: spreadIndex === 1 ? 10 : 10 - spreadIndex,
             transform: [
                 {
                     translateX: withTiming(offset.value.x, {
@@ -81,19 +81,20 @@ export default function DealCard({
 
     useEffect(() => {
         if (!!dealt) {
-            offset.value = {
-                x: vw(SPREAD[spreadIndex].coords.x) - 40,
-                y: vh(SPREAD[spreadIndex].coords.y),
-                r: !!reversed ? 180 : 0
-            };
-            //this must eval last to be layered in top of index 0
             if (spreadIndex === 1) {
                 offset.value = {
                     x: vw(SPREAD[spreadIndex].coords.x) - 40,
                     y: vh(SPREAD[spreadIndex].coords.y),
                     r: 90
                 };
+            } else {
+                offset.value = {
+                    x: vw(SPREAD[spreadIndex].coords.x) - 40,
+                    y: vh(SPREAD[spreadIndex].coords.y),
+                    r: !!reversed ? 180 : 0
+                };
             }
+
             setHasBeenDealt(true);
         }
     }, [dealt]);
