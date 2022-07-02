@@ -61,7 +61,7 @@ const ShuffleDealScreen = ({ navigation }) => {
             fetchReadingById(documentId).then(data => {
                 push({
                     pathname: ROUTES.screens.READING.path,
-                    query: { data: JSON.stringify(data), startFrom: index }
+                    query: { reading: data, startFrom: index }
                 });
             });
         }

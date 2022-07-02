@@ -1,1 +1,1 @@
-export const CAROUSEL_HEIGHT_RATIO = 1.5;
+export const CAROUSEL_HEIGHT_RATIO = 1.65;

@@ -36,9 +36,9 @@ const ShuffleDeal = ({
     useEffect(() => {
         if (!!shuffleDone) {
             const reading = deck.slice(0, 10).map(index => CARD_NAME_INDEXES[index]);
+            updateReading(reading);
             getCards(reading).then(cards => {
                 const d = deal({ cards, spread });
-                updateReading(d);
                 setDealt(d);
             });
         }
@@ -53,7 +53,7 @@ const ShuffleDeal = ({
                     cutDeck={cutDeck}
                 />
             )}
-            {shuffleDone && dealt && <Deal reading={dealt} onPress={openReading} />}
+            {shuffleDone && dealt && <Deal reading={dealt} />}
         </Background>
     );
 };

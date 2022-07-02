@@ -21,7 +21,8 @@ const _height = (windowWidth / 2) * CAROUSEL_HEIGHT_RATIO;
 
 const ReadingCarousel = ({
     data,
-    startFromIndex = 0,
+    reading,
+    startFromIndex,
     width = windowWidth,
     navigationEvent
 }) => {
@@ -32,8 +33,8 @@ const ReadingCarousel = ({
     useEffect(() => {
         const index = startFromIndex;
         setTimeout(() => {
-            setCurrentIndex(index);
-        }, 100);
+            selectCard(index);
+        }, 500);
     }, []);
 
     const selectCard = index => {
@@ -43,10 +44,10 @@ const ReadingCarousel = ({
 
     return (
         <View style={styles.container}>
-            {data.reading && (
+            {data && (
                 <>
                     <SideSwipe
-                        data={data.reading}
+                        data={data}
                         index={currentIndex}
                         style={[styles.fill, { width, height: width }]}
                         itemWidth={CARD_WIDTH}
@@ -74,7 +75,7 @@ const ReadingCarousel = ({
                     />
                     <View style={styles.spacer} />
                     <CardDetail
-                        card={data.reading[currentIndex]}
+                        card={data[currentIndex]}
                         height={(width / 2) * 1.55}
                         width={width}
                     />
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     },
     fill: {
         position: 'absolute',
-        top: -50,
+        top: -35,
         left: 10,
         right: 10,
         zIndex: 10
