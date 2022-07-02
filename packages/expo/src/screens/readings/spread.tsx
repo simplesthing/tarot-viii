@@ -5,29 +5,21 @@ import { useEffect, useState } from 'react';
 import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
-import { useFirestore } from '../../hooks';
+import useDealer from '../../hooks/useDealer';
 import { useRouter } from 'solito/router';
 
 const ReadingScreen = ({ navigation, route }) => {
-    const [id] = useState(route?.params?.id);
-    const [reading, setReading] = useState([]);
-    const [data, setData] = useState({});
+    const { dealer, cardMeanings } = useDealer();
+
+    const id = route?.params?.id;
+    dealer(id);
+
     const { push } = useRouter();
-
-    const { fetchReadingById } = useFirestore();
-
-    useEffect(() => {
-        fetchReadingById(id).then(data => {
-            setReading(data?.reading);
-            // setData(data);
-        });
-    }, [id]);
-
     const openReadingDetail = spreadIndex => {
         push({
             pathname: ROUTES.screens.READING.path,
             query: {
-                reading: reading,
+                reading: JSON.stringify(cardMeanings),
                 startFrom: spreadIndex
             }
         });
@@ -40,7 +32,13 @@ const ReadingScreen = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <Background>
-                <Deal reading={reading} dealt={true} onPress={openReadingDetail} />
+                {cardMeanings && (
+                    <Deal
+                        reading={cardMeanings}
+                        dealt={true}
+                        onPress={openReadingDetail}
+                    />
+                )}
             </Background>
             <QuickNav navigationEvent={quickNavEvent} />
         </SafeAreaView>

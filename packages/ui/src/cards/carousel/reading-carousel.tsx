@@ -21,7 +21,6 @@ const _height = (windowWidth / 2) * CAROUSEL_HEIGHT_RATIO;
 
 const ReadingCarousel = ({
     data,
-    reading,
     startFromIndex,
     width = windowWidth,
     navigationEvent

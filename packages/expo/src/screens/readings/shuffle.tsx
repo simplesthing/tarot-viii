@@ -6,20 +6,17 @@ import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import { ShuffleDeal } from '@tarot-viii/app';
+import useDealer from '../../hooks/useDealer';
 import { useRouter } from 'solito/router';
 
 const ShuffleDealScreen = ({ navigation }) => {
     const [spread, setSpread] = useState<FirebaseFirestoreTypes.DocumentData>();
     const [documentId, setDocumentId] = useState<string>();
     const { push } = useRouter();
+    const { dealer, cardMeanings } = useDealer();
 
-    const {
-        fetchCardsInSpread,
-        fetchSpread,
-        generateReadingDocument,
-        updateReading,
-        fetchReadingById
-    } = useFirestore();
+    const { fetchCardsInSpread, fetchSpread, generateReadingDocument, updateReading } =
+        useFirestore();
 
     const { user } = useAuth();
 
@@ -53,16 +50,15 @@ const ShuffleDealScreen = ({ navigation }) => {
     const updateReadingDoc = reading => {
         if (user?.uid && documentId && reading) {
             updateReading(documentId, reading);
+            dealer(documentId);
         }
     };
 
     const openReading = (index: number) => {
-        if (documentId) {
-            fetchReadingById(documentId).then(data => {
-                push({
-                    pathname: ROUTES.screens.READING.path,
-                    query: { reading: data, startFrom: index }
-                });
+        if (cardMeanings) {
+            push({
+                pathname: ROUTES.screens.READING.path,
+                query: { reading: JSON.stringify(cardMeanings), startFrom: 0 }
             });
         }
     };

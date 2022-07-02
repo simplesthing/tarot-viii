@@ -53,7 +53,7 @@ const ShuffleDeal = ({
                     cutDeck={cutDeck}
                 />
             )}
-            {shuffleDone && dealt && <Deal reading={dealt} />}
+            {shuffleDone && dealt && <Deal reading={dealt} onPress={openReading} />}
         </Background>
     );
 };
