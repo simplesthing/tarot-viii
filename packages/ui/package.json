@@ -20,6 +20,7 @@
     "babel-loader": "^8.2.3"
   },
   "dependencies": {
+    "@storybook/addon-react-native-web": "^0.0.18",
     "firebase": "^9.6.1"
   }
 }
