@@ -33,6 +33,6 @@ export default {
 
 export const Default = args => (
     <View style={styles.container}>
-        <Deal reading={readingJson as ReadingProp[]} onPress={() => {}} />
+        <Deal reading={readingJson as unknown as ReadingProp[]} onPress={() => {}} />
     </View>
 );

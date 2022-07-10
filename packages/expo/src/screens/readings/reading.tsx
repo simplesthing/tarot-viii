@@ -2,7 +2,7 @@ import { Background, ReadingCarousel } from '@tarot-viii/ui';
 import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
 import React, { useEffect } from 'react';
 
-import QuickNav from 'src/navigation/quickNav';
+import QuickNav from '../../navigation/quickNav';
 
 const { width } = Dimensions.get('window');
 

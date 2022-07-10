@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import QuickNav from 'src/navigation/quickNav';
+import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import { ShuffleDeal } from '@tarot-viii/app';
 import { useRouter } from 'solito/router';

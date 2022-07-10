@@ -1,5 +1,5 @@
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { ReadingDoc, ReadingProp } from '@tarot-viii/ui/types';
 
 import { CAROUSEL_HEIGHT_RATIO } from './constants';
@@ -14,7 +14,7 @@ export type ReadingCarouselProps = {
     startFromIndex: number;
     width?: number;
     height?: number;
-    navigationEvent: (cardTitle: string) => void;
+    navigationEvent?: (index: number) => void;
 };
 
 const _height = (windowWidth / 2) * CAROUSEL_HEIGHT_RATIO;
@@ -24,7 +24,7 @@ const ReadingCarousel = ({
     startFromIndex = 0,
     width = windowWidth,
     navigationEvent
-}) => {
+}: ReadingCarouselProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const CARD_WIDTH = width / 3;
     const OFFSET = (width - width / 2) / 2;
@@ -38,7 +38,9 @@ const ReadingCarousel = ({
 
     const selectCard = index => {
         setCurrentIndex(index);
-        navigationEvent(index);
+        if (navigationEvent) {
+            navigationEvent(index);
+        }
     };
 
     return (

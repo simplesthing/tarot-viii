@@ -14,8 +14,6 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "outDir": "./dist",
-    "sourceMap": true,
     "strictNullChecks": true,
     "paths": {
       "@tarot-viii/*": [
@@ -26,6 +24,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "*.d.ts"
+    "*.d.ts",
+    "*.js"
   ]
 }

@@ -2,7 +2,8 @@ import { Background, Deal } from '@tarot-viii/ui';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import QuickNav from 'src/navigation/quickNav';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { useFirestore } from '../../hooks';
@@ -11,7 +12,7 @@ import { useRouter } from 'solito/router';
 const ReadingScreen = ({ navigation, route }) => {
     const [id] = useState(route?.params?.id);
     const [reading, setReading] = useState([]);
-    const [data, setData] = useState();
+    const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData | void>();
     const { push } = useRouter();
 
     const { fetchReadingById } = useFirestore();

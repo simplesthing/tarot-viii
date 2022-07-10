@@ -13,6 +13,7 @@
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-knobs": "^6.3.1",
+    "@storybook/addon-react-native-web": "^0.0.18",
     "@storybook/builder-webpack5": "^6.5.9",
     "@storybook/manager-webpack5": "^6.5.9",
     "@storybook/react": "^6.5.9",
@@ -20,7 +21,6 @@
     "babel-loader": "^8.2.3"
   },
   "dependencies": {
-    "@storybook/addon-react-native-web": "^0.0.18",
     "firebase": "^9.6.1"
   }
 }

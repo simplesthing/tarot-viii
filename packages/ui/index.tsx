@@ -15,3 +15,4 @@ export { default as useInstructions } from './src/hooks/use-instructions';
 export { default as useReading } from './src/hooks/use-reading';
 // functions
 export { Percentage, Value } from './src/theme/fonts';
+// theme

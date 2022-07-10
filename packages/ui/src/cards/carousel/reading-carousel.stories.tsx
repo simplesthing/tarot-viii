@@ -2,6 +2,7 @@ import ReadingCarousel, { ReadingCarouselProps } from './reading-carousel';
 import { StyleSheet, View } from 'react-native';
 
 import React from 'react';
+import { ReadingDoc } from '../../../types/firestore';
 import { default as colors } from '../../theme/colors';
 import { default as reading } from '../../../assets/data/reading.json';
 
@@ -34,7 +35,11 @@ const data = {
 
 export const Default = (args: ReadingCarouselProps) => (
     <View style={styles.container}>
-        <ReadingCarousel data={data} startFromIndex={3} width={width} />
+        <ReadingCarousel
+            data={data as unknown as ReadingDoc}
+            startFromIndex={3}
+            width={width}
+        />
     </View>
 );
 

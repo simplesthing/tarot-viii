@@ -1,24 +1,27 @@
 {
   "name": "@tarot-viii/next",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
-  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "postinstall": "cd ../.. && yarn patch-package"
   },
   "dependencies": {
-    "app": "*",
-    "firebase": "^9.4.0",
-    "next": "^11.0.0",
-    "next-images": "^1.8.2",
-    "nextjs-fonts": "^0.22.0",
-    "setimmediate": "^1.0.5",
-    "ui": "*"
+    "firebase": "^9.9.0",
+    "next": "12.2.2",
+    "next-fonts": "^1.5.1",
+    "next-images": "^1.8.4",
+    "react": "^17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/node": "18.0.3",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2",
+    "eslint-config-next": "12.2.2",
     "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",
     "next-images": "^1.8.4",

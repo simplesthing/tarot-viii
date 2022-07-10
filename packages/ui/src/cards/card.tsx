@@ -47,8 +47,6 @@ export default function Card({
         <Image
             style={[styles.cardImage, { width: _width, height: _height }]}
             source={require('../../assets/images/cards/smith-waite/deck.jpg')}
-            width={_width}
-            height={_height}
         />
     );
 

@@ -4,13 +4,13 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { PATHS, ROUTES } from './config';
 import React, { useEffect, useState } from 'react';
 
-import AccountScreen from 'src/screens/account/account';
+import AccountScreen from '../screens/account/account';
 import CloseScreen from './close-screen';
 import ForgotPasswordScreen from '../screens/account/forgot-password';
-import HistoryScreen from 'src/screens/readings/history';
+import HistoryScreen from '../screens/readings/history';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/account/login';
-import NewReading from 'src/screens/readings/new';
+import NewReading from '../screens/readings/new';
 import PasswordReset from '../screens/account/password-reset';
 import ReadingDetailScreen from '../screens/readings/reading';
 import ReadingScreen from '../screens/readings/spread';
