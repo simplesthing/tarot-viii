@@ -3,7 +3,6 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": ".",
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "isolatedModules": true,
@@ -22,9 +21,6 @@
     }
   },
   "exclude": [
-    "node_modules",
-    "dist",
-    "*.d.ts",
-    "*.js"
+    "node_modules"
   ]
 }

@@ -2,7 +2,7 @@ import '../../styles/globals.css';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import theme from '@tarot-viii/ui/src/theme';
+import { theme } from '@tarot-viii/ui';
 
 export default function App({ Component, pageProps }: AppProps) {
     console.log(theme);

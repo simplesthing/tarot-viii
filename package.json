@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "android": "yarn workspace @tarot-viii/expo android",
-    "build:types": "tsc -b",
+    "build:types": "yarn workspace @tarot-viii/ui build",
     "bump:major": "git fetch --all && npx standard-version@next --release-as major",
     "bump:minor": "git fetch --all && npx standard-version@next --release-as minor",
     "bump:pre": "git fetch --all && npx standard-version@next --prerelease ",

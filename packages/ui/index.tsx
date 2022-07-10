@@ -16,3 +16,4 @@ export { default as useReading } from './src/hooks/use-reading';
 // functions
 export { Percentage, Value } from './src/theme/fonts';
 // theme
+export { default as theme } from './src/theme';

@@ -1,11 +1,11 @@
 {
   "name": "@tarot-viii/ui",
-  "main": "index.tsx",
   "version": "0.0.2",
-  "private": true,
   "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "build": "tsc -b"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

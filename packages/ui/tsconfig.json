@@ -12,9 +12,12 @@
   },
   "include": [
     "src/**/*",
-    "index.tsx"
+    "index.tsx",
+    "*.ts",
+    "assets/**/*.json",
+    "types/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }
