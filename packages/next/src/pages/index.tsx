@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 import { logEvent } from 'firebase/analytics';
 import useFirebase from '../hooks/use-firebase';
-import { useRouting } from 'expo-next-react-navigation';
 
 const Start = dynamic(() => import('@tarot-viii/app/reading/start'), {
     ssr: false

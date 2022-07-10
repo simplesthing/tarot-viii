@@ -21,10 +21,10 @@ export default function CardDetail({ card, height, width }: CardDetailProps) {
     return (
         <ScrollView ref={svRef}>
             <View style={styles.lower}>
-                <Text h2 h2Style={styles.h2Style}>
-                    {card.displayName}
+                <Text h3 style={styles.h2Style}>
+                    {card.cardName}
                 </Text>
-
+                <Text style={styles.exalted}>{card.cardTitle}</Text>
                 <Text style={styles.keywords}>{card.keywords}</Text>
                 <Text style={styles.base}>{card.cardReading}</Text>
                 <Text style={styles.base}>{card.positionDescription}</Text>
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     base: {
         fontSize: Value(16),
         marginVertical: 8
+    },
+    position: {
+        fontSize: Value(14)
     },
     keywords: {
         fontSize: Value(16),

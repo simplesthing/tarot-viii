@@ -2,21 +2,11 @@
 
 React, React Native and React Native Web shared component monorepo.
 
-[Expo](https://docs.expo.dev/versions/latest/) manages the mobile app
+[Expo](https://docs.expo.dev/versions/latest/) manages the mobile app using Expo tools for distribution
 
-[Next](https://nextjs.org/docs) manages the web app
+[Next](https://nextjs.org/docs) manages the web app using Vercel tools for distribution
 
 [Storybook UI](https://storybook.js.org/docs/react/api/csf) shared component library
-
-[expo-next-react-navigation](https://github.com/nandorojo/expo-next-react-navigation) shared routing
-
--   React Native for iOS and Android
-    -   Bare Expo 43
--   React Native for Web
-    -   Next.js 11
--   Storybook UI
--   TypeScript
--   Babel config that works for Expo and Next.js in a monorepo
 
 # Architecture
 
@@ -25,12 +15,6 @@ React, React Native and React Native Web shared component monorepo.
 > [Yarn Workspace](https://classic.yarnpkg.com/lang/en/docs/workspaces/) root
 
 -   Project wide babel, tsconfig, eslint and prettier settings and `yarn.lock` ([read](https://valcker.medium.com/configuring-typescript-monorepo-with-eslint-prettier-and-webstorm-61a71f218104))
-
-## App
-
-> Shared _composite_ components
-
--   No packages installed here
 
 ## Expo
 
@@ -52,10 +36,16 @@ React, React Native and React Native Web shared component monorepo.
 
 ## UI
 
-> Shared _atomic_ components
+> React Native UI components
 
 -   Add **storybook-only packages**, as dev dependencies, here
 
 -   Add all your static assets here `/ui/assets/...`
 
 `yarn storybook`
+
+# Copyright
+
+The [Rider Waite](https://sacred-texts.com/tarot/faq.htm#uscopyright) cards used in this application are in the public domain; svg pictorial keys were obtained under [Creative Commons](https://creativecommons.org/publicdomain/zero/1.0/) open source licensing.
+
+The code in this repository is open for personal use but not for distributing.

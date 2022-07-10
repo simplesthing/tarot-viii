@@ -16,14 +16,13 @@ const ReadingDetailScreen = ({ navigation, route }) => {
     };
 
     const index = startFrom ? parseInt(startFrom) : 0;
-    console.log(jsonData.reading[index].cardName);
 
     useEffect(() => {
-        navigation.setOptions({ headerTitle: jsonData.reading[index].cardName });
+        navigation.setOptions({ headerTitle: jsonData.reading[index].displayName });
     }, [index]);
 
     const carouselNavEvent = (index: number) => {
-        navigation.setOptions({ headerTitle: jsonData.reading[index].cardName });
+        navigation.setOptions({ headerTitle: jsonData.reading[index].displayName });
     };
 
     return (
