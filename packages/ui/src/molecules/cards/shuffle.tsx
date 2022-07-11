@@ -1,12 +1,12 @@
 import { Dimensions, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Percentage, Value } from '../theme/fonts';
+import { Percentage, Value } from '../../theme/fonts';
 import React, { useState } from 'react';
 
-import { CARD_ARRAY } from './constants';
-import ShuffleCard from './shuffle-card';
-import ShuffleCardWeb from './shuffle-card-web';
-import TheSpread from './the-spread';
-import useInstructions from '../hooks/use-instructions';
+import { CARD_ARRAY } from '../../atoms/cards/constants';
+import ShuffleCard from '../../atoms/cards/shuffle-card';
+import ShuffleCardWeb from '../../atoms/cards/shuffle-card-web';
+import TheSpread from '../../atoms/cards/the-spread';
+import useInstructions from '../../hooks/use-instructions';
 
 export type ShuffleProps = {
     done: () => void;

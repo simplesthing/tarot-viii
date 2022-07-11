@@ -1,10 +1,8 @@
+import Deck, { DeckProps } from './deck';
 import { StyleSheet, View } from 'react-native';
 
-import Deal from '../cards/deal';
 import React from 'react';
-import { ReadingProp } from '../../types/';
-import { default as colors } from '../theme/colors';
-import readingJson from '../../assets/data/reading.json';
+import { default as colors } from '../../theme/colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,8 +14,9 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: 'cards/deal',
-    component: Deal,
+    title: 'atoms/deck',
+    component: Deck,
+    argTypes: { onPress: { action: 'pressed' } },
     parameters: {
         backgrounds: {
             default: 'default',
@@ -31,8 +30,8 @@ export default {
     }
 };
 
-export const Default = args => (
+export const Default = (args: DeckProps) => (
     <View style={styles.container}>
-        <Deal reading={readingJson as unknown as ReadingProp[]} onPress={() => {}} />
+        <Deck {...args} />
     </View>
 );

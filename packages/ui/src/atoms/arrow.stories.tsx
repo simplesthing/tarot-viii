@@ -1,6 +1,6 @@
-import Deck, { DeckProps } from '../cards/deck';
 import { StyleSheet, View } from 'react-native';
 
+import Arrow from './arrow';
 import React from 'react';
 import { default as colors } from '../theme/colors';
 
@@ -14,9 +14,8 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: 'cards/deck',
-    component: Deck,
-    argTypes: { onPress: { action: 'pressed' } },
+    title: 'atoms/arrow',
+    component: Arrow,
     parameters: {
         backgrounds: {
             default: 'default',
@@ -30,8 +29,8 @@ export default {
     }
 };
 
-export const Default = (args: DeckProps) => (
+export const Default = args => (
     <View style={styles.container}>
-        <Deck {...args} />
+        <Arrow {...args} />
     </View>
 );

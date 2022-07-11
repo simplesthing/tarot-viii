@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: 'account/avatarButton',
+    title: 'atoms/avatarButton',
     component: AvatarButton,
     argTypes: {
         onPress: { action: 'avatar pressed' },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import Card from '../cards/card';
+import Card from '../../atoms/cards/card';
 import { useEffect } from 'react';
 import { vmin } from 'react-native-expo-viewport-units';
 

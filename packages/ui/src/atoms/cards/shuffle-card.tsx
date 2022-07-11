@@ -8,7 +8,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 import React, { useEffect } from 'react';
 import { vh, vmin } from 'react-native-expo-viewport-units';
 
-import Card from '../cards/card';
+import Card from './card';
 
 const viewWidth = Dimensions.get('window').width;
 const viewHeight = Dimensions.get('window').height;

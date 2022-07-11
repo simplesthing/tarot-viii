@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
 import { CAROUSEL_HEIGHT_RATIO } from './constants';
-import Card from '../card';
+import Card from '../../atoms/cards/card';
 import React from 'react';
 import { ReadingProp } from '@tarot-viii/ui/types';
 

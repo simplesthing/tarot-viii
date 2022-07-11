@@ -2,7 +2,7 @@ import { Button, Input, Text } from '@rneui/themed';
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-import { default as Colors } from '../theme/colors';
+import { default as Colors } from '../../theme/colors';
 
 type EmailPasswordProps = {
     error: {

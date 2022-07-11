@@ -2,7 +2,7 @@ import { Button, Input } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { default as Colors } from '../theme/colors';
+import { default as Colors } from '../../theme/colors';
 
 const ForgotPassword = ({ resetPassword, error }) => {
     const [emailAddress, onChangeEmailAddress] = React.useState('');

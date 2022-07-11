@@ -1,7 +1,7 @@
 import { Dimensions, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 import React from 'react';
-import { default as colors } from '../theme/colors';
+import { default as colors } from '../../theme/colors';
 import { useAssets } from 'expo-asset';
 
 export type DeckProps = {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
 export default function Deck({ onPress }: DeckProps) {
     const [assets] = useAssets([
-        require('../../assets/images/cards/smith-waite/deck.jpg')
+        require('../../../assets/images/cards/smith-waite/deck.jpg')
     ]);
     const img = assets ? (
         <Image style={styles.image} source={{ uri: assets[0].uri }} />

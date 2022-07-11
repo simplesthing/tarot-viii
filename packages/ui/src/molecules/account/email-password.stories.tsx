@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import EmailPassword from './email-password';
 import React from 'react';
-import { default as colors } from '../theme/colors';
+import { default as colors } from '../../theme/colors';
 
 export default {
     title: 'account/emaillPassword',

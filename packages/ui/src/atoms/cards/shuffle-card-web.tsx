@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-import Card from '../cards/card';
+import Card from './card';
 import { vmin } from 'react-native-expo-viewport-units';
 
 const viewWidth = Dimensions.get('window').width;

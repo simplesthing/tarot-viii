@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import DealCard from './deal-card';
+import DealCard from '../../molecules/cards/deal-card';
 import DealCardWeb from './deal-card-web';
 import { Platform } from 'react-native';
 import { ReadingProp } from '@tarot-viii/ui/types';
-import TheSpread from './the-spread';
+import TheSpread from '../../atoms/cards/the-spread';
 
 type DealProps = {
     reading: ReadingProp[];

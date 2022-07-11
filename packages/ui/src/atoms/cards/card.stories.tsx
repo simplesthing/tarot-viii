@@ -9,7 +9,7 @@ const styleProps = {
 };
 
 export default {
-    title: 'cards/card',
+    title: 'atoms/card',
     component: Card,
     args: { cardIndex: 0, face: true, styleProps }
 };
