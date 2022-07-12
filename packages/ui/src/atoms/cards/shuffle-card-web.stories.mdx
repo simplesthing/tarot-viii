@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import ShuffleCardWeb, { ShuffleCardWebProps } from './shuffle-card-web';
+import { default as colors } from '../../theme/colors';
+
+<Meta
+    title="atoms/ShuffleCardWeb"
+    component={ShuffleCardWeb}
+    args={{
+        cardIndex: 21,
+        isShuffling: false,
+        cutCards: () => ({}),
+        cutCardIndex: 10,
+        onPress: () => ({})
+    }}
+    argTypes={{
+        onPress: { action: 'clicked', description: 'event handler for press' }
+    }}
+    decorators={[
+        Story => (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 50
+                }}>
+                <Story />
+            </View>
+        )
+    ]}
+/>
+
+export const Template = args => <ShuffleCardWeb {...args} />;
+
+# ShuffleCardWeb
+
+Card that randomly shuffles its position while isShuffling is true
+
+<Canvas>
+    <Story
+        name="ShuffleCardWeb"
+        parameters={{
+            backgrounds: {
+                default: 'default',
+                values: [{ name: 'default', value: colors.silver_sand.shadow }]
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## ArgsTable
+
+<ArgsTable story="ShuffleCardWeb" />

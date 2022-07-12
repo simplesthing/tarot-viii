@@ -1,0 +1,29 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import AvatarButton from './avatar-button';
+
+<Meta
+    title="atoms/AvatarButton"
+    component={AvatarButton}
+    args={{
+        size: 300,
+        onPress: () => ({})
+    }}
+    argTypes={{
+        onPress: { action: 'clicked', description: 'event handler for press' },
+        size: { description: 'width/height of avatar button' }
+    }}
+/>
+
+export const Template = args => <AvatarButton {...args} />;
+
+# AvatarButton
+
+Randomly chooses an image from flickr api with keyword tarot.
+
+<Canvas>
+    <Story name="AvatarButton">{Template.bind({})}</Story>
+</Canvas>
+
+## ArgsTable
+
+<ArgsTable story="AvatarButton" />

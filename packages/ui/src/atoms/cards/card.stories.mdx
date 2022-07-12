@@ -1,0 +1,36 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Card from './card';
+import { vmin } from 'react-native-expo-viewport-units';
+
+<Meta
+    title="atoms/Card"
+    component={Card}
+    args={{
+        cardIndex: 0,
+        face: true,
+        styleProps: {
+            width: vmin(50),
+            height: vmin(100)
+        }
+    }}
+    argTypes={{
+        cardIndex: { description: 'card index to be shown' },
+        face: { description: 'show the face of the card or the back' },
+        styleProps: { description: 'styling dimension for card' },
+        onPress: { action: 'clicked', description: 'event handler for press' }
+    }}
+/>
+
+export const Template = args => <Card {...args} />;
+
+# Card
+
+Display the card for the index passed in props, face shown or hidden.
+
+<Canvas>
+    <Story name="Card">{Template.bind({})}</Story>
+</Canvas>
+
+## ArgsTable
+
+<ArgsTable story="Card" />
