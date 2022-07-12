@@ -1,0 +1,55 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Shuffle from './shuffle';
+import { default as colors } from '../../theme/colors';
+import { View } from 'react-native';
+
+<Meta
+    title="molecules/Shuffle"
+    component={Shuffle}
+    args={{
+        cutDeck: () => ({}),
+        shuffleDeck: () => ({}),
+        done: () => ({})
+    }}
+    argTypes={{
+        cutDeck: { action: 'clicked', description: 'event handler for press' },
+        shuffleDeck: { action: 'clicked', description: 'event handler for press' },
+        done: { action: 'clicked', description: 'event handler for press' }
+    }}
+    decorators={[
+        Story => (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 50
+                }}>
+                <Story />
+            </View>
+        )
+    ]}
+/>
+
+export const Template = args => <Shuffle {...args} />;
+
+# Shuffle
+
+Card that deals a reading
+
+<Canvas>
+    <Story
+        name="Shuffle"
+        parameters={{
+            backgrounds: {
+                default: 'default',
+                values: [{ name: 'default', value: colors.silver_sand.shadow }]
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## ArgsTable
+
+<ArgsTable story="Shuffle" />

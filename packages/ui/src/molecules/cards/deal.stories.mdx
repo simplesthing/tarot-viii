@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Deal from './deal';
+import { default as colors } from '../../theme/colors';
+import { View } from 'react-native';
+import reading from '../../../assets/data/mockReading';
+
+<Meta
+    title="molecules/Deal"
+    component={Deal}
+    args={{
+        reading,
+        dealt: false,
+        onPress: index => ({})
+    }}
+    argTypes={{
+        onPress: { action: 'clicked', description: 'event handler for press' }
+    }}
+    decorators={[
+        Story => (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 50
+                }}>
+                <Story />
+            </View>
+        )
+    ]}
+/>
+
+export const Template = args => <Deal {...args} />;
+
+# Deal
+
+Card that deals a reading
+
+<Canvas>
+    <Story
+        name="Deal"
+        parameters={{
+            backgrounds: {
+                default: 'default',
+                values: [{ name: 'default', value: colors.silver_sand.shadow }]
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## ArgsTable
+
+<ArgsTable story="Deal" />

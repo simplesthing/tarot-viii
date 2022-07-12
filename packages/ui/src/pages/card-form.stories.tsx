@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: 'admin/cardForm',
+    title: 'pages/cardForm',
     component: CardForm,
     args: { cardName: 'Two of Coins' }
 };

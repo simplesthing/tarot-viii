@@ -6,5 +6,5 @@ module.exports = {
             babelPlugins: ['react-native-reanimated/plugin']
         },
     },],
-    stories: ['../src/atoms/**/*.stories.@(tsx|mdx)', '../src/atoms/cards/**/*.stories.@(tsx|mdx)']
+    stories: ['../src/**/*.stories.@(tsx|mdx)']
 };

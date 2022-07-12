@@ -7,12 +7,11 @@ import Animated, {
 import React, { useEffect, useState } from 'react';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
-import Card from './card';
-import { SPREAD } from './constants';
+import Card from '../../atoms/cards/card';
+import { SPREAD } from '../../atoms/cards/constants';
 import { StyleSheet } from 'react-native';
 
 export type DealCardProps = {
-    card: any;
     cardIndex: number;
     dealt?: boolean;
     spreadIndex: number;
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
 });
 
 export default function DealCard({
-    card,
     cardIndex,
     spreadIndex,
     reversed,
