@@ -1,0 +1,28 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import ShuffleDeal from './shuffle-deal';
+import celtic_cross from '../../../assets/data/mockSpread';
+import reading from '../../../assets/data/mockReading';
+
+<Meta
+    title="organisms/ShuffleDeal"
+    component={ShuffleDeal}
+    args={{
+        spread: celtic_cross,
+        updateReading: reading => ({}),
+        getCards: index => reading,
+        openReading: index => ({})
+    }}
+    argTypes={{
+        openReading: { action: 'clicked', description: 'event handler for press' }
+    }}
+/>
+
+export const Template = args => <ShuffleDeal {...args} />;
+
+# ShuffleDeal
+
+Shuffle deal
+
+<Canvas>
+    <Story name="ShuffleDeal">{Template.bind({})}</Story>
+</Canvas>

@@ -13,6 +13,7 @@
     "eas-build-pre-install": "echo $GOOGLE_SERVICES_BASE64 | base64 --decode > ./android/app/google-services.json && echo $GOOGLE_SERVICES_INFO_BASE64 | base64 --decode > ./ios/GoogleService-Info.plist"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-firebase/analytics": "^14.0.1",
     "@react-native-firebase/app": "^14.0.1",
     "@react-native-firebase/auth": "^14.0.1",
@@ -22,7 +23,6 @@
     "@react-navigation/native-stack": "^6.6.2",
     "@rneui/base": "^4.0.0-rc.5",
     "@rneui/themed": "^4.0.0-rc.5",
-    "@tarot-viii/app": "*",
     "@tarot-viii/ui": "*",
     "expo": "~45.0.0",
     "expo-linear-gradient": "^11.3.0",

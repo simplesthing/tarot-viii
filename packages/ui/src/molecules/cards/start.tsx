@@ -1,8 +1,11 @@
-import { Arrow, Background, Colors, Deck } from '@tarot-viii/ui';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 
+import Arrow from '../../atoms/arrow';
+import Background from '../../theme/background';
+import Deck from '../../atoms/cards/deck';
 import React from 'react';
 import { Text } from 'react-native';
+import colors from '../../theme/colors';
 
 type StartProps = {
     onStart: () => void;
@@ -55,7 +58,7 @@ const Start = ({ onStart }: StartProps) => {
                     <Arrow
                         style={styles.arrow}
                         strokeWidth="4"
-                        fill={Colors.smoky_black.base}
+                        fill={colors.smoky_black.base}
                     />
                     <Text style={styles.text}>Tap tarot card to start</Text>
                 </View>

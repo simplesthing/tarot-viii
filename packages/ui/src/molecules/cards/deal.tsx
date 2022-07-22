@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import DealCard from '../../molecules/cards/deal-card';
-import DealCardWeb from './deal-card-web';
+import DealCard from '../../atoms/cards/deal-card';
+import DealCardWeb from '../../atoms/cards/deal-card-web';
 import { Platform } from 'react-native';
 import { ReadingProp } from '@tarot-viii/ui/types';
 import TheSpread from '../../atoms/cards/the-spread';
@@ -48,7 +48,6 @@ export default function Deal({ reading, dealt = false, onPress }: DealProps) {
                     ) : (
                         <DealCard
                             key={index}
-                            card={card}
                             cardIndex={card?.index}
                             spreadIndex={index}
                             reversed={card.reversed}

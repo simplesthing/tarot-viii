@@ -15,7 +15,8 @@
     "index.tsx",
     "*.ts",
     "assets/**/*.json",
-    "types/**/*"
+    "types/**/*",
+    "assets/data/mockSpread.js"
   ],
   "exclude": [
     "node_modules",

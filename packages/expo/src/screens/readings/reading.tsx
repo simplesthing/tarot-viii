@@ -18,11 +18,11 @@ const ReadingDetailScreen = ({ navigation, route }) => {
     const index = startFrom ? parseInt(startFrom) : 0;
 
     useEffect(() => {
-        navigation.setOptions({ headerTitle: jsonData.reading[index].displayName });
+        navigation.setOptions({ headerTitle: jsonData[index].displayName });
     }, [index]);
 
     const carouselNavEvent = (index: number) => {
-        navigation.setOptions({ headerTitle: jsonData.reading[index].displayName });
+        navigation.setOptions({ headerTitle: jsonData[index].displayName });
     };
 
     return (

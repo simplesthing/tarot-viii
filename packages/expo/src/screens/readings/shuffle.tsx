@@ -5,7 +5,7 @@ import { useAuth, useFirestore } from '../../hooks';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
-import { ShuffleDeal } from '@tarot-viii/app';
+import { ShuffleDeal } from '@tarot-viii/ui';
 import { useRouter } from 'solito/router';
 
 const ShuffleDealScreen = ({ navigation }) => {

@@ -7,8 +7,8 @@ import Animated, {
 import React, { useEffect, useState } from 'react';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
-import Card from '../../atoms/cards/card';
-import { SPREAD } from '../../atoms/cards/constants';
+import Card from './card';
+import { SPREAD } from './constants';
 import { StyleSheet } from 'react-native';
 
 export type DealCardProps = {

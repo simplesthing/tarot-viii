@@ -1,7 +1,9 @@
 import { Avatar, Button, Text } from '@rneui/themed';
-import { Colors, Value } from '@tarot-viii/ui';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
+
+import { Value } from '../../theme/fonts';
+import colors from '../../theme/colors';
 
 type AccountProps = {
     username: string;
@@ -85,12 +87,12 @@ const styles = StyleSheet.create({
         lineHeight: Value(20),
         fontStyle: 'italic',
         fontWeight: 'normal',
-        color: Colors.smoky_black.base
+        color: colors.smoky_black.base
     },
     password: {
         fontSize: Value(18),
         fontWeight: '600',
-        color: Colors.smoky_black.accent2
+        color: colors.smoky_black.accent2
     },
     passwordButton: {},
     logoutButtonWrapper: {

@@ -1,26 +1,25 @@
 import { Background, Deal } from '@tarot-viii/ui';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { useEffect, useState } from 'react';
+import { useFirestore, useReading } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
-import { useFirestore } from '../../hooks';
 import { useRouter } from 'solito/router';
 
 const ReadingScreen = ({ navigation, route }) => {
     const [id] = useState(route?.params?.id);
     const [reading, setReading] = useState([]);
-    const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData | void>();
     const { push } = useRouter();
 
     const { fetchReadingById } = useFirestore();
 
     useEffect(() => {
         fetchReadingById(id).then(data => {
+            console.log(data);
             setReading(data?.reading);
-            setData(data);
         });
     }, [id]);
 
@@ -28,7 +27,7 @@ const ReadingScreen = ({ navigation, route }) => {
         push({
             pathname: ROUTES.screens.READING.path,
             query: {
-                data: JSON.stringify(data),
+                data: JSON.stringify(reading),
                 startFrom: spreadIndex
             }
         });

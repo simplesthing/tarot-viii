@@ -23,7 +23,6 @@ export default function Shuffle({ done, cutDeck, shuffleDeck }) {
     const [cutCount, setCutCount] = useState(0);
     const [cutCardIndex, setCutCardIndex] = useState(0);
     const { instruction, next } = useInstructions();
-
     const cutCards = (selectedCardIndex: number) => {
         cutDeck(selectedCardIndex);
         setCutCardIndex(selectedCardIndex);

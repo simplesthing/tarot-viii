@@ -1,7 +1,6 @@
+import { Account, Background } from '@tarot-viii/ui';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-import { Account } from '@tarot-viii/app';
-import { Background } from '@tarot-viii/ui';
 import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';

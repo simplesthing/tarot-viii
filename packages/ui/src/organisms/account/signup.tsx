@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { EmailPassword } from '@tarot-viii/ui';
+import EmailPassword from '../../molecules/account/email-password';
 import React from 'react';
 
 type SignupProps = {

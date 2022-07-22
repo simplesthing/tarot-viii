@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import QuickNav from '../../navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
-import { Start } from '@tarot-viii/app';
+import { Start } from '@tarot-viii/ui';
 import analytics from '@react-native-firebase/analytics';
 import { useRouter } from 'solito/router';
 

@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { theme } from '@tarot-viii/ui';
 
 export default function App({ Component, pageProps }: AppProps) {
-    console.log(theme);
     return (
         <>
             <Head>

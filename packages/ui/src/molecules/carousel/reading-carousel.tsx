@@ -1,16 +1,16 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { ReadingDoc, ReadingProp } from '@tarot-viii/ui/types';
 
 import { CAROUSEL_HEIGHT_RATIO } from './constants';
 import CardDetail from './card-details';
 import ReadCard from './read-card';
+import { ReadingProp } from '@tarot-viii/ui/types';
 import SideSwipe from 'react-native-sideswipe';
 
 const { width: windowWidth } = Dimensions.get('window');
 
 export type ReadingCarouselProps = {
-    data: ReadingDoc;
+    data: ReadingProp[];
     startFromIndex: number;
     width?: number;
     height?: number;
@@ -45,10 +45,10 @@ const ReadingCarousel = ({
 
     return (
         <View style={styles.container}>
-            {data.reading && (
+            {data && (
                 <>
                     <SideSwipe
-                        data={data.reading}
+                        data={data}
                         index={currentIndex}
                         style={[styles.fill, { width, height: width }]}
                         itemWidth={CARD_WIDTH}
@@ -76,7 +76,7 @@ const ReadingCarousel = ({
                     />
                     <View style={styles.spacer} />
                     <CardDetail
-                        card={data.reading[currentIndex]}
+                        card={data[currentIndex]}
                         height={(width / 2) * 1.55}
                         width={width}
                     />

@@ -1,8 +1,9 @@
-import { Colors, EmailPassword } from '@tarot-viii/ui';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@rneui/themed';
+import EmailPassword from '../../molecules/account/email-password';
 import React from 'react';
+import colors from '../../theme/colors';
 
 type LoginProps = {
     signin: ({ email, password }) => void;
@@ -79,13 +80,13 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     signupButton: {
-        backgroundColor: Colors.spanish_gray.shadow
+        backgroundColor: colors.spanish_gray.shadow
     },
     signupTitleStyle: {
         fontWeight: '700',
-        color: Colors.smoky_black.base
+        color: colors.smoky_black.base
     },
     secondaryBtn: {
-        backgroundColor: Colors.spanish_gray.base
+        backgroundColor: colors.spanish_gray.base
     }
 });

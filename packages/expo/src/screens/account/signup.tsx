@@ -1,5 +1,5 @@
 import React from 'react';
-import { Signup } from '@tarot-viii/app';
+import { Signup } from '@tarot-viii/ui';
 import { useAuth } from '../../hooks';
 
 const SignupScreen = () => {

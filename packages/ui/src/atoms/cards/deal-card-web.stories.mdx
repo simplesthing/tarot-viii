@@ -1,10 +1,10 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import DealCard from './deal-card';
+import DealCardWeb from './deal-card-web';
 import { default as colors } from '../../theme/colors';
 
 <Meta
-    title="molecules/DealCard"
-    component={DealCard}
+    title="atoms/DealCardWeb"
+    component={DealCardWeb}
     args={{
         cardIndex: 21,
         spreadIndex: 1,
@@ -30,15 +30,15 @@ import { default as colors } from '../../theme/colors';
     ]}
 />
 
-export const Template = args => <DealCard {...args} />;
+export const Template = args => <DealCardWeb {...args} />;
 
-# ShuffleCard
+# DealCardWeb
 
 Card that randomly shuffles its position while isShuffling is true
 
 <Canvas>
     <Story
-        name="DealCard"
+        name="DealCardWeb"
         parameters={{
             backgrounds: {
                 default: 'default',
@@ -51,4 +51,4 @@ Card that randomly shuffles its position while isShuffling is true
 
 ## ArgsTable
 
-<ArgsTable story="DealCard" />
+<ArgsTable story="DealCardWeb" />

@@ -16,7 +16,6 @@
     "typescript": "^4.4.4"
   },
   "workspaces": [
-    "packages/app",
     "packages/expo",
     "packages/next",
     "packages/ui"

@@ -1,14 +1,12 @@
-import {
-    Background,
-    CARD_NAME_INDEXES,
-    Deal,
-    ShuffleAnimation,
-    useReading
-} from '@tarot-viii/ui';
 import React, { useEffect, useState } from 'react';
 
+import Background from '../../theme/background';
+import { CARD_NAME_INDEXES } from '../../atoms/cards/constants';
+import Deal from '../../molecules/cards/deal';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { ReadingProp } from '@tarot-viii/ui/types';
+import { ReadingProp } from '../../../types/firestore';
+import { default as ShuffleAnimation } from '../../molecules/cards/shuffle';
+import useReading from '../../hooks/use-reading';
 
 type ShuffleDealProps = {
     cards?: Record<string, string>[];
