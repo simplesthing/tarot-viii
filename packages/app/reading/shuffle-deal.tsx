@@ -36,10 +36,11 @@ const ShuffleDeal = ({
     useEffect(() => {
         if (!!shuffleDone) {
             const reading = deck.slice(0, 10).map(index => CARD_NAME_INDEXES[index]);
-            updateReading(reading);
+
             getCards(reading).then(cards => {
                 const d = deal({ cards, spread });
                 setDealt(d);
+                updateReading(d.map(c => ({ name: c.cardName, reversed: c.reversed })));
             });
         }
     }, [shuffleDone]);

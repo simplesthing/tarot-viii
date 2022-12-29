@@ -25,9 +25,9 @@ export default function CardDetail({ card, height, width }: CardDetailProps) {
                     {card.displayName}
                 </Text>
 
-                <Text style={styles.keywords}>{card.keywords}</Text>
-                <Text style={styles.base}>{card.cardReading}</Text>
                 <Text style={styles.base}>{card.positionDescription}</Text>
+                <Text style={styles.base}>{card.cardReading}</Text>
+                <Text style={styles.keywords}>{card.keywords}</Text>
                 <Text style={styles.base}>{card.cardDescription}</Text>
             </View>
         </ScrollView>

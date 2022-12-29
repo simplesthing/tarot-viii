@@ -14,7 +14,7 @@ export type CardProps = {
 const width = vmin(9);
 const height = vmin(18);
 
-const styles = StyleSheet.create({
+export const cardStyles = StyleSheet.create({
     card: {
         position: 'absolute',
         backgroundColor: 'white',
@@ -45,17 +45,15 @@ export default function Card({
         svgImage
     ) : (
         <Image
-            style={[styles.cardImage, { width: _width, height: _height }]}
+            style={[cardStyles.cardImage, { width: _width, height: _height }]}
             source={require('../../assets/images/cards/smith-waite/deck.jpg')}
-            width={_width}
-            height={_height}
         />
     );
 
     const cb = onPress ? onPress : () => ({});
 
     return (
-        <TouchableOpacity style={[styles.card, styleProps]} onPress={cb}>
+        <TouchableOpacity style={[cardStyles.card, styleProps]} onPress={cb}>
             {cardImage}
         </TouchableOpacity>
     );
