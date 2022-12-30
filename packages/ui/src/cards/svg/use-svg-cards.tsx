@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Arcana0Fool,
     Arcana10Wheel,
@@ -22,7 +21,7 @@ import {
     Arcana7Chariot,
     Arcana8Strength,
     Arcana9Hermit
-    } from './major-arcana';
+} from './major-arcana';
 import {
     Coin1,
     Coin10,
@@ -38,7 +37,7 @@ import {
     CoinKnight,
     CoinPage,
     CoinQueen
-    } from './coins';
+} from './coins';
 import {
     Cup1,
     Cup10,
@@ -54,7 +53,7 @@ import {
     CupKnight,
     CupPage,
     CupQueen
-    } from './cups';
+} from './cups';
 import {
     Sword1,
     Sword10,
@@ -70,7 +69,7 @@ import {
     SwordKnight,
     SwordPage,
     SwordQueen
-    } from './swords';
+} from './swords';
 import {
     Wand1,
     Wand10,
@@ -86,8 +85,9 @@ import {
     WandKnight,
     WandPage,
     WandQueen
-    } from './wands';
+} from './wands';
 
+import React from 'react';
 
 const useSvgCards = (card: number, props: any) => {
     var comp;
