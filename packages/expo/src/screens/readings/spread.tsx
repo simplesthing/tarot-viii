@@ -1,6 +1,5 @@
 import { Background, Deal } from '@tarot-viii/ui';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { useEffect, useState } from 'react';
 
 import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
@@ -10,7 +9,6 @@ import { useRouter } from 'solito/router';
 
 const ReadingScreen = ({ navigation, route }) => {
     const { dealer, cardMeanings } = useDealer();
-
     const id = route?.params?.id;
     dealer(id);
 

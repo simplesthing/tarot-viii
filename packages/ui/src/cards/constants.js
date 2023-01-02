@@ -96,7 +96,7 @@ export const CARD_NAME_INDEXES = [
 
 export const COLLECTIONS = {
     USER: 'users',
-    READING: 'reading_history',
+    READING: 'history',
     DECK: 'cards',
     SPREAD: 'spreads'
 };

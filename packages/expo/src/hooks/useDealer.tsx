@@ -18,8 +18,8 @@ const useDealer = () => {
         fetch();
     }, []);
 
-    const getCards = async readingIndexes => {
-        return fetchCardsInSpread(readingIndexes).then(c => {
+    const getCards = async (readingIndexes, reversals) => {
+        return fetchCardsInSpread(readingIndexes, reversals).then(c => {
             return c;
         });
     };
@@ -28,7 +28,7 @@ const useDealer = () => {
         if (id) {
             fetchReadingById(id).then(data => {
                 if (data) {
-                    getCards(data.reading).then(cards => {
+                    getCards(data.reading, data.reversals).then(cards => {
                         const d = deal({ cards, spread });
                         setCardMeanings(d);
                     });

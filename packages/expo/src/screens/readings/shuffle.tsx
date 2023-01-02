@@ -41,15 +41,15 @@ const ShuffleDealScreen = ({ navigation }) => {
         }
     }, [user]);
 
-    const getCards = async readingIndexes => {
-        return fetchCardsInSpread(readingIndexes).then(c => {
+    const getCards = async (readingIndexes, reversals) => {
+        return fetchCardsInSpread(readingIndexes, reversals).then(c => {
             return c;
         });
     };
 
-    const updateReadingDoc = reading => {
-        if (user?.uid && documentId && reading) {
-            updateReading(documentId, reading);
+    const updateReadingDoc = (reading, reversals) => {
+        if (user?.uid && documentId && reading && reversals) {
+            updateReading(documentId, reading, reversals);
             dealer(documentId);
         }
     };
@@ -72,7 +72,7 @@ const ShuffleDealScreen = ({ navigation }) => {
             <ShuffleDeal
                 getCards={getCards}
                 spread={spread}
-                updateReading={updateReadingDoc}
+                addDealtReading={updateReadingDoc}
                 openReading={openReading}
             />
             <QuickNav navigationEvent={quickNavEvent} />
