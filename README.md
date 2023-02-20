@@ -1,6 +1,8 @@
 # Tarot VIII
 
-React Native monorepo.
+React Native + Storybook monorepo.
+
+_node 16.15.1_
 
 [Expo](https://docs.expo.dev/versions/latest/) manages the mobile app using Expo tools for distribution
 
@@ -42,10 +44,4 @@ The code in this repository is open for personal use but not for distributing.
 
 ## DEPRECATED
 
--   Web app from RN parts using next is not being maintained at this time.
-
--   Mobile Android app is not being maintained at this time.
-
-Holding focus on the ios app keeping it up to date and coming back to web and Android when there is a reason to do so.
-
-[Next](https://nextjs.org/docs) manages the web app using Vercel tools for distribution
+-   Mobile Android app and Web app are not being maintained at this time.
