@@ -1,8 +1,11 @@
-import '../../styles/globals.css';
+import 'setimmediate';
 
-import type { AppProps } from 'next/app';
+import { ThemeProvider, createTheme } from '@rneui/themed';
+
+import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { theme } from '@tarot-viii/ui';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import theme from '@tarot-viii/ui/src/theme';
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -16,8 +19,13 @@ export default function App({ Component, pageProps }: AppProps) {
                     name="viewport"
                 />
             </Head>
-
-            <Component {...pageProps} />
+            <ThemeProvider theme={themed}>
+                <SafeAreaProvider>
+                    <Component {...pageProps} />
+                </SafeAreaProvider>
+            </ThemeProvider>
         </>
     );
 }
+
+const themed = createTheme(theme);

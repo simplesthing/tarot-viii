@@ -1,10 +1,8 @@
 # Tarot VIII
 
-React, React Native and React Native Web shared component monorepo.
+React Native monorepo.
 
 [Expo](https://docs.expo.dev/versions/latest/) manages the mobile app using Expo tools for distribution
-
-[Next](https://nextjs.org/docs) manages the web app using Vercel tools for distribution
 
 [Storybook UI](https://storybook.js.org/docs/react/api/csf) shared component library
 
@@ -24,15 +22,7 @@ React, React Native and React Native Web shared component monorepo.
 
 `yarn start`
 
-`yarn ios` or `yarn android` in separate process
-
-## Next.js
-
-> Web app components only
-
--   Add your **web-only packages** here
-
-`yarn next`
+`yarn ios`
 
 ## UI
 
@@ -49,3 +39,13 @@ React, React Native and React Native Web shared component monorepo.
 The [Rider Waite](https://sacred-texts.com/tarot/faq.htm#uscopyright) cards used in this application are in the public domain; svg pictorial keys were obtained under [Creative Commons](https://creativecommons.org/publicdomain/zero/1.0/) open source licensing.
 
 The code in this repository is open for personal use but not for distributing.
+
+## DEPRECATED
+
+-   Web app from RN parts using next is not being maintained at this time.
+
+-   Mobile Android app is not being maintained at this time.
+
+Holding focus on the ios app keeping it up to date and coming back to web and Android when there is a reason to do so.
+
+[Next](https://nextjs.org/docs) manages the web app using Vercel tools for distribution

@@ -1,0 +1,123 @@
+{
+    "major": {},
+    "minor": {
+        "coins": {
+            "ace": [
+                "flower garden",
+                "grey sky",
+                "hand from cloud",
+                "large coin",
+                "lush",
+                "mountains",
+                "yonic"
+            ],
+            "two": [
+                "blue sky",
+                "infinity symbol",
+                "juggler",
+                "red clothing",
+                "ships",
+                "uneven footing",
+                "water",
+                "waves"
+            ],
+            "three": "",
+            "four": "",
+            "five": "",
+            "six": "",
+            "seven": "",
+            "eight": "",
+            "nine": "",
+            "ten": "",
+            "page": "",
+            "knight": "",
+            "queen": "",
+            "king": ""
+        },
+        "cups": {
+            "ace": [
+                "eucharist",
+                "golden chalice",
+                "grey sky",
+                "hand from cloud",
+                "imperial cross",
+                "lotus flowers",
+                "overflowing",
+                "half a hexagram",
+                "yod",
+                "white dove",
+                "yonic"
+            ],
+            "two": [
+                "blue sky",
+                "caduceus",
+                "rolling hills",
+                "union of two",
+                "winged lion"
+            ],
+            "three": "",
+            "four": "",
+            "five": "",
+            "six": "",
+            "seven": "",
+            "eight": "",
+            "nine": "",
+            "ten": "",
+            "page": "",
+            "knight": "",
+            "queen": "",
+            "king": ""
+        },
+        "swords": {
+            "ace": [
+                "crown",
+                "grey sky",
+                "hand from cloud",
+                "laurel",
+                "mountains",
+                "olive branch",
+                "phallic",
+                "six yod",
+                "upright sword",
+            ],
+            "two": "",
+            "three": "",
+            "four": "",
+            "five": "",
+            "six": "",
+            "seven": "",
+            "eight": "",
+            "nine": "",
+            "ten": "",
+            "page": "",
+            "knight": "",
+            "queen": "",
+            "king": ""
+        },
+        "wands": {
+            "ace": [
+                "hand from cloud",
+                "mountains",
+                "castle",
+                "fertile branch",
+                "green leaves",
+                "river",
+                "grey sky",
+                "phallic"
+            ],
+            "two": "",
+            "three": "",
+            "four": "",
+            "five": "",
+            "six": "",
+            "seven": "",
+            "eight": "",
+            "nine": "",
+            "ten": "",
+            "page": "",
+            "knight": "",
+            "queen": "",
+            "king": ""
+        }
+    }
+}

@@ -1,16 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
     "baseUrl": ".",
     "composite": true,
     "declaration": true,
@@ -20,13 +10,11 @@
     "strict": false
   },
   "include": [
-    "next-env.d.ts",
-    "firebase.config.ts",
     "src/**/*",
-    "**/*.ts",
-    "**/*.tsx"
+    "firebase.config.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "*.config.js"
   ]
 }

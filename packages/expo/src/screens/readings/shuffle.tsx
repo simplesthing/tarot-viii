@@ -3,23 +3,20 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import QuickNav from '../../navigation/quickNav';
+import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
-import { ShuffleDeal } from '@tarot-viii/ui';
+import { ShuffleDeal } from '@tarot-viii/app';
+import useDealer from '../../hooks/useDealer';
 import { useRouter } from 'solito/router';
 
 const ShuffleDealScreen = ({ navigation }) => {
     const [spread, setSpread] = useState<FirebaseFirestoreTypes.DocumentData>();
     const [documentId, setDocumentId] = useState<string>();
     const { push } = useRouter();
+    const { dealer, cardMeanings } = useDealer();
 
-    const {
-        fetchCardsInSpread,
-        fetchSpread,
-        generateReadingDocument,
-        updateReading,
-        fetchReadingById
-    } = useFirestore();
+    const { fetchCardsInSpread, fetchSpread, generateReadingDocument, updateReading } =
+        useFirestore();
 
     const { user } = useAuth();
 
@@ -44,25 +41,24 @@ const ShuffleDealScreen = ({ navigation }) => {
         }
     }, [user]);
 
-    const getCards = async readingIndexes => {
-        return fetchCardsInSpread(readingIndexes).then(c => {
+    const getCards = async (readingIndexes, reversals) => {
+        return fetchCardsInSpread(readingIndexes, reversals).then(c => {
             return c;
         });
     };
 
-    const updateReadingDoc = reading => {
-        if (user?.uid && documentId && reading) {
-            updateReading(documentId, reading);
+    const updateReadingDoc = (reading, reversals) => {
+        if (user?.uid && documentId && reading && reversals) {
+            updateReading(documentId, reading, reversals);
+            dealer(documentId);
         }
     };
 
     const openReading = (index: number) => {
-        if (documentId) {
-            fetchReadingById(documentId).then(data => {
-                push({
-                    pathname: ROUTES.screens.READING.path,
-                    query: { data: JSON.stringify(data), startFrom: index }
-                });
+        if (cardMeanings) {
+            push({
+                pathname: ROUTES.screens.READING.path,
+                query: { reading: JSON.stringify(cardMeanings), startFrom: 0 }
             });
         }
     };
@@ -76,7 +72,7 @@ const ShuffleDealScreen = ({ navigation }) => {
             <ShuffleDeal
                 getCards={getCards}
                 spread={spread}
-                updateReading={updateReadingDoc}
+                addDealtReading={updateReadingDoc}
                 openReading={openReading}
             />
             <QuickNav navigationEvent={quickNavEvent} />

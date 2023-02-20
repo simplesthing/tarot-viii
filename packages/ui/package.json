@@ -1,24 +1,22 @@
 {
   "name": "@tarot-viii/ui",
+  "main": "index.tsx",
   "version": "0.0.2",
+  "private": true,
   "types": "dist/index.d.ts",
   "scripts": {
-    "storybook": "start-storybook",
-    "build": "tsc -b"
+    "storybook": "start-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.18.6",
     "@expo/webpack-config": "^0.16.6",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-docs": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-knobs": "^6.3.1",
-    "@storybook/addon-react-native-web": "^0.0.18",
-    "@storybook/builder-webpack5": "^6.5.9",
-    "@storybook/manager-webpack5": "^6.5.9",
-    "@storybook/react": "^6.5.9",
-    "@svgr/cli": "6.0.0-alpha.2",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.25",
+    "@storybook/react": "^6.3.12",
+    "@svgr/cli": "5.4.0",
     "babel-loader": "^8.2.3"
   },
   "dependencies": {
