@@ -80,6 +80,7 @@ const useReading = () => {
         cutDeck,
         deal,
         deck,
+        reversals,
         shuffleDeck
     };
 };

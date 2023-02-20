@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth, useFirestore } from '../../hooks';
 
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import QuickNav from '../../navigation/quickNav';
+import QuickNav from 'src/navigation/quickNav';
 import { ROUTES } from '../../navigation/config';
 import { Timeline } from 'react-native-just-timeline';
 import { useRouter } from 'solito/router';

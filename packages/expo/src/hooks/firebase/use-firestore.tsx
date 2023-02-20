@@ -1,6 +1,6 @@
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { COLLECTIONS } from '@tarot-viii/ui/src/atoms/cards/constants';
+import { COLLECTIONS } from '@tarot-viii/ui/src/cards/constants';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { ReadingProp } from '@tarot-viii/ui/types';
 import uuid from 'react-native-uuid';
@@ -8,7 +8,10 @@ import uuid from 'react-native-uuid';
 type UseFirestore = {
     fetchDeck: () => Promise<FirebaseFirestoreTypes.DocumentData[]>;
     fetchSpread: () => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
-    fetchCardsInSpread: (indexes: string[]) => Promise<ReadingProp[]>;
+    fetchCardsInSpread: (
+        indexes: string[],
+        reversals: boolean[]
+    ) => Promise<ReadingProp[]>;
     fetchUser: (
         uid: string
     ) => Promise<void | FirebaseFirestoreTypes.DocumentData | undefined>;
@@ -18,7 +21,11 @@ type UseFirestore = {
         user: FirebaseAuthTypes.User,
         additionalData?: FirebaseAuthTypes.AdditionalUserInfo
     ) => void;
-    updateReading: (documentId: string, reading: string) => Promise<boolean>;
+    updateReading: (
+        documentId: string,
+        reading: string[],
+        reversals: boolean[]
+    ) => Promise<boolean>;
     updateReadingNotes: (documentId: string, notes: string) => Promise<boolean>;
     updateReadingTitle: (documentId: string, title: string) => Promise<boolean>;
     fetchReadingsForUser: (
@@ -153,11 +160,11 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
-    const updateReading = async (documentId, reading) => {
+    const updateReading = async (documentId, reading, reversals) => {
         return firestore()
             .collection(COLLECTIONS.READING)
             .doc(documentId)
-            .update({ reading: reading })
+            .update({ reading: reading, reversals: reversals })
             .then(() => {
                 return true;
             })
@@ -225,7 +232,7 @@ const useFirestore = (): UseFirestore => {
             });
     };
 
-    const fetchCardsInSpread = async (indexes: string[]) => {
+    const fetchCardsInSpread = async (indexes: string[], reversals: boolean[]) => {
         return firestore()
             .collection(COLLECTIONS.DECK)
             .where('name', 'in', indexes)
@@ -235,7 +242,11 @@ const useFirestore = (): UseFirestore => {
                 querySnapshot.forEach(doc => {
                     _cards.push(doc.data());
                 });
-                return _cards;
+                var res = _cards.map((card, index) => {
+                    card.reversed = reversals[index];
+                    return card;
+                });
+                return res;
             })
             .catch(e => {
                 console.log('Error getting cards collection');

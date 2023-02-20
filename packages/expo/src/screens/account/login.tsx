@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-import { Login } from '@tarot-viii/ui';
+import { Login } from '@tarot-viii/app';
 import { ROUTES } from '../../navigation/config';
 import React from 'react';
 import { useAuth } from '../../hooks';

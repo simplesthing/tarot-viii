@@ -1,9 +1,8 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
-// const { getDefaultConfig } = require('expo/metro-config');
-const { createMetroConfiguration } = require('expo-yarn-workspaces');
+const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 
-const config = createMetroConfiguration(__dirname);
+const config = getDefaultConfig(__dirname);
 
 // Monorepo
 const projectRoot = __dirname;

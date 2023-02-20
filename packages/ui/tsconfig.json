@@ -12,13 +12,9 @@
   },
   "include": [
     "src/**/*",
-    "index.tsx",
-    "*.ts",
-    "assets/**/*.json",
-    "types/**/*",
-    "assets/data/mockSpread.js"
+    "index.tsx"
   ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ]
 }
