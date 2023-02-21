@@ -1,7 +1,5 @@
 import * as React from 'react';
-
-import Svg, { G, Path } from 'react-native-svg';
-
+import Svg, { Path, G } from 'react-native-svg';
 function SvgCoin1(props) {
     return (
         <Svg
@@ -100,5 +98,4 @@ function SvgCoin1(props) {
         </Svg>
     );
 }
-
 export default SvgCoin1;

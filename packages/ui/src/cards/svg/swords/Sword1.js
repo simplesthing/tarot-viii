@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Svg, { Path, G } from 'react-native-svg';
-
 function SvgSword1(props) {
     return (
         <Svg
@@ -55,5 +54,4 @@ function SvgSword1(props) {
         </Svg>
     );
 }
-
 export default SvgSword1;
